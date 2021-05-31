@@ -1,19 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 11:05:16 by ldermign          #+#    #+#             */
-/*   Updated: 2021/05/31 11:17:38 by ldermign         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+#include "libft.h"
 #include <libc.h>
 
-int main(int ac, char **av)
+int main()
 {
-	printf("Hello world!");
+	printf("Hello World !\n");
 	return (0);
 }
