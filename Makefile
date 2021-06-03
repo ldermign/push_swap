@@ -6,7 +6,7 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 11:10:10 by ldermign          #+#    #+#              #
-#    Updated: 2021/05/31 15:18:55 by ldermign         ###   ########.fr        #
+#    Updated: 2021/06/03 12:01:48 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,18 +20,19 @@ OBJS	=	${SRCS:.c=.o}
 
 CC		=	clang
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror
 
 RM		=	rm -rf
 
 all:		${NAME}
 
+${NAME}:	${OBJS}
+			${MAKE} -C libft
+			${CC} ${CFLAGS} ${INCS} $^ -o $@ ./libft/libft.a
+
 .c.o:
 			${CC} ${CFLAGS} ${INCS} -c $< -o $@
 
-${NAME}:	${OBJS} #${INCS}
-			${MAKE} -C libft
-			${CC} ${CFLAGS} ${INCS} $^ -o $@
 
 clean:
 			${MAKE} -C libft clean
