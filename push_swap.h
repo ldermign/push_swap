@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 14:29:32 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/03 13:23:39 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/04 12:03:53 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include "libft.h"
 # define ERROR 0
 # define SUCCESS 1
+
+/*
+**	STRUCTURES
+*/
 
 typedef struct s_operation
 {
@@ -31,5 +35,23 @@ typedef struct s_operation
 	int rrb;
 	int rrr;
 }	t_ope;
+
+/*
+**	CHECK
+*/
+
+int	check_arg(int ac, char **av);
+int	ft_doublon(int ac, char **tab);
+
+/*
+**	UTILS
+*/
+
+int	ft_how_many(int ac, char **tab);
+
+
+
+
+
 
 #endif

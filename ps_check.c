@@ -1,37 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ps_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/04 12:03:50 by ldermign         ###   ########.fr       */
+/*   Created: 2021/06/04 11:59:59 by ldermign          #+#    #+#             */
+/*   Updated: 2021/06/04 12:03:45 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_push_swap(int ac, char **av)
+int	ft_doublon(int ac, char **tab)
 {
-	int	i;
-	int	size;
+	(void)ac;
+	(void)tab;
+	int i;
 
-	i = 1;
-	if (!check_arg(ac, av) || !ft_doublon(ac, av))
-	{
-		ft_printf("Error\n");
-		return (ERROR);
-	}
-	size = ft_how_many(ac, av);
+	i = 0;
 	return (SUCCESS);
 }
 
-int main(int ac, char **av)
+int	check_arg(int ac, char **av)
 {
-	if (ac <= 1)
-		return (SUCCESS);
-	else
-		ft_push_swap(ac, av);
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i != ac && av[i])
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			if (!ft_is_digit(av[i][j]))
+				return (ERROR);
+			j++;
+		}
+		i++;
+	}
 	return (SUCCESS);
 }

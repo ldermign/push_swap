@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/04 12:03:50 by ldermign         ###   ########.fr       */
+/*   Created: 2021/06/04 11:59:03 by ldermign          #+#    #+#             */
+/*   Updated: 2021/06/04 12:01:10 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_push_swap(int ac, char **av)
+int	ft_how_many(int ac, char **tab)
 {
 	int	i;
 	int	size;
 
 	i = 1;
-	if (!check_arg(ac, av) || !ft_doublon(ac, av))
+	size = 0;
+	while (i < ac)
 	{
-		ft_printf("Error\n");
-		return (ERROR);
+		ft_printf("\t\t--> %s\n", tab[i]);
+		i++;
+		size++;
 	}
-	size = ft_how_many(ac, av);
-	return (SUCCESS);
-}
-
-int main(int ac, char **av)
-{
-	if (ac <= 1)
-		return (SUCCESS);
-	else
-		ft_push_swap(ac, av);
-	return (SUCCESS);
+	ft_printf("Size = %d.\n", size);
+	return (size);
 }
