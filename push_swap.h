@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 14:29:32 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/04 15:03:47 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/05 12:06:41 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,14 @@ typedef struct liste
 {
 	void *first;
 	int nbr;
-	t_liste *next;
+	struct liste *next;
 } t_liste;
+
+// typedef struct stack
+// {
+// 	t_liste stack_a;
+// 	t_liste stack_b;
+// } t_stk;
 
 /*
 **	CHECK

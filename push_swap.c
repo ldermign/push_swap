@@ -6,32 +6,66 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/04 15:03:54 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/05 14:38:26 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	init_liste(char **tab)
+void	supp_in_stack(t_liste *stack)
 {
-	t_liste	*liste_a;
-	t_liste	*liste_b;
+	t_liste *supp;
 
-	liste_a = malloc(sizeof(*liste_a));
-	liste_b = malloc(sizeof(*liste_b));
-	if (liste_a == NULL || liste_b == NULL)
+	if (stack == NULL)
+		exit (0);
+	if (stack->first != NULL)
+	{
+		supp = stack->first;
+		stack->first = stack->next;
+		free(supp);
+	}
+}
+
+void	init_stack_a(t_liste *stk_a, char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		stk_a->nbr = atoi(tab[i]);
+		stk_a->next = stk_a->first;
+		stk_a->first = stk_a;
+		i++;
+	}
+}
+
+t_liste	*init_liste(char **tab)
+{
+	t_liste	*stack;
+
+	stack = malloc(sizeof(*stack));
+	if (stack == NULL)
 		return (ERROR);
-	liste_a->nbr = 0;
-	liste_b->nbr = 0;
-	liste_a->next = NULL;
-	liste_b->next = NULL;
-	liste_a->first = liste_a;
-	liste_b->first = liste_b;
+	stack->nbr = 0;
+	stack->next = NULL;
+	stack->first = stack;
+	return (stack);
+}
+
+void	afficher_stack_a(t_liste *stk_a)
+{
+	t_liste	
+	if (stk_a == NULL)
+		exit (0);
+	
 }
 
 int	ft_push_swap(int ac, char **av)
 {
 	int	size;
+	t_liste	*stk_a;
+	t_liste	*stk_b;
 
 	if (!check_arg(ac, &av[1]) || !ft_doublon(&av[1]))
 	{
@@ -39,8 +73,10 @@ int	ft_push_swap(int ac, char **av)
 		return (ERROR);
 	}
 	size = ft_how_many(&av[1]);
-	if (!init_liste(&av[1]))
-		return (ERROR);
+	stk_a = init_liste(&av[1]);
+	stk_b = init_liste(&av[1]);
+	init_stack_a(stk_a, &av[1]);
+	afficher_stack_a(stk_a);
 	return (SUCCESS);
 }
 

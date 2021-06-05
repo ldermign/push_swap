@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:03 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/04 14:08:53 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/05 14:28:42 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ft_how_many(char **tab)
 	size = 0;
 	while (tab[i])
 	{
-		ft_printf("\t\t--> %s\n", tab[i]);
 		i++;
 		size++;
 	}
