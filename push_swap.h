@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 14:29:32 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/05 12:06:41 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/06 15:05:41 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,22 @@ typedef struct s_operation
 **	LISTES CHAINEES
 */
 
-typedef struct liste
+typedef struct s_element
 {
-	void *first;
 	int nbr;
-	struct liste *next;
+	struct s_element *next;
+} t_elmnt;
+
+typedef struct s_liste
+{
+	t_elmnt *first;
 } t_liste;
 
-// typedef struct stack
-// {
-// 	t_liste stack_a;
-// 	t_liste stack_b;
-// } t_stk;
+typedef struct s_stack
+{
+	t_liste *lst;
+	t_elmnt *elmnt;
+} t_stk;
 
 /*
 **	CHECK
