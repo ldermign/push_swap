@@ -6,7 +6,7 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 11:10:10 by ldermign          #+#    #+#              #
-#    Updated: 2021/06/04 11:59:55 by ldermign         ###   ########.fr        #
+#    Updated: 2021/06/07 13:27:35 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJS	=	${SRCS:.c=.o}
 
 CC		=	clang
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 RM		=	rm -rf
 
