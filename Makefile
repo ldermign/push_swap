@@ -6,13 +6,13 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 11:10:10 by ldermign          #+#    #+#              #
-#    Updated: 2021/06/07 13:27:35 by ldermign         ###   ########.fr        #
+#    Updated: 2021/06/11 08:33:00 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	push_swap
 
-SRCS	=	push_swap.c ps_utils.c ps_check.c
+SRCS	=	push_swap.c ps_utils.c ps_check.c ope_simple.c ope_double.c
 
 INCS	=	-I ./push_swap.h -I ./libft/includes/
 

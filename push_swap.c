@@ -6,25 +6,25 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/07 13:57:23 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/11 11:58:36 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	supp_in_stack(t_lst *stack, t_lst **first)
-{
-	t_lst *supp;
+// void	supp_in_stack(t_lst *stack, t_lst **first)
+// {
+// 	t_lst *supp;
 
-	if (stack == NULL)
-		exit (0);
-	if (first != NULL)
-	{
-		supp = first;
-		first = stack->next;
-		free(supp);
-	}
-}
+// 	if (stack == NULL)
+// 		exit (0);
+// 	if (first != NULL)
+// 	{
+// 		supp = *first;
+// 		first = &stack->next;
+// 		free(supp);
+// 	}
+// }
 
 t_lst	*new_nbr(int nbr)
 {
@@ -56,15 +56,6 @@ int	add_nbr_back(t_lst **begin, t_lst **first, int nbr)
 	return (1);
 }
 
-void	printf_lst(t_lst *lst)
-{
-	while (lst)
-	{
-		ft_printf("elem = %d.\n", lst->nbr);
-		lst = lst->next;
-	}
-}
-
 void	init_liste_a(t_lst **begin, t_lst **first, char **tab)
 {
 	int i;
@@ -76,6 +67,8 @@ void	init_liste_a(t_lst **begin, t_lst **first, char **tab)
 		i++;
 	}
 }
+
+#include <libc.h>
 
 void	afficher_stack_a(t_lst *s_a)
 {
@@ -106,6 +99,12 @@ int	ft_push_swap(int ac, char **av)
 	size = ft_how_many(&av[1]);
 	f = malloc(sizeof(t_first));
 	init_liste_a(&s_a, &(f->fst_a), &av[1]);
+	// afficher_stack_a(s_a);
+	// swap(&s_a, &(f->fst_a));
+	afficher_stack_a(s_a);
+	rotate(&s_a, &(f->fst_a));
+	afficher_stack_a(s_a);
+	reverse_rotate(&s_a, &(f->fst_a));
 	afficher_stack_a(s_a);
 	return (SUCCESS);
 }

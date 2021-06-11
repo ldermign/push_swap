@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 14:29:32 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/07 11:18:36 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/11 11:51:43 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,6 @@ typedef struct s_operation
 **	LISTES CHAINEES
 */
 
-// typedef struct s_element
-// {
-// 	int nbr;
-// 	struct s_element *next;
-// } t_elmnt;
-
-// typedef struct s_liste
-// {
-// 	t_elmnt *first;
-// } t_liste;
-
-// typedef struct s_stack
-// {
-// 	t_lst *lst;
-// 	t_elmnt *elmnt;
-// } t_stk;
-
 typedef struct s_lst
 {
 	int				nbr;
@@ -77,6 +60,14 @@ int	check_arg(int ac, char **av);
 int	ft_doublon(char **tab);
 
 /*
+**	OPERATIONS
+*/
+
+void	swap(t_lst **stack, t_lst **first);
+void	rotate(t_lst **stack, t_lst **first);
+void	reverse_rotate(t_lst **stack, t_lst **first);
+
+/*
 **	UTILS
 */
 
@@ -85,6 +76,8 @@ int	ft_how_many(char **tab);
 
 
 
+
+void	afficher_stack_a(t_lst *s_a);
 
 
 #endif
