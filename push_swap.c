@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/11 11:58:36 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/12 16:27:16 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ int	ft_push_swap(int ac, char **av)
 	size = ft_how_many(&av[1]);
 	f = malloc(sizeof(t_first));
 	init_liste_a(&s_a, &(f->fst_a), &av[1]);
-	// afficher_stack_a(s_a);
-	// swap(&s_a, &(f->fst_a));
+	afficher_stack_a(s_a);
+	swap(&s_a, &(f->fst_a));
 	afficher_stack_a(s_a);
 	rotate(&s_a, &(f->fst_a));
 	afficher_stack_a(s_a);
