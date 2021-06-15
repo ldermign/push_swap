@@ -6,55 +6,11 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/12 16:27:16 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/13 18:18:58 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// void	supp_in_stack(t_lst *stack, t_lst **first)
-// {
-// 	t_lst *supp;
-
-// 	if (stack == NULL)
-// 		exit (0);
-// 	if (first != NULL)
-// 	{
-// 		supp = *first;
-// 		first = &stack->next;
-// 		free(supp);
-// 	}
-// }
-
-t_lst	*new_nbr(int nbr)
-{
-	t_lst	*elem;
-
-	elem = malloc(sizeof(t_lst));
-	if (!elem)
-		return (NULL);
-	elem->nbr = nbr;
-	elem->next = NULL;
-	return (elem);
-}
-
-int	add_nbr_back(t_lst **begin, t_lst **first, int nbr)
-{
-	if (!(*begin))
-	{
-		*begin = new_nbr(nbr);
-		*first = *begin;
-	}
-	else
-	{
-		*first = *begin;
-		while ((*begin)->next)
-			*begin = (*begin)->next;
-		(*begin)->next = new_nbr(nbr);
-	}
-	(*begin) = *first;
-	return (1);
-}
 
 void	init_liste_a(t_lst **begin, t_lst **first, char **tab)
 {
@@ -68,22 +24,8 @@ void	init_liste_a(t_lst **begin, t_lst **first, char **tab)
 	}
 }
 
-#include <libc.h>
-
-void	afficher_stack_a(t_lst *s_a)
-{
-	if (s_a == NULL)
-		exit (0);
-	while (s_a != NULL)
-	{
-		ft_printf("\t\t--> %d\n", s_a->nbr);
-		s_a = s_a->next;
-	}
-}
-
 int	ft_push_swap(int ac, char **av)
 {
-	int	size;
 	t_lst *s_a;
 	t_lst *s_b;
 	t_first *f;
@@ -96,16 +38,27 @@ int	ft_push_swap(int ac, char **av)
 		ft_printf("Error\n");
 		return (ERROR);
 	}
-	size = ft_how_many(&av[1]);
 	f = malloc(sizeof(t_first));
 	init_liste_a(&s_a, &(f->fst_a), &av[1]);
-	afficher_stack_a(s_a);
-	swap(&s_a, &(f->fst_a));
-	afficher_stack_a(s_a);
-	rotate(&s_a, &(f->fst_a));
-	afficher_stack_a(s_a);
-	reverse_rotate(&s_a, &(f->fst_a));
-	afficher_stack_a(s_a);
+	afficher_deux_stack(s_a, s_b);
+	swap(&s_a, &(f->fst_a));				// swap
+	afficher_une_stack(s_a);
+	rotate(&s_a, &(f->fst_a));			// rotate
+	afficher_une_stack(s_a);
+	reverse_rotate(&s_a, &(f->fst_a));	// reverse rotate
+	afficher_une_stack(s_a);
+	push(&s_a, &s_b, &(f->fst_b));
+	afficher_deux_stack(s_a, s_b);
+	push(&s_a, &s_b, &(f->fst_b));
+	afficher_deux_stack(s_a, s_b);
+	push(&s_a, &s_b, &(f->fst_b));
+	afficher_deux_stack(s_a, s_b);
+	swap_ss(&s_a, &s_b, f);
+	afficher_deux_stack(s_a, s_b);
+	rotate_rr(&s_a, &s_b, f);
+	afficher_deux_stack(s_a, s_b);
+	reverse_rotate_rrr(&s_a, &s_b, f);
+	afficher_deux_stack(s_a, s_b);
 	return (SUCCESS);
 }
 

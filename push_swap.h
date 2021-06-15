@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 14:29:32 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/11 11:51:43 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/13 17:27:43 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ typedef struct s_first
 **	CHECK
 */
 
-int	check_arg(int ac, char **av);
-int	ft_doublon(char **tab);
+int		check_arg(int ac, char **av);
+int		ft_doublon(char **tab);
 
 /*
 **	OPERATIONS
@@ -66,18 +66,25 @@ int	ft_doublon(char **tab);
 void	swap(t_lst **stack, t_lst **first);
 void	rotate(t_lst **stack, t_lst **first);
 void	reverse_rotate(t_lst **stack, t_lst **first);
+void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get);
+void	swap_ss(t_lst **s_a, t_lst **s_b, t_first *first);
+
 
 /*
 **	UTILS
 */
 
-int	ft_how_many(char **tab);
+int		size_stack(t_lst *stack);
+t_lst	*new_nbr(int nbr);
+void	add_nbr_back(t_lst **stack, t_lst **first, int nbr);
+void	add_nbr_front(t_lst **begin, t_lst ** first, int nbr);
 
 
 
-
-
-void	afficher_stack_a(t_lst *s_a);
+void	afficher_une_stack(t_lst *s);
+void	afficher_deux_stack(t_lst *one, t_lst *two);
+void	rotate_rr(t_lst **s_a, t_lst **s_b, t_first *first);
+void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first *first);
 
 
 #endif

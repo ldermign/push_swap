@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 08:15:42 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/12 18:28:25 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/13 18:18:31 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,37 @@ void	swap(t_lst **stack, t_lst **first)
 	t_lst	*second_add;
 	t_lst	*third_add;
 
+	if (size_stack(*stack) < 1)
+		return ;
 	first_add = *stack;
-	second_add = (*stack)->next;
-	*stack = (*stack)->next;
-	third_add = (*stack)->next;
-	*first = *stack;
-	ft_printf("swap\n");
+	second_add = first_add->next;
+	third_add = second_add->next;
+	first_add->next = third_add;
+	second_add->next = first_add;
+	*first = second_add;
+	*stack = *first;
+	ft_printf("s\n");
 }
 
-void	push(void *v)
+void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get)
 {
-	(void)v;
+	t_lst	*tmp_add_supp;
+
+	if (size_stack(*s_give) == 0)
+		return ;
+	add_nbr_front(s_get, f_get, (*s_give)->nbr);
+	tmp_add_supp = *s_give;
+	*s_give = (*s_give)->next;
+	free(tmp_add_supp);
+	ft_printf("p\n");
 }
 
 void	rotate(t_lst **stack, t_lst **first)
 {
 	t_lst	*address_prev;
 
+	if (size_stack(*stack) < 1)
+		return ;
 	address_prev = *first;
 	*first = (*stack)->next;
 	while ((*stack)->next)
@@ -42,13 +56,15 @@ void	rotate(t_lst **stack, t_lst **first)
 	(*stack)->next = address_prev;
 	address_prev->next = NULL;
 	*stack = *first;
-	ft_printf("rotate\n");
+	ft_printf("r\n");
 }
 
 void	reverse_rotate(t_lst **stack, t_lst **first)
 {
 	t_lst	*address_prev;
 
+	if (size_stack(*stack) < 1)
+		return ;
 	while ((*stack)->next)
 	{
 		address_prev = *stack;
@@ -56,5 +72,5 @@ void	reverse_rotate(t_lst **stack, t_lst **first)
 	}
 	(*stack)->next = *first;
 	address_prev->next = NULL;
-	ft_printf("reverse rotate\n");
+	ft_printf("rr\n");
 }
