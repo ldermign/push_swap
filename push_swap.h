@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 14:29:32 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/13 17:27:43 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/15 13:37:25 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ typedef struct s_first
 	t_lst *fst_b;
 }	t_first;
 
+typedef struct s_utils
+{
+	int	*s_int;
+	int med;
+	int size;
+}	t_utils;
+
 /*
 **	CHECK
 */
@@ -69,15 +76,25 @@ void	reverse_rotate(t_lst **stack, t_lst **first);
 void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get);
 void	swap_ss(t_lst **s_a, t_lst **s_b, t_first *first);
 
+/*
+**	TRIS
+*/
+
+void    sort(t_lst **s_a, t_lst **s_b, t_first *f);
 
 /*
 **	UTILS
 */
 
+void    get_info(t_utils *uts);
 int		size_stack(t_lst *stack);
 t_lst	*new_nbr(int nbr);
 void	add_nbr_back(t_lst **stack, t_lst **first, int nbr);
 void	add_nbr_front(t_lst **begin, t_lst ** first, int nbr);
+
+
+
+
 
 
 
@@ -86,5 +103,11 @@ void	afficher_deux_stack(t_lst *one, t_lst *two);
 void	rotate_rr(t_lst **s_a, t_lst **s_b, t_first *first);
 void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first *first);
 
+
+
+
+
+
+#include <libc.h>
 
 #endif
