@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/15 14:07:21 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/15 21:55:21 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_liste_a(t_lst **begin, t_lst **first, char **tab, t_utils *uts)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
@@ -27,7 +27,7 @@ void	init_liste_a(t_lst **begin, t_lst **first, char **tab, t_utils *uts)
 
 int	get_stack_char(t_lst *stack, t_utils *uts)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	uts->size = size_stack(stack) + 1;
@@ -45,9 +45,9 @@ int	get_stack_char(t_lst *stack, t_utils *uts)
 
 int	ft_push_swap(int ac, char **av)
 {
-	t_lst *s_a;
-	t_lst *s_b;
-	t_first *f;
+	t_lst	*s_a;
+	t_lst	*s_b;
+	t_first	*f;
 	t_utils	*uts;
 
 	s_a = NULL;
@@ -62,17 +62,27 @@ int	ft_push_swap(int ac, char **av)
 	f = malloc(sizeof(t_first));
 	uts = malloc (sizeof(t_utils));
 	init_liste_a(&s_a, &(f->fst_a), &av[1], uts);
-	if (f == NULL || uts == NULL || !get_stack_char(s_a, uts))
+	if (f == NULL || uts == NULL || !get_stack_char(s_a, uts) || !get_info(uts))
 	{
 		ft_printf("Error\n");
 		return (ERROR);
 	}
 	afficher_deux_stack(s_a, s_b);
-	get_info(uts);
+	push(&s_a, &s_b, &(f->fst_b));		// pa
+	push(&s_a, &s_b, &(f->fst_b));		// pa
+	push(&s_a, &s_b, &(f->fst_b));		// pa
+	swap(&s_a,	&(f->fst_a));			// sa
+	rotate(&s_b, &(f->fst_b));			// rb
+	swap(&s_b, &(f->fst_b));			// sb
+	reverse_rotate(&s_b, &(f->fst_b));	// rrb
+	push(&s_b, &s_a, &(f->fst_a));		// pb
+	push(&s_b, &s_a, &(f->fst_a));		// pb
+	push(&s_b, &s_a, &(f->fst_a));		// pb
+	afficher_deux_stack(s_a, s_b);
 	return (SUCCESS);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	if (ac <= 1)
 		return (SUCCESS);

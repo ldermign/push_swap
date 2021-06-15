@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:59 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/04 14:15:52 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/15 19:45:23 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_doublon(char **tab)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 	int	tmp;
 	int	tmp2;
 

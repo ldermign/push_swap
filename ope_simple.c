@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 08:15:42 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/13 18:18:31 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/15 22:05:45 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get)
 {
 	t_lst	*tmp_add_supp;
 
-	if (size_stack(*s_give) == 0)
+	if (*s_give == NULL)
 		return ;
 	add_nbr_front(s_get, f_get, (*s_give)->nbr);
 	tmp_add_supp = *s_give;

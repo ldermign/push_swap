@@ -6,12 +6,11 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 08:21:30 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/13 17:27:58 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/15 19:44:49 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 void	swap_ss(t_lst **s_a, t_lst **s_b, t_first *first)
 {

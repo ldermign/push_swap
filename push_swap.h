@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 14:29:32 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/15 13:37:25 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/15 19:33:06 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_first
 typedef struct s_utils
 {
 	int	*s_int;
-	int med;
+	double med;
 	int size;
 }	t_utils;
 
@@ -86,7 +86,7 @@ void    sort(t_lst **s_a, t_lst **s_b, t_first *f);
 **	UTILS
 */
 
-void    get_info(t_utils *uts);
+int    get_info(t_utils *uts);
 int		size_stack(t_lst *stack);
 t_lst	*new_nbr(int nbr);
 void	add_nbr_back(t_lst **stack, t_lst **first, int nbr);
