@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/15 21:55:21 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/17 10:09:43 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,21 @@ int	ft_push_swap(int ac, char **av)
 	f = malloc(sizeof(t_first));
 	uts = malloc (sizeof(t_utils));
 	init_liste_a(&s_a, &(f->fst_a), &av[1], uts);
-	if (f == NULL || uts == NULL || !get_stack_char(s_a, uts) || !get_info(uts))
+	if (f == NULL || uts == NULL || !get_stack_char(s_a, uts))
 	{
 		ft_printf("Error\n");
 		return (ERROR);
 	}
 	afficher_deux_stack(s_a, s_b);
-	push(&s_a, &s_b, &(f->fst_b));		// pa
-	push(&s_a, &s_b, &(f->fst_b));		// pa
-	push(&s_a, &s_b, &(f->fst_b));		// pa
-	swap(&s_a,	&(f->fst_a));			// sa
-	rotate(&s_b, &(f->fst_b));			// rb
-	swap(&s_b, &(f->fst_b));			// sb
-	reverse_rotate(&s_b, &(f->fst_b));	// rrb
-	push(&s_b, &s_a, &(f->fst_a));		// pb
-	push(&s_b, &s_a, &(f->fst_a));		// pb
-	push(&s_b, &s_a, &(f->fst_a));		// pb
+	push(&s_a, &s_b, &(f->fst_b), "pb");		// pb
+	push(&s_a, &s_b, &(f->fst_b), "pb");		// pb
+	push(&s_a, &s_b, &(f->fst_b), "pb");		// pb
+	rotate(&s_b, &(f->fst_b), "rb");			// rb
+	swap_ss(&s_a, &s_b, f);				// ss
+	reverse_rotate(&s_b, &(f->fst_b), "rb");	// rrb
+	push(&s_b, &s_a, &(f->fst_a), "pa");		// pa
+	push(&s_b, &s_a, &(f->fst_a), "pa");		// pa
+	push(&s_b, &s_a, &(f->fst_a), "pa");		// pa
 	afficher_deux_stack(s_a, s_b);
 	return (SUCCESS);
 }

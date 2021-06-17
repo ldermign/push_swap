@@ -6,13 +6,13 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 08:15:42 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/15 22:05:45 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/17 09:48:54 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_lst **stack, t_lst **first)
+void	swap(t_lst **stack, t_lst **first, char *s)
 {
 	t_lst	*first_add;
 	t_lst	*second_add;
@@ -27,10 +27,10 @@ void	swap(t_lst **stack, t_lst **first)
 	second_add->next = first_add;
 	*first = second_add;
 	*stack = *first;
-	ft_printf("s\n");
+	ft_printf("%s\n", s);
 }
 
-void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get)
+void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get, char *s)
 {
 	t_lst	*tmp_add_supp;
 
@@ -40,10 +40,10 @@ void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get)
 	tmp_add_supp = *s_give;
 	*s_give = (*s_give)->next;
 	free(tmp_add_supp);
-	ft_printf("p\n");
+	ft_printf("%s\n", s);
 }
 
-void	rotate(t_lst **stack, t_lst **first)
+void	rotate(t_lst **stack, t_lst **first, char *s)
 {
 	t_lst	*address_prev;
 
@@ -56,10 +56,10 @@ void	rotate(t_lst **stack, t_lst **first)
 	(*stack)->next = address_prev;
 	address_prev->next = NULL;
 	*stack = *first;
-	ft_printf("r\n");
+	ft_printf("%s\n", s);
 }
 
-void	reverse_rotate(t_lst **stack, t_lst **first)
+void	reverse_rotate(t_lst **stack, t_lst **first, char *s)
 {
 	t_lst	*address_prev;
 
@@ -72,5 +72,5 @@ void	reverse_rotate(t_lst **stack, t_lst **first)
 	}
 	(*stack)->next = *first;
 	address_prev->next = NULL;
-	ft_printf("rr\n");
+	ft_printf("%s\n", s);
 }

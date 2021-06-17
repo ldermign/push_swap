@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 14:29:32 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/15 19:33:06 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/17 10:32:48 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,13 @@ int		ft_doublon(char **tab);
 **	OPERATIONS
 */
 
-void	swap(t_lst **stack, t_lst **first);
-void	rotate(t_lst **stack, t_lst **first);
-void	reverse_rotate(t_lst **stack, t_lst **first);
-void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get);
+void	swap(t_lst **stack, t_lst **first, char *s);
+void	rotate(t_lst **stack, t_lst **first, char *s);
+void	reverse_rotate(t_lst **stack, t_lst **first, char *s);
+void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get, char *s);
 void	swap_ss(t_lst **s_a, t_lst **s_b, t_first *first);
+void	rotate_rr(t_lst **s_a, t_lst **s_b, t_first *first);
+void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first *first);
 
 /*
 **	TRIS
@@ -100,8 +102,7 @@ void	add_nbr_front(t_lst **begin, t_lst ** first, int nbr);
 
 void	afficher_une_stack(t_lst *s);
 void	afficher_deux_stack(t_lst *one, t_lst *two);
-void	rotate_rr(t_lst **s_a, t_lst **s_b, t_first *first);
-void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first *first);
+
 
 
 
