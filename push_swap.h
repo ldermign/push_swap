@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 14:29:32 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/17 10:32:48 by ldermign         ###   ########.fr       */
+/*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
+/*   Updated: 2021/06/18 11:33:03 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	PUSH_SWAP_H
+#ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include "libft.h"
@@ -23,17 +23,17 @@
 
 typedef struct s_operation
 {
-	int sa;
-	int sb;
-	int ss;
-	int pa;
-	int pb;
-	int ra;
-	int rb;
-	int rr;
-	int rra;
-	int rrb;
-	int rrr;
+	int	sa;
+	int	sb;
+	int	ss;
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
 }	t_ope;
 
 /*
@@ -48,15 +48,15 @@ typedef struct s_lst
 
 typedef struct s_first
 {
-	t_lst *fst_a;
-	t_lst *fst_b;
+	t_lst	*fst_a;
+	t_lst	*fst_b;
 }	t_first;
 
 typedef struct s_utils
 {
-	int	*s_int;
-	double med;
-	int size;
+	int		*s_int;
+	double	med;
+	int		size;
 }	t_utils;
 
 /*
@@ -82,33 +82,24 @@ void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first *first);
 **	TRIS
 */
 
-void    sort(t_lst **s_a, t_lst **s_b, t_first *f);
+void	begin_sort(t_lst *s_a, t_lst *s_b, t_first *first, t_utils *uts);
 
 /*
 **	UTILS
 */
 
-int    get_info(t_utils *uts);
+int		get_info(t_utils *uts);
 int		size_stack(t_lst *stack);
 t_lst	*new_nbr(int nbr);
 void	add_nbr_back(t_lst **stack, t_lst **first, int nbr);
-void	add_nbr_front(t_lst **begin, t_lst ** first, int nbr);
+void	add_nbr_front(t_lst **begin, t_lst **first, int nbr);
 
+/*
+**	SUPPRIMER
+*/
 
-
-
-
-
-
+# include <libc.h>
 void	afficher_une_stack(t_lst *s);
 void	afficher_deux_stack(t_lst *one, t_lst *two);
-
-
-
-
-
-
-
-#include <libc.h>
 
 #endif

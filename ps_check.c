@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:59 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/17 10:32:38 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/18 11:24:01 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	ft_doublon(char **tab)
 {
-	int	i;
-	int	j;
-	int	tmp;
-	int	tmp2;
+	int				i;
+	int				j;
+	long long int	tmp;
+	long long int	tmp2;
 
 	i = 0;
 	j = 0;
@@ -29,7 +29,8 @@ int	ft_doublon(char **tab)
 		{
 			i++;
 			tmp2 = ft_atoi(tab[i]);
-			if (tmp == tmp2)
+			if (tmp == tmp2 || tmp > 2147483647 || tmp2 > 2147483647
+				|| tmp < -2147483648 || tmp2 < -2147483648)
 				return (ERROR);
 		}
 		i = j + 1;
