@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/18 11:33:03 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/20 16:24:54 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,6 @@
 
 /*
 **	STRUCTURES
-*/
-
-typedef struct s_operation
-{
-	int	sa;
-	int	sb;
-	int	ss;
-	int	pa;
-	int	pb;
-	int	ra;
-	int	rb;
-	int	rr;
-	int	rra;
-	int	rrb;
-	int	rrr;
-}	t_ope;
-
-/*
-**	LISTES CHAINEES
 */
 
 typedef struct s_lst
@@ -57,6 +38,8 @@ typedef struct s_utils
 	int		*s_int;
 	double	med;
 	int		size;
+	int		middle;
+	int		max;
 }	t_utils;
 
 /*
@@ -70,19 +53,19 @@ int		ft_doublon(char **tab);
 **	OPERATIONS
 */
 
-void	swap(t_lst **stack, t_lst **first, char *s);
-void	rotate(t_lst **stack, t_lst **first, char *s);
-void	reverse_rotate(t_lst **stack, t_lst **first, char *s);
-void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get, char *s);
-void	swap_ss(t_lst **s_a, t_lst **s_b, t_first *first);
-void	rotate_rr(t_lst **s_a, t_lst **s_b, t_first *first);
-void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first *first);
+void	swap(t_lst **stack, t_lst **first, char s);
+void	rotate(t_lst **stack, t_lst **first, char s);
+void	reverse_rotate(t_lst **stack, t_lst **first, char s);
+void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get, char s);
+void	swap_ss(t_lst **s_a, t_lst **s_b, t_first **first);
+void	rotate_rr(t_lst **s_a, t_lst **s_b, t_first **first);
+void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first **first);
 
 /*
 **	TRIS
 */
 
-void	begin_sort(t_lst *s_a, t_lst *s_b, t_first *first, t_utils *uts);
+void	begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
 
 /*
 **	UTILS
@@ -99,7 +82,7 @@ void	add_nbr_front(t_lst **begin, t_lst **first, int nbr);
 */
 
 # include <libc.h>
-void	afficher_une_stack(t_lst *s);
-void	afficher_deux_stack(t_lst *one, t_lst *two);
+void	afficher_une_stack(t_lst **s);
+void	afficher_deux_stack(t_lst **one, t_lst **two);
 
 #endif

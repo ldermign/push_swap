@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tris.c                                             :+:      :+:    :+:   */
+/*   tris_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/17 10:09:34 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/20 16:00:09 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,16 @@ int	get_info(t_utils *uts)
 {
 	bubble_sort(uts->s_int, uts->size);
 	if ((uts->size % 2) == 0)
+	{
+		uts->middle = uts->size / 2;
 		uts->med = ((uts->s_int[(uts->size / 2) - 1]
 					+ uts->s_int[uts->size / 2]) / 2);
+	}
 	else
+	{
+		uts->middle = (uts->size + 1) / 2;
 		uts->med = uts->s_int[((uts->size + 1) / 2) - 1];
+	}
 	printf("med = %f\n", uts->med);
 	return (SUCCESS);
 }
