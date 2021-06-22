@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/21 14:44:31 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/22 16:08:09 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,21 @@ void	up_swap_reverse_rotate(t_lst **s_a, t_lst **f_a, t_utils *uts)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (i < uts->max)
 	{
-		reverse_rotate(s_a, f_a, 'a');
-		swap(s_a, f_a, 'a');
 		rotate(s_a, f_a, 'a');
 		i++;
 	}
+	i = 0;
+	while (i <uts->max)
+	{
+		swap(s_a, f_a, 'a');
+		reverse_rotate(s_a, f_a, 'a');
+		i++;
+	}
+	rotate(s_a, f_a, 'a');
+	rotate(s_a, f_a, 'a');
 }
 
 void	simple_up(t_lst **s_a, t_first **f, t_utils *uts)
@@ -65,7 +72,7 @@ void	simple_up(t_lst **s_a, t_first **f, t_utils *uts)
 	}
 	else
 	{
-		while (i < (uts->size - uts->max - 1)) // normalement, c'est bon
+		while (i < (uts->size - uts->max - 1))
 		{
 			reverse_rotate(s_a, &((*f)->fst_a), 'a');
 			i++;
@@ -81,17 +88,16 @@ void	nightmare_size(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 	i = 0;
 	get_info(uts);
 	afficher_deux_stack(s_a, s_b);
+
+	// automatiser + raccourcir s'il est plus proche de la fin ou non
 	max(s_a, (*first)->fst_a, uts, uts->size);
-	// printf("uts->max = %d, uts->mid = %d\n", uts->max, uts->middle);
-	// printf("uts->max = %d, uts->med = %f, uts->sizeutilisee = %d\n", uts->max, uts->med, uts->size - 1);
 	simple_up(s_a, first, uts);
-	afficher_deux_stack(s_a, s_b);
 	max(s_a, (*first)->fst_a, uts, (uts->size - 1));
-	printf("max = %d\n", uts->max);
 	up_swap_reverse_rotate(s_a, &((*first)->fst_a), uts);
-	// printf("uts->max = %d, uts->med = %f, uts->sizeutilisee = %d\n", uts->max, uts->med, uts->size - 1);
-	// up_swap_reverse_rotate(s_a, &((*first)->fst_a), uts);
-	// printf("uts->max = %d\n", uts->max);
+	max(s_a, (*first)->fst_a, uts, (uts->size - 2));
+	up_swap_reverse_rotate(s_a, &((*first)->fst_a), uts);
+// auto
+
 	afficher_deux_stack(s_a, s_b);
 	
 	// while (i < 3)

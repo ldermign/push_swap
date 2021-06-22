@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:59 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/18 11:24:01 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/22 15:30:05 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_arg(int ac, char **av)
 		j = 0;
 		while (av[i][j])
 		{
-			if (!ft_is_digit(av[i][j]))
+			if (!ft_is_digit(av[i][j]) && av[i][j] != '-')
 				return (ERROR);
 			j++;
 		}
