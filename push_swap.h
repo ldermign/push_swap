@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/21 10:27:08 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/23 16:31:07 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,16 @@ void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first **first);
 */
 
 void	begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
+void	get_last_three(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
+void	little_sort(t_lst **stack, t_lst **first);
+
+/*
+**	TRIS UTILS
+*/
+
+int		check_if_good_sort(t_lst *stack);
+int		check_if_bad_sort(t_lst *stack);
+void	max(t_lst **s_a, t_lst **f_a, t_utils *uts, int last);
 
 /*
 **	UTILS

@@ -6,11 +6,45 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:03 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/22 15:35:11 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/23 16:10:56 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	check_if_good_sort(t_lst *stack)
+{
+	int	nbr_tmp;
+
+	nbr_tmp = 0;
+	if (stack == NULL)
+		return (ERROR);
+	while (stack->next)
+	{
+		nbr_tmp = stack->nbr;
+		stack = stack->next;
+		if (nbr_tmp > stack->nbr)
+			return (ERROR);
+	}
+	return (SUCCESS);
+}
+
+int	check_if_bad_sort(t_lst *stack)
+{
+	int	nbr_tmp;
+
+	nbr_tmp = 0;
+	if (stack == NULL)
+		return (ERROR);
+	while (stack->next)
+	{
+		nbr_tmp = stack->nbr;
+		stack = stack->next;
+		if (nbr_tmp < stack->nbr)
+			return (ERROR);
+	}
+	return (SUCCESS);
+}
 
 int	size_stack(t_lst *stack)
 {
@@ -53,7 +87,7 @@ void	add_nbr_back(t_lst **stack, t_lst **first, int nbr)
 			*stack = (*stack)->next;
 		(*stack)->next = new_nbr(nbr);
 	}
-	(*stack) = *first;
+	*stack = *first;
 }
 
 void	add_nbr_front(t_lst **stack, t_lst **first, int nbr)

@@ -6,11 +6,35 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/21 14:42:02 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/23 16:28:17 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	max(t_lst **stack, t_lst **f_a, t_utils *uts, int last)
+{
+	int		i;
+	int		tmp;
+	int		nbr;
+
+	i = 0;
+	tmp = 0;
+	nbr = 0;
+	*stack = *f_a;
+	while (i < last && (*stack)->next)
+	{
+		tmp = (*stack)->nbr;
+		*stack = (*stack)->next;
+		if (tmp > nbr)
+		{
+			nbr = tmp;
+			uts->max = i;
+		}
+		i++;
+	}
+	*stack = *f_a;
+}
 
 void	bubble_sort(int *tab, int size)
 {

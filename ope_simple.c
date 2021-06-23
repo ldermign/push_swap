@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 08:15:42 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/20 16:08:46 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/23 16:32:55 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	rotate(t_lst **stack, t_lst **first, char s)
 {
 	t_lst	*address_prev;
 
-	if (size_stack(*stack) < 1)
+	if (size_stack(*stack) < 2)
 		return ;
 	address_prev = *first;
 	*first = (*stack)->next;
@@ -64,7 +64,7 @@ void	reverse_rotate(t_lst **stack, t_lst **first, char s)
 	t_lst	*address_prev;
 	t_lst	*futur_second;
 
-	if (size_stack(*stack) < 1)
+	if (size_stack(*stack) < 2)
 		return ;
 	futur_second = *stack;
 	while ((*stack)->next)

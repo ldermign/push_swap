@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 17:15:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/22 15:41:15 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/23 12:02:16 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	afficher_deux_stack(t_lst **one, t_lst **two)
 	int i = 0;
 	ft_printf("First [a]\n");
 	if (*one == NULL)
-		printf("\t\t///\n");
+		ft_printf("\t\t///\n");
 	while (*one != NULL)
 	{
 		printf("[%d]\t\t--> %d\n", i, (*one)->nbr);
@@ -45,9 +45,9 @@ void	afficher_deux_stack(t_lst **one, t_lst **two)
 		i++;
 	}
 	i = 0;
-	printf("Second [b]\n");
+	ft_printf("Second [b]\n");
 	if (*two == NULL)
-		printf("\t\t///\n");
+		ft_printf("\t\t///\n");
 	while (*two != NULL)
 	{
 		printf("[%d]\t\t--> %d\n", i, (*two)->nbr);

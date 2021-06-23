@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/22 15:36:44 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/23 14:20:29 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 void	init_liste_a(t_lst **begin, t_lst **first, char **tab, t_utils *uts)
 {
 	int	i;
+	int	nbr;
 
 	i = 0;
+	nbr = 0;
 	while (tab[i])
 	{
-		add_nbr_back(begin, first, ft_atoi(tab[i]));
+		nbr = ft_atoi(tab[i]);
+		add_nbr_back(begin, first, nbr);
 		i++;
 	}
 	uts->size = i;
@@ -71,7 +74,6 @@ int	ft_push_swap(int ac, char **av)
 		ft_printf("Error\n");
 		return (ERROR);
 	}
-	afficher_une_stack(&s_a);
 	begin_sort(&s_a, &s_b, &f, uts);
 	return (SUCCESS);
 }
