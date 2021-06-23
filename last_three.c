@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:33:26 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/23 16:31:49 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/23 16:57:13 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	up_swap_reverse_rotate1(t_lst **s_a, t_lst **f_a, t_utils *uts)
 		i++;
 	}
 	i = 0;
-	while (i <uts->max)
+	while (i < uts->max)
 	{
 		swap(s_a, f_a, 'a');
 		reverse_rotate(s_a, f_a, 'a');

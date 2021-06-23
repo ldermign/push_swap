@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/23 16:31:15 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/23 17:12:49 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	nightmare_size(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 
 void	begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 {
-	// if (uts->size <= 10)
-	// 	little_size(&s_a, &s_b, first, uts);
+	if (uts->size <= 10)
+		little_sort(s_a, &((*first)->fst_a));
 	// else if (uts->size <= 100)
 	// 	medium_size(&s_a, &s_b, first, uts);
 	// else if (uts->size <= 500)
 	// 	big_size(&s_a, &s_b, first, uts);
-	// else
+	else
 		nightmare_size(s_a, s_b, first, uts);
 }

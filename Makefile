@@ -6,14 +6,23 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 11:10:10 by ldermign          #+#    #+#              #
-#    Updated: 2021/06/23 12:40:22 by ldermign         ###   ########.fr        #
+#    Updated: 2021/06/23 17:12:05 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	push_swap
 
-SRCS	=	push_swap.c ps_utils.c ps_check.c ope_simple.c ope_double.c supp.c \
-			tris_utils.c begin_sort.c last_three.c little_sort.c
+SRCS	=	push_swap.c \
+			ps_utils.c \
+			ps_check.c \
+			ope_simple.c \
+			ope_double.c \
+			tris_utils.c \
+			begin_sort.c \
+			last_three.c \
+			little_sort.c \
+			ps_utils_2.c \
+			supp.c 
 
 INCS	=	-I ./push_swap.h -I ./libft/includes/
 

@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   little_sort.c                                      :+:      :+:    :+:   */
+/*   ps_utils_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/23 17:19:07 by ldermign         ###   ########.fr       */
+/*   Created: 2021/06/23 17:10:24 by ldermign          #+#    #+#             */
+/*   Updated: 2021/06/23 17:15:54 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	little_sort(t_lst **stack, t_lst **first)
+int	how_many_not_good(t_lst *stack)
 {
-	int	i;
-	int	size;
-	int	wrong;
+	int	tmp;
+	int	nbr;
 
-	i = 0;
-	size = size_stack(*stack);
-	wrong = how_many_not_good(*stack);
-		printf("wrong = [%d]\n", wrong);
-	if (!check_if_sort(*stack))
+	tmp = 0;
+	nbr = 0;
+	while (stack->next)
 	{
-		rotate(stack, first, 'a');
+		tmp = stack->nbr;
+		stack = stack->next;
+		if (tmp > stack->nbr)
+			nbr++;
 	}
+	return (nbr);
 }
