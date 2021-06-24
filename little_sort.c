@@ -6,11 +6,22 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/23 17:19:07 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/24 16:10:20 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	go_up(t_lst **stack, t_lst **first, int size)
+{
+	int	pos;
+
+	pos = pos_not_good(*stack);
+	while (!check_if_sort)
+	{
+
+	}
+}
 
 void	little_sort(t_lst **stack, t_lst **first)
 {
@@ -21,9 +32,11 @@ void	little_sort(t_lst **stack, t_lst **first)
 	i = 0;
 	size = size_stack(*stack);
 	wrong = how_many_not_good(*stack);
-		printf("wrong = [%d]\n", wrong);
+	printf("wrong = [%d]\n", wrong);
 	if (!check_if_sort(*stack))
 	{
-		rotate(stack, first, 'a');
+		if (wrong == 1)
+			go_up(stack, first, size);
+		// rotate(stack, first, 'a');
 	}
 }
