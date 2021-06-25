@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/25 12:04:40 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/25 12:58:01 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,16 @@ void	add_nbr_front(t_lst **begin, t_lst **first, int nbr);
 */
 
 # include <libc.h>
+#define KRED  "\x1B[0;31m" // ROUGE
+#define KGRN  "\x1B[0;32m" // VERT
+#define KYEL  "\x1B[0;33m" // JAUNE
+#define KBLU  "\x1B[0;34m" // BLEU
+#define KMAG  "\x1B[0;35m" // MAGENTA
+#define KCYN  "\x1B[0;36m" // CYAN
+#define KWHT  "\x1B[0;37m" // BLANC
+#define KGRE  "\x1b[1;30m" // VERT
+#define CLR_COLOR "\x1b[0m" // CLEAR COLOR
+void	afficher_infos(int ac);
 void	afficher_une_stack(t_lst **s);
 void	afficher_deux_stack(t_lst **one, t_lst **two);
 

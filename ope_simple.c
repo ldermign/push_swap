@@ -6,11 +6,13 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 08:15:42 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/23 16:53:14 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/25 13:04:51 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+extern int ope; ////////////////////////////////////////////////////////////////
 
 void	swap(t_lst **stack, t_lst **first, char s)
 {
@@ -27,7 +29,8 @@ void	swap(t_lst **stack, t_lst **first, char s)
 	second_add->next = first_add;
 	*first = second_add;
 	*stack = *first;
-	ft_printf("p%c\n", s);
+	ope++;
+	ft_printf("s%c\n", s);
 }
 
 void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get, char s)
@@ -40,6 +43,7 @@ void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get, char s)
 	tmp_add_supp = *s_give;
 	*s_give = (*s_give)->next;
 	free(tmp_add_supp);
+	ope++;
 	ft_printf("p%c\n", s);
 }
 
@@ -56,6 +60,7 @@ void	rotate(t_lst **stack, t_lst **first, char s)
 	(*stack)->next = address_prev;
 	address_prev->next = NULL;
 	*stack = *first;
+	ope++;
 	ft_printf("r%c\n", s);
 }
 
@@ -75,5 +80,6 @@ void	reverse_rotate(t_lst **stack, t_lst **first, char s)
 	*first = *stack;
 	(*stack)->next = futur_second;
 	address_prev->next = NULL;
+	ope++;
 	ft_printf("rr%c\n", s);
 }

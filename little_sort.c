@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/25 12:12:44 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/25 13:35:07 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,33 @@
 
 int		three_values(t_lst **stack, t_lst **first)
 {
-	int	i;
+	int	one;
+	int	two;
+	int	three;
 	int	pos;
 
-	i = 0;
+	one = (*stack)->nbr;
+	two = (*stack)->next->nbr;
+	three = (*stack)->next->next->nbr;
 	if (!check_if_sort(*stack))
 	{
 		pos = pos_not_good(*stack);
-		if (pos == 1)
-			swap(stack, first, 'a');
-		if (pos == 2)
+		if (pos == 2 && one < two && one > three)
 			reverse_rotate(stack, first, 'a');
+		if (pos == 1)
+		{
+			if (one > two && two > three)
+			{
+				swap(stack, first, 'a');
+				reverse_rotate(stack, first, 'a');
+			}
+			else if (one > two && two < three)
+				rotate(stack, first, 'a');
+			if (one < three && !check_if_sort(*stack))
+				swap(stack, first, 'a');
+			if (!check_if_sort(*stack))
+				reverse_rotate(stack, first, 'a');
+		}
 	}
 	return (SUCCESS);
 }

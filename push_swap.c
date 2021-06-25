@@ -6,11 +6,12 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/25 11:53:32 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/25 12:58:11 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+int ope = 0; ///////////////////////////////////////////////////////////////////
 
 void	init_liste_a(t_lst **begin, t_lst **first, char **tab, t_utils *uts)
 {
@@ -75,8 +76,8 @@ int	ft_push_swap(int ac, char **av)
 		return (ERROR);
 	}
 	begin_sort(&s_a, &s_b, &f, uts);
-		afficher_deux_stack(&s_a, &s_b);
-
+	afficher_deux_stack(&s_a, &s_b);
+	afficher_infos(ac - 1);
 	return (SUCCESS);
 }
 
