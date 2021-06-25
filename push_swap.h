@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/23 17:16:45 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/25 12:04:40 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,17 @@ void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first **first);
 **	TRIS
 */
 
-void	begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
-void	get_last_three(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
-void	little_sort(t_lst **stack, t_lst **first);
+int		three_values(t_lst **stack, t_lst **first);
+int		begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
+void	get_three_max(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
+void	three_sort(t_lst **stack, t_lst **first, char s);
 
 /*
 **	TRIS UTILS
 */
 
+int		pos_not_good(t_lst *stack);
+void	go_up(t_lst **stack, t_lst **first, int size, char s);
 int		how_many_not_good(t_lst *stack);
 int		check_if_sort(t_lst *stack);
 void	max(t_lst **s_a, t_lst **f_a, t_utils *uts, int last);

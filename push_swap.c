@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/23 14:20:29 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/25 11:53:32 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int	ft_push_swap(int ac, char **av)
 		return (ERROR);
 	}
 	begin_sort(&s_a, &s_b, &f, uts);
+		afficher_deux_stack(&s_a, &s_b);
+
 	return (SUCCESS);
 }
 

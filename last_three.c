@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:33:26 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/23 16:57:13 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/25 12:04:40 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	simple_up(t_lst **s_a, t_first **f, t_utils *uts)
 	}
 }
 
-void	get_last_three(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
+void	get_three_max(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 {
 	int	i;
 

@@ -6,24 +6,62 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/24 16:10:20 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/25 12:12:44 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	go_up(t_lst **stack, t_lst **first, int size)
+int		three_values(t_lst **stack, t_lst **first)
 {
+	int	i;
 	int	pos;
 
-	pos = pos_not_good(*stack);
-	while (!check_if_sort)
+	i = 0;
+	if (!check_if_sort(*stack))
 	{
+		pos = pos_not_good(*stack);
+		if (pos == 1)
+			swap(stack, first, 'a');
+		if (pos == 2)
+			reverse_rotate(stack, first, 'a');
+	}
+	return (SUCCESS);
+}
 
+void	go_up(t_lst **stack, t_lst **first, int size, char s)
+{
+	(void)size;
+	int	i;
+	int	pos;
+
+	i = 0;
+	pos = pos_not_good(*stack);
+	if (!check_if_sort(*stack))
+	{
+		if (pos == 1)
+		{
+			printf("test\n");
+			swap(stack, first, s);
+			return ;
+		}
+		while (i < pos)
+		{
+			rotate(stack, first, s);
+			i++;
+		}
+		if (check_if_sort(*stack))
+			return ;
+		i = 0;
+		// while (i < pos)
+		// {
+		// 	swap(stack, first, s);
+		// 	reverse_rotate(stack, first, s);
+		// }
 	}
 }
 
-void	little_sort(t_lst **stack, t_lst **first)
+void	three_sort(t_lst **stack, t_lst **first, char s)
 {
 	int	i;
 	int	size;
@@ -36,7 +74,7 @@ void	little_sort(t_lst **stack, t_lst **first)
 	if (!check_if_sort(*stack))
 	{
 		if (wrong == 1)
-			go_up(stack, first, size);
+			go_up(stack, first, size, s);
 		// rotate(stack, first, 'a');
 	}
 }
