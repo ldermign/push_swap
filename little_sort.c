@@ -6,91 +6,103 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/25 13:35:07 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/28 14:50:53 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		three_values(t_lst **stack, t_lst **first)
+int	minimum(t_lst *stack)
+{
+	int	i;
+	int	tmp;
+	int	pos;
+	int	min;
+
+	i = 0;
+	pos = 0;
+	min = stack->nbr;
+	while (stack->next)
+	{
+		stack = stack->next;
+		tmp = stack->nbr;
+		i++;
+		if (min > tmp)
+		{
+			min = tmp;
+			pos = i;
+		}
+	}
+	return (pos);
+}
+
+void	eject_two_mini(t_lst **stack, t_lst **first, int min)
+{
+	int	i;
+
+	i = 0;
+	if (i < 3)
+	{
+		while (i < min)
+		{
+			rotate(stack, first, 'a');
+			i++;
+		}
+	}
+	else
+	{
+		while (i <= min)
+		{
+			reverse_rotate(stack, first, 'a');
+			i++;
+		}
+	}
+}
+
+void		sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first)
+{
+	int	min;
+
+	min = minimum(*s_a);
+	eject_two_mini(s_a, &((*first)->fst_a), min);
+	push(s_a, s_b, &((*first)->fst_b), 'b');
+	min = minimum(*s_a);
+	eject_two_mini(s_a, &((*first)->fst_a), min);
+	push(s_a, s_b, &((*first)->fst_b), 'b');
+	sort_three_values(s_a, &((*first)->fst_a));
+	if ((*s_b)->nbr < (*s_b)->next->nbr)
+		swap(s_b, &((*first)->fst_b), 'b');
+	push(s_b, s_a, &((*first)->fst_a), 'a');
+	push(s_b, s_a, &((*first)->fst_a), 'a');
+}
+
+int		sort_three_values(t_lst **stack, t_lst **first)
 {
 	int	one;
 	int	two;
 	int	three;
-	int	pos;
 
 	one = (*stack)->nbr;
 	two = (*stack)->next->nbr;
 	three = (*stack)->next->next->nbr;
 	if (!check_if_sort(*stack))
 	{
-		pos = pos_not_good(*stack);
-		if (pos == 2 && one < two && one > three)
-			reverse_rotate(stack, first, 'a');
-		if (pos == 1)
+		if ((one > two && two > three && one > three)
+			|| (one > two && two < three && one < three))
 		{
-			if (one > two && two > three)
-			{
-				swap(stack, first, 'a');
+			swap(stack, first, 'a');
+			if (one > three)
 				reverse_rotate(stack, first, 'a');
-			}
-			else if (one > two && two < three)
-				rotate(stack, first, 'a');
-			if (one < three && !check_if_sort(*stack))
+		}
+		else if ((one < two && two > three)
+			|| (one > two && two < three && one > three))
+		{
+			reverse_rotate(stack, first, 'a');
+			if (one < three)
 				swap(stack, first, 'a');
-			if (!check_if_sort(*stack))
+			else if (one > two)
 				reverse_rotate(stack, first, 'a');
 		}
 	}
 	return (SUCCESS);
-}
-
-void	go_up(t_lst **stack, t_lst **first, int size, char s)
-{
-	(void)size;
-	int	i;
-	int	pos;
-
-	i = 0;
-	pos = pos_not_good(*stack);
-	if (!check_if_sort(*stack))
-	{
-		if (pos == 1)
-		{
-			printf("test\n");
-			swap(stack, first, s);
-			return ;
-		}
-		while (i < pos)
-		{
-			rotate(stack, first, s);
-			i++;
-		}
-		if (check_if_sort(*stack))
-			return ;
-		i = 0;
-		// while (i < pos)
-		// {
-		// 	swap(stack, first, s);
-		// 	reverse_rotate(stack, first, s);
-		// }
-	}
-}
-
-void	three_sort(t_lst **stack, t_lst **first, char s)
-{
-	int	i;
-	int	size;
-	int	wrong;
-
-	i = 0;
-	size = size_stack(*stack);
-	wrong = how_many_not_good(*stack);
-	printf("wrong = [%d]\n", wrong);
-	if (!check_if_sort(*stack))
-	{
-		if (wrong == 1)
-			go_up(stack, first, size, s);
-		// rotate(stack, first, 'a');
-	}
 }

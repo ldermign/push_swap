@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/23 16:28:17 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/28 15:03:07 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,22 @@ void	max(t_lst **stack, t_lst **f_a, t_utils *uts, int last)
 		i++;
 	}
 	*stack = *f_a;
+}
+
+int	get_med(t_lst **stack)
+{
+	int	min;
+	int	max;
+	int	size;
+	int	med;
+
+	size = size_stack(*stack);
+	med = 0;
+	while ((*stack)->next)
+	{
+		
+	}
+	return (med);
 }
 
 void	bubble_sort(int *tab, int size)
