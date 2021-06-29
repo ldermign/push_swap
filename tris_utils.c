@@ -6,15 +6,31 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/29 11:22:31 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/29 14:36:57 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	max_val(t_lst *stack, t_lst *first)
+int	get_nbr_pos(t_lst **stack, int pos)
 {
-	(void)first;
+	int		i;
+	t_lst	*first;
+
+	i = 0;
+	first = *stack;
+	while ((*stack)->nbr && i < pos)
+	{
+		*stack = (*stack)->next;
+		i++;
+	}
+	pos = (*stack)->nbr;
+	*stack = first;
+	return (pos);
+}
+
+int	max_val(t_lst *stack)
+{
 	int		i;
 	int		tmp;
 	int		nbr;
@@ -29,6 +45,31 @@ int	max_val(t_lst *stack, t_lst *first)
 		tmp = stack->nbr;
 		stack = stack->next;
 		if (tmp > nbr)
+		{
+			nbr = tmp;
+			max = i;
+		}
+		i++;
+	}
+	return (max);
+}
+
+int	max_with_max(t_lst *stack, int no)
+{
+	int		i;
+	int		tmp;
+	int		nbr;
+	int		max;
+
+	i = 0;
+	tmp = 0;
+	nbr = 0;
+	max = 0;
+	while (stack != NULL)
+	{
+		tmp = stack->nbr;
+		stack = stack->next;
+		if (tmp > nbr && tmp < no)
 		{
 			nbr = tmp;
 			max = i;

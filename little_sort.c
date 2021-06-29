@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/28 14:50:53 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/29 14:07:07 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int		sort_three_values(t_lst **stack, t_lst **first)
 	int	two;
 	int	three;
 
+	if (stack == NULL || size_stack(*stack) != 2)
+		return (ERROR);
 	one = (*stack)->nbr;
 	two = (*stack)->next->nbr;
 	three = (*stack)->next->next->nbr;
