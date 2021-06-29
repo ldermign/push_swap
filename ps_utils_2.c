@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:10:24 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/28 14:48:04 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/29 12:04:00 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@
 // 	return (here);
 // }
 
-int	how_many_not_good(t_lst *stack)
-{
-	int	tmp;
-	int	nbr;
+// int	how_many_not_good(t_lst *stack)
+// {
+// 	int	tmp;
+// 	int	nbr;
 
-	tmp = 0;
-	nbr = 0;
-	while (stack->next)
-	{
-		tmp = stack->nbr;
-		stack = stack->next;
-		if (tmp > stack->nbr)
-			nbr++;
-	}
-	return (nbr);
-}
+// 	tmp = 0;
+// 	nbr = 0;
+// 	while (stack->next)
+// 	{
+// 		tmp = stack->nbr;
+// 		stack = stack->next;
+// 		if (tmp > stack->nbr)
+// 			nbr++;
+// 	}
+// 	return (nbr);
+// }

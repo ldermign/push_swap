@@ -6,7 +6,7 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 11:10:10 by ldermign          #+#    #+#              #
-#    Updated: 2021/06/23 17:12:05 by ldermign         ###   ########.fr        #
+#    Updated: 2021/06/29 12:05:45 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ SRCS	=	push_swap.c \
 			ope_double.c \
 			tris_utils.c \
 			begin_sort.c \
-			last_three.c \
 			little_sort.c \
 			ps_utils_2.c \
 			supp.c 

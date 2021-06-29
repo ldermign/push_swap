@@ -6,40 +6,42 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/28 15:03:07 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/29 11:22:31 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	max(t_lst **stack, t_lst **f_a, t_utils *uts, int last)
+int	max_val(t_lst *stack, t_lst *first)
 {
+	(void)first;
 	int		i;
 	int		tmp;
 	int		nbr;
+	int		max;
 
 	i = 0;
 	tmp = 0;
 	nbr = 0;
-	*stack = *f_a;
-	while (i < last && (*stack)->next)
+	max = 0;
+	while (stack != NULL)
 	{
-		tmp = (*stack)->nbr;
-		*stack = (*stack)->next;
+		tmp = stack->nbr;
+		stack = stack->next;
 		if (tmp > nbr)
 		{
 			nbr = tmp;
-			uts->max = i;
+			max = i;
 		}
 		i++;
 	}
-	*stack = *f_a;
+	return (max);
 }
 
 int	get_med(t_lst **stack)
 {
-	int	min;
-	int	max;
+	// int	min;
+	// int	max;
 	int	size;
 	int	med;
 
