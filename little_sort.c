@@ -6,11 +6,25 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/29 14:07:07 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/06/30 13:28:02 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	sort_three_and_more(t_lst **s_a, t_lst **s_b, t_lst **f_a, t_lst **f_b)
+{
+	int	one;
+	int	two;
+	int	three;
+
+	if (s_a == NULL || size_stack(*s_a) != 2)
+		return (ERROR);
+	one = (*s_a)->nbr;
+	two = (*s_a)->next->nbr;
+	three = (*s_a)->next->next->nbr;
+	
+}
 
 int	minimum(t_lst *stack)
 {
@@ -59,7 +73,7 @@ void	eject_two_mini(t_lst **stack, t_lst **first, int min)
 	}
 }
 
-void		sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first)
+void	sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first)
 {
 	int	min;
 
@@ -76,7 +90,7 @@ void		sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first)
 	push(s_b, s_a, &((*first)->fst_a), 'a');
 }
 
-int		sort_three_values(t_lst **stack, t_lst **first)
+int	sort_three_values(t_lst **stack, t_lst **first)
 {
 	int	one;
 	int	two;
