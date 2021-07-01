@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/29 14:36:57 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/01 15:47:03 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,40 @@ int	get_info(t_utils *uts)
 		uts->med = uts->s_int[((uts->size + 1) / 2) - 1];
 	}
 	return (SUCCESS);
+}
+
+
+int	pos_not_good(t_lst *stack)
+{
+	int	nbr;
+	int	here;
+
+	nbr = 0;
+	here = 0;
+	while (stack->next)
+	{
+		nbr = stack->nbr;
+		stack = stack->next;
+		here++;
+		if (nbr > stack->nbr)
+			break ;
+	}
+	return (here);
+}
+
+int	how_many_not_good(t_lst *stack)
+{
+	int	tmp;
+	int	nbr;
+
+	tmp = 0;
+	nbr = 0;
+	while (stack->next)
+	{
+		tmp = stack->nbr;
+		stack = stack->next;
+		if (tmp > stack->nbr)
+			nbr++;
+	}
+	return (nbr);
 }

@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 14:27:55 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/01 16:03:35 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first **first);
 */
 
 int		begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
-void	sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first);
+int		sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first);
 int		sort_three_values(t_lst **stack, t_lst **first, char c);
 
 /*
@@ -85,6 +85,9 @@ void	sort_three_with_more(t_lst **stack, t_lst **first);
 /*
 **	SORT UTILS
 */
+
+int	how_many_not_good(t_lst *stack);
+int	pos_not_good(t_lst *stack);
 
 void	by_order(t_utils *uts);
 int		get_nbr_pos(t_lst **stack, int pos);

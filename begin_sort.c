@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 14:41:32 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/01 16:06:45 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int	begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 		sort_three_values(s_a, &((*first)->fst_a), 'a');
 	else if (uts->size == 5)
 		sort_five_values(s_a, s_b, first);
-	if (uts->size <= 100)
+	else if (uts->size <= 100)
 		sort_under_100(s_a, s_b, first, uts);
 	// else if (uts->size <= 500)
 	// 	big_size(&s_a, &s_b, first, uts);
