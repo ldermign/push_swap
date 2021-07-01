@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/30 13:15:00 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/01 10:43:44 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ typedef struct s_utils
 	int		pos1;
 	int		pos2;
 	int		pos3;
+	char	c;
+	int		here;
+	int		size_to_stack;
 }	t_utils;
 
 /*
@@ -76,6 +79,7 @@ int		sort_three_values(t_lst **stack, t_lst **first);
 **	DEEP SORT
 */
 
+int		sort_three_values_inv(t_lst **stack, t_lst **first);
 void	sort_three_with_more(t_lst **stack, t_lst **first);
 
 /*
@@ -86,6 +90,7 @@ void	by_order(t_utils *uts);
 int		get_nbr_pos(t_lst **stack, int pos);
 int		get_med(t_lst **stack);
 int		check_if_sort(t_lst *stack);
+int		check_if_sort_inv(t_lst *stack);
 int		max_val(t_lst *stack);
 int		max_with_max(t_lst *stack, int max);
 

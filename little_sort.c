@@ -6,25 +6,25 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/30 13:28:02 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/01 10:42:40 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_three_and_more(t_lst **s_a, t_lst **s_b, t_lst **f_a, t_lst **f_b)
-{
-	int	one;
-	int	two;
-	int	three;
+// void	sort_three_and_more(t_lst **s_a, t_lst **s_b, t_lst **f_a, t_lst **f_b)
+// {
+// 	int	one;
+// 	int	two;
+// 	int	three;
 
-	if (s_a == NULL || size_stack(*s_a) != 2)
-		return (ERROR);
-	one = (*s_a)->nbr;
-	two = (*s_a)->next->nbr;
-	three = (*s_a)->next->next->nbr;
+// 	if (s_a == NULL || size_stack(*s_a) != 2)
+// 		return (ERROR);
+// 	one = (*s_a)->nbr;
+// 	two = (*s_a)->next->nbr;
+// 	three = (*s_a)->next->next->nbr;
 	
-}
+// }
 
 int	minimum(t_lst *stack)
 {
@@ -88,6 +88,39 @@ void	sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first)
 		swap(s_b, &((*first)->fst_b), 'b');
 	push(s_b, s_a, &((*first)->fst_a), 'a');
 	push(s_b, s_a, &((*first)->fst_a), 'a');
+}
+
+int	sort_three_values_inv(t_lst **stack, t_lst **first)
+{
+	int	one;
+	int	two;
+	int	three;
+
+	if (stack == NULL || size_stack(*stack) != 2)
+		return (ERROR);
+	one = (*stack)->nbr;
+	two = (*stack)->next->nbr;
+	three = (*stack)->next->next->nbr;
+	if (!check_if_sort_inv(*stack))
+	{
+		if ((one > two && two > three && one > three)
+			|| (one > two && two < three && one < three))
+		{
+			swap(stack, first, 'a');
+			if (one > three)
+				reverse_rotate(stack, first, 'a');
+		}
+		else if ((one < two && two > three)
+			|| (one > two && two < three && one > three))
+		{
+			reverse_rotate(stack, first, 'a');
+			if (one < three)
+				swap(stack, first, 'a');
+			else if (one > two)
+				reverse_rotate(stack, first, 'a');
+		}
+	}
+	return (SUCCESS);
 }
 
 int	sort_three_values(t_lst **stack, t_lst **first)
