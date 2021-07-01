@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 15:47:03 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/01 21:10:07 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,9 +143,9 @@ int	pos_not_good(t_lst *stack)
 	{
 		nbr = stack->nbr;
 		stack = stack->next;
-		here++;
 		if (nbr > stack->nbr)
 			break ;
+		here++;
 	}
 	return (here);
 }

@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 17:15:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/25 12:57:52 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/01 21:11:39 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	afficher_une_stack(t_lst **s)
 {
 	t_lst	*first;
 
-	first = NULL;
+	first = *s;
 	if (*s == NULL)
 		exit (0);
 	while (*s != NULL)

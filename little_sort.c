@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 16:08:47 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/01 21:36:56 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,58 @@ void	eject_two_mini(t_lst **stack, t_lst **first, int min)
 	}
 }
 
+void	one(t_lst **stack, t_lst **first, char c, int pos)
+{
+	int	i;
+
+	i = 0;
+	while ()
+	rotate(stack, first, c);
+	while (i < pos)
+	{
+		if ((*stack)->nbr < (*stack)->next->nbr
+			&& (*stack)->next->nbr < (*stack)->next->next->nbr)
+			break ;
+		swap(stack, first, c);
+		reverse_rotate(stack, first, c);
+		i++;
+	}
+	while (i < pos)
+	{
+		reverse_rotate(stack, first, c);
+		i++;
+	}
+}
+
 void	five_values_one_wrong(t_lst **stack, t_lst **first, char c)
 {
-	(void)stack;
-	(void)first;
-	(void)c;
 	int	i;
 	int	pos;
 
 	i = 0;
 	pos = pos_not_good(*stack);
-	printf("pos = %d\n", pos);
+	if (pos == 0)
+		one(stack, first, c, pos);
+	while (i < pos)
+	{
+		rotate(stack, first, c);
+		i++;
+	}
+	i = 0;
+	while (i < pos)
+	{
+		if ((*stack)->nbr < (*stack)->next->nbr
+			&& (*stack)->next->nbr < (*stack)->next->next->nbr)
+			break ;
+		swap(stack, first, c);
+		reverse_rotate(stack, first, c);
+		i++;
+	}
+	while (i < pos)
+	{
+		reverse_rotate(stack, first, c);
+		i++;
+	}
 }
 
 int	sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first)
