@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 10:43:44 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/01 14:27:55 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first **first);
 
 int		begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
 void	sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first);
-int		sort_three_values(t_lst **stack, t_lst **first);
+int		sort_three_values(t_lst **stack, t_lst **first, char c);
 
 /*
 **	DEEP SORT
 */
 
-int		sort_three_values_inv(t_lst **stack, t_lst **first);
+// int		sort_three_values_inv(t_lst **stack, t_lst **first, char c);
 void	sort_three_with_more(t_lst **stack, t_lst **first);
 
 /*

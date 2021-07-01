@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 10:41:41 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/01 14:41:32 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,21 +80,44 @@ void	pos_three_max(t_lst **one, t_lst **two, t_first **first, t_utils *uts)
 	
 // }
 
-void	push_sort_auto(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
-{
-	pos_three_max(s_b, s_a, first, uts);
-}
+// void	push_sort_auto(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
+// {
+// 	pos_three_max(s_b, s_a, first, uts);
+	
+// }
 
 void	sort_under_100(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 {
+	int	i;
+	int	ret;
+
+	i = 0;
+	ret = size_stack(*s_a);
 	get_info(uts);
 	uts->c = 'b';
 	pos_three_max(s_a, s_b, first, uts);
-	sort_three_values(s_a, &((*first)->fst_a));
-	// 3 tries sur a, reste sur b
-	uts->c = 'a';
-	push_sort_auto(s_a, s_b, first, uts);
-	
+	sort_three_values(s_a, &((*first)->fst_a), 'a');
+	while (ret >= 3)
+	{
+		printf("ret = %d\n", ret);
+		uts->c = 'a';
+		pos_three_max(s_b, s_a, first, uts);
+		sort_three_values(s_b, &((*first)->fst_b), 'b');
+		uts->size = size_stack(*s_a);
+		while (i <= uts->size - 3)
+		{
+			push(s_a, s_b, &((*first)->fst_b), 'b');
+			i++;
+		}
+		i = 0;
+		while (i < 3)
+		{
+			reverse_rotate(s_b, &((*first)->fst_b), 'b');
+			push(s_b, s_a, &((*first)->fst_a), 'a');
+			i++;
+		}
+		ret = ret - 3;
+	}
 }
 
 int	begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
@@ -102,7 +125,7 @@ int	begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 	if (check_if_sort(*s_a))
 		return (SUCCESS);
 	if (uts->size == 3)
-		sort_three_values(s_a, &((*first)->fst_a));
+		sort_three_values(s_a, &((*first)->fst_a), 'a');
 	else if (uts->size == 5)
 		sort_five_values(s_a, s_b, first);
 	if (uts->size <= 100)

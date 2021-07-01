@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 10:42:40 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/01 14:28:02 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,47 +83,45 @@ void	sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first)
 	min = minimum(*s_a);
 	eject_two_mini(s_a, &((*first)->fst_a), min);
 	push(s_a, s_b, &((*first)->fst_b), 'b');
-	sort_three_values(s_a, &((*first)->fst_a));
+	sort_three_values(s_a, &((*first)->fst_a), 'a');
 	if ((*s_b)->nbr < (*s_b)->next->nbr)
 		swap(s_b, &((*first)->fst_b), 'b');
 	push(s_b, s_a, &((*first)->fst_a), 'a');
 	push(s_b, s_a, &((*first)->fst_a), 'a');
 }
 
-int	sort_three_values_inv(t_lst **stack, t_lst **first)
-{
-	int	one;
-	int	two;
-	int	three;
+// int	sort_three_values_inv(t_lst **stack, t_lst **first, char c)
+// {
+// 	int	one;
+// 	int	two;
+// 	int	three;
 
-	if (stack == NULL || size_stack(*stack) != 2)
-		return (ERROR);
-	one = (*stack)->nbr;
-	two = (*stack)->next->nbr;
-	three = (*stack)->next->next->nbr;
-	if (!check_if_sort_inv(*stack))
-	{
-		if ((one > two && two > three && one > three)
-			|| (one > two && two < three && one < three))
-		{
-			swap(stack, first, 'a');
-			if (one > three)
-				reverse_rotate(stack, first, 'a');
-		}
-		else if ((one < two && two > three)
-			|| (one > two && two < three && one > three))
-		{
-			reverse_rotate(stack, first, 'a');
-			if (one < three)
-				swap(stack, first, 'a');
-			else if (one > two)
-				reverse_rotate(stack, first, 'a');
-		}
-	}
-	return (SUCCESS);
-}
+// 	if (stack == NULL || size_stack(*stack) != 2)
+// 		return (ERROR);
+// 	one = (*stack)->nbr;
+// 	two = (*stack)->next->nbr;
+// 	three = (*stack)->next->next->nbr;
+// 	if (!check_if_sort_inv(*stack))
+// 	{
+// 		if ((one < two && two < three && one < three)
+// 		|| (one < two && two > three && one > three)
+// 		|| (one > two && two < three && one > three))
+// 		{
+// 			swap(stack, first, c);
+// 			if (one < two && two < three && one < three)
+// 				reverse_rotate(stack, first, c);
+// 			else if (one > two && two < three && one > three)
+// 				rotate(stack, first, c);
+// 		}
+// 		else if (one < two && two > three && one < three)
+// 			rotate(stack, first, c);
+// 		else if (one > two && two < three && one > three)
+// 			reverse_rotate(stack, first, c);
+// 	}
+// 	return (SUCCESS);
+// }
 
-int	sort_three_values(t_lst **stack, t_lst **first)
+int	sort_three_values(t_lst **stack, t_lst **first, char c)
 {
 	int	one;
 	int	two;
@@ -139,18 +137,18 @@ int	sort_three_values(t_lst **stack, t_lst **first)
 		if ((one > two && two > three && one > three)
 			|| (one > two && two < three && one < three))
 		{
-			swap(stack, first, 'a');
+			swap(stack, first, c);
 			if (one > three)
-				reverse_rotate(stack, first, 'a');
+				reverse_rotate(stack, first, c);
 		}
 		else if ((one < two && two > three)
 			|| (one > two && two < three && one > three))
 		{
-			reverse_rotate(stack, first, 'a');
+			reverse_rotate(stack, first, c);
 			if (one < three)
-				swap(stack, first, 'a');
+				swap(stack, first, c);
 			else if (one > two)
-				reverse_rotate(stack, first, 'a');
+				reverse_rotate(stack, first, c);
 		}
 	}
 	return (SUCCESS);
