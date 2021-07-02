@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 21:10:07 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/02 11:47:00 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,54 @@ int	get_nbr_pos(t_lst **stack, int pos)
 	pos = (*stack)->nbr;
 	*stack = first;
 	return (pos);
+}
+
+int	min_val(t_lst *stack)
+{
+	int		i;
+	int		tmp;
+	int		nbr;
+	int		min;
+
+	i = 0;
+	nbr = get_nbr_pos(&stack, max_val(stack));
+	min = 0;
+	while (stack != NULL)
+	{
+		tmp = stack->nbr;
+		stack = stack->next;
+		if (tmp < nbr)
+		{
+			nbr = tmp;
+			min = i;
+		}
+		i++;
+	}
+	return (min);
+}
+
+int	min_with_min(t_lst *stack, int no)
+{
+	int		i;
+	int		tmp;
+	int		nbr;
+	int		min;
+
+	i = 0;
+	nbr = get_nbr_pos(&stack, no);
+	min = 0;
+	while (stack != NULL)
+	{
+		tmp = stack->nbr;
+		stack = stack->next;
+		if (tmp < nbr && tmp > no)
+		{
+			nbr = tmp;
+			min = i;
+		}
+		i++;
+	}
+	return (min);
 }
 
 int	max_val(t_lst *stack)
@@ -79,7 +127,7 @@ int	max_with_max(t_lst *stack, int no)
 	return (max);
 }
 
-int	get_med(t_lst **stack)
+int	get_med(t_lst **stack, t_med **three)
 {
 	// int	min;
 	// int	max;
@@ -131,38 +179,37 @@ int	get_info(t_utils *uts)
 	return (SUCCESS);
 }
 
+// int	pos_not_good(t_lst *stack)
+// {
+// 	int	nbr;
+// 	int	here;
 
-int	pos_not_good(t_lst *stack)
-{
-	int	nbr;
-	int	here;
+// 	nbr = 0;
+// 	here = 0;
+// 	while (stack->next)
+// 	{
+// 		nbr = stack->nbr;
+// 		stack = stack->next;
+// 		if (nbr > stack->nbr)
+// 			break ;
+// 		here++;
+// 	}
+// 	return (here);
+// }
 
-	nbr = 0;
-	here = 0;
-	while (stack->next)
-	{
-		nbr = stack->nbr;
-		stack = stack->next;
-		if (nbr > stack->nbr)
-			break ;
-		here++;
-	}
-	return (here);
-}
+// int	how_many_not_good(t_lst *stack)
+// {
+// 	int	tmp;
+// 	int	nbr;
 
-int	how_many_not_good(t_lst *stack)
-{
-	int	tmp;
-	int	nbr;
-
-	tmp = 0;
-	nbr = 0;
-	while (stack->next)
-	{
-		tmp = stack->nbr;
-		stack = stack->next;
-		if (tmp > stack->nbr)
-			nbr++;
-	}
-	return (nbr);
-}
+// 	tmp = 0;
+// 	nbr = 0;
+// 	while (stack->next)
+// 	{
+// 		tmp = stack->nbr;
+// 		stack = stack->next;
+// 		if (tmp > stack->nbr)
+// 			nbr++;
+// 	}
+// 	return (nbr);
+// }

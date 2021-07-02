@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 21:36:56 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/02 11:23:02 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,122 +26,47 @@
 	
 // }
 
-int	minimum(t_lst *stack)
+void	minimum(t_lst **stack, t_utils *uts)
 {
 	int	i;
-	int	tmp;
-	int	pos;
 	int	min;
+	int	med;
 
 	i = 0;
-	pos = 0;
-	min = stack->nbr;
-	while (stack->next)
-	{
-		stack = stack->next;
-		tmp = stack->nbr;
-		i++;
-		if (min > tmp)
-		{
-			min = tmp;
-			pos = i;
-		}
-	}
-	return (pos);
+	min = 0;
+	med = 0;
+	uts->min1 = min_val(*stack);
+	min = get_nbr_pos(stack, uts->min1);
+	uts->min2 = min_with_min(*stack, min);
+	med = get_nbr_pos(stack, uts->min2);
+	by_order_2(uts);
+	uts->size = size_stack(*stack);
 }
 
-void	eject_two_mini(t_lst **stack, t_lst **first, int min)
+void	eject_two_mini(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 {
 	int	i;
 
 	i = 0;
-	if (i < 3)
+	while (i < uts->min1)
 	{
-		while (i < min)
-		{
-			rotate(stack, first, 'a');
-			i++;
-		}
-	}
-	else
-	{
-		while (i <= min)
-		{
-			reverse_rotate(stack, first, 'a');
-			i++;
-		}
-	}
-}
-
-void	one(t_lst **stack, t_lst **first, char c, int pos)
-{
-	int	i;
-
-	i = 0;
-	while ()
-	rotate(stack, first, c);
-	while (i < pos)
-	{
-		if ((*stack)->nbr < (*stack)->next->nbr
-			&& (*stack)->next->nbr < (*stack)->next->next->nbr)
-			break ;
-		swap(stack, first, c);
-		reverse_rotate(stack, first, c);
+		rotate(s_a, (&((*first)->fst_a)), 'a');
 		i++;
 	}
-	while (i < pos)
-	{
-		reverse_rotate(stack, first, c);
-		i++;
-	}
-}
-
-void	five_values_one_wrong(t_lst **stack, t_lst **first, char c)
-{
-	int	i;
-	int	pos;
-
-	i = 0;
-	pos = pos_not_good(*stack);
-	if (pos == 0)
-		one(stack, first, c, pos);
-	while (i < pos)
-	{
-		rotate(stack, first, c);
-		i++;
-	}
-	i = 0;
-	while (i < pos)
-	{
-		if ((*stack)->nbr < (*stack)->next->nbr
-			&& (*stack)->next->nbr < (*stack)->next->next->nbr)
-			break ;
-		swap(stack, first, c);
-		reverse_rotate(stack, first, c);
-		i++;
-	}
-	while (i < pos)
-	{
-		reverse_rotate(stack, first, c);
-		i++;
-	}
-}
-
-int	sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first)
-{
-	int	min;
-
-	min = minimum(*s_a);
-	if (how_many_not_good(*s_a) == 1)
-	{
-		five_values_one_wrong(s_a, &((*first)->fst_a), 'a');
-		return (SUCCESS);
-	}
-	eject_two_mini(s_a, &((*first)->fst_a), min);
 	push(s_a, s_b, &((*first)->fst_b), 'b');
-	min = minimum(*s_a);
-	eject_two_mini(s_a, &((*first)->fst_a), min);
+	i = 0;
+	while (i < uts->min2 - uts->min1 - 1)
+	{
+		rotate(s_a, (&((*first)->fst_a)), 'a');
+		i++;
+	}
 	push(s_a, s_b, &((*first)->fst_b), 'b');
+}
+
+int	sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
+{
+	minimum(s_a, uts);
+	eject_two_mini(s_a, s_b, first, uts);
 	sort_three_values(s_a, &((*first)->fst_a), 'a');
 	if ((*s_b)->nbr < (*s_b)->next->nbr)
 		swap(s_b, &((*first)->fst_b), 'b');
@@ -149,37 +74,6 @@ int	sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first)
 	push(s_b, s_a, &((*first)->fst_a), 'a');
 	return (SUCCESS);
 }
-
-// int	sort_three_values_inv(t_lst **stack, t_lst **first, char c)
-// {
-// 	int	one;
-// 	int	two;
-// 	int	three;
-
-// 	if (stack == NULL || size_stack(*stack) != 2)
-// 		return (ERROR);
-// 	one = (*stack)->nbr;
-// 	two = (*stack)->next->nbr;
-// 	three = (*stack)->next->next->nbr;
-// 	if (!check_if_sort_inv(*stack))
-// 	{
-// 		if ((one < two && two < three && one < three)
-// 		|| (one < two && two > three && one > three)
-// 		|| (one > two && two < three && one > three))
-// 		{
-// 			swap(stack, first, c);
-// 			if (one < two && two < three && one < three)
-// 				reverse_rotate(stack, first, c);
-// 			else if (one > two && two < three && one > three)
-// 				rotate(stack, first, c);
-// 		}
-// 		else if (one < two && two > three && one < three)
-// 			rotate(stack, first, c);
-// 		else if (one > two && two < three && one > three)
-// 			reverse_rotate(stack, first, c);
-// 	}
-// 	return (SUCCESS);
-// }
 
 int	sort_three_values(t_lst **stack, t_lst **first, char c)
 {
@@ -194,22 +88,21 @@ int	sort_three_values(t_lst **stack, t_lst **first, char c)
 	three = (*stack)->next->next->nbr;
 	if (!check_if_sort(*stack))
 	{
-		if ((one > two && two > three && one > three)
-			|| (one > two && two < three && one < three))
+		if (one < two && two > three)
+		{
+			reverse_rotate(stack, first, c);
+			if (one < three)
+				swap(stack, first, c);
+		}
+		else if (one > two
+			&& ((two < three && one < three) || (two > three && one > three)))
 		{
 			swap(stack, first, c);
 			if (one > three)
 				reverse_rotate(stack, first, c);
 		}
-		else if ((one < two && two > three)
-			|| (one > two && two < three && one > three))
-		{
-			reverse_rotate(stack, first, c);
-			if (one < three)
-				swap(stack, first, c);
-			else if (one > two)
-				reverse_rotate(stack, first, c);
-		}
+		else
+			rotate(stack, first, c);
 	}
 	return (SUCCESS);
 }

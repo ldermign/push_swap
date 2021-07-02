@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_utils_2.c                                       :+:      :+:    :+:   */
+/*   utils_sort_three_max.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:10:24 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/30 13:15:16 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/02 10:58:25 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	big(int one, int two, int three)
 	return (big);
 }
 
-void	by_order(t_utils *uts)
+void	by_order_3(t_utils *uts)
 {
 	int	tmp1;
 	int	tmp2;
@@ -66,4 +66,23 @@ void	by_order(t_utils *uts)
 	uts->pos1 = tmp1;
 	uts->pos2 = tmp2;
 	uts->pos3 = tmp3;
+}
+
+void	by_order_2(t_utils *uts)
+{
+	int	tmp1;
+	int	tmp2;
+
+	if (uts->min1 < uts->min2)
+	{
+		tmp1 = uts->min1;
+		tmp2 = uts->min2;
+	}
+	else
+	{
+		tmp2 = uts->min1;
+		tmp1 = uts->min2;
+	}
+	uts->min1 = tmp1;
+	uts->min2 = tmp2;
 }

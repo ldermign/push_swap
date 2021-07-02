@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 16:03:35 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/02 11:46:55 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ typedef struct s_first
 	t_lst	*fst_b;
 }	t_first;
 
+typedef struct s_med
+{
+	int				nbr;
+	struct s_med	*next;
+	struct s_med	*first;
+}	t_med;
+
 typedef struct s_utils
 {
 	int		*s_int;
@@ -40,6 +47,8 @@ typedef struct s_utils
 	int		size;
 	int		middle;
 	int		max;
+	int		min1;
+	int		min2;
 	int		pos1;
 	int		pos2;
 	int		pos3;
@@ -72,14 +81,13 @@ void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first **first);
 */
 
 int		begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
-int		sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first);
+int		sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
 int		sort_three_values(t_lst **stack, t_lst **first, char c);
 
 /*
 **	DEEP SORT
 */
 
-// int		sort_three_values_inv(t_lst **stack, t_lst **first, char c);
 void	sort_three_with_more(t_lst **stack, t_lst **first);
 
 /*
@@ -89,13 +97,16 @@ void	sort_three_with_more(t_lst **stack, t_lst **first);
 int	how_many_not_good(t_lst *stack);
 int	pos_not_good(t_lst *stack);
 
-void	by_order(t_utils *uts);
+void	by_order_3(t_utils *uts);
+void	by_order_2(t_utils *uts);
 int		get_nbr_pos(t_lst **stack, int pos);
-int		get_med(t_lst **stack);
+int		get_med(t_lst **stack, t_med **three);
 int		check_if_sort(t_lst *stack);
 int		check_if_sort_inv(t_lst *stack);
 int		max_val(t_lst *stack);
-int		max_with_max(t_lst *stack, int max);
+int		max_with_max(t_lst *stack, int no);
+int		min_val(t_lst *stack);
+int		min_with_min(t_lst *stack, int no);
 
 /*
 **	UTILS

@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 16:06:45 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/02 11:47:07 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	pos_three_max(t_lst **one, t_lst **two, t_first **first, t_utils *uts)
 	med = get_nbr_pos(one, uts->pos2);
 	uts->pos3 = max_with_max(*one, med);
 	lit = get_nbr_pos(one, uts->pos3);
-	by_order(uts);
+	by_order_3(uts);
 	uts->size = size_stack(*one);
 	uts->here = uts->pos1;
 	push_three_max(one, two, first, uts);
@@ -93,7 +93,6 @@ void	sort_under_100(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 
 	i = 0;
 	ret = size_stack(*s_a);
-	get_info(uts);
 	uts->c = 'b';
 	pos_three_max(s_a, s_b, first, uts);
 	sort_three_values(s_a, &((*first)->fst_a), 'a');
@@ -116,23 +115,51 @@ void	sort_under_100(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 			push(s_b, s_a, &((*first)->fst_a), 'a');
 			i++;
 		}
-		ret = ret - 3;
+		ret -= 3;
 	}
+}
+
+// void	sort_under_50(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
+// {
+// 	t_lst **five;
+
+// 	five = NULL;
+// 	five = malloc(sizeof)
+// }
+
+int	nightmare_size(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
+{
+	t_med **three;
+
+	three = NULL;
+ 	three = malloc(sizeof(t_med));
+	if (three == NULL)
+	{
+		ft_printf("Error\n");
+		return (ERROR);
+	}
+	pos_three_max(s_a, s_b, first, uts);
+	sort_three_values(s_a, &((*first)->fst_a), 'a');
+	get_med() ///////////// commencer vrai algo
+	return (SUCCESS);
 }
 
 int	begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 {
+	get_info(uts);
 	if (check_if_sort(*s_a))
 		return (SUCCESS);
 	if (uts->size == 3)
 		sort_three_values(s_a, &((*first)->fst_a), 'a');
 	else if (uts->size == 5)
-		sort_five_values(s_a, s_b, first);
-	else if (uts->size <= 100)
-		sort_under_100(s_a, s_b, first, uts);
+		sort_five_values(s_a, s_b, first, uts);
+	// else if (uts->size <= 50)
+	// 	sort_under_50(s_a, s_b, first, uts);
+	// else if (uts->size <= 100)
+	// 	sort_under_100(s_a, s_b, first, uts);
 	// else if (uts->size <= 500)
 	// 	big_size(&s_a, &s_b, first, uts);
-	// else
-	// 	nightmare_size(s_a, s_b, first, uts);
+	else
+		nightmare_size(s_a, s_b, first, uts);
 	return (SUCCESS);
 }
