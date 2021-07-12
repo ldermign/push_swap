@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/02 11:47:00 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/12 11:07:27 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int	max_with_max(t_lst *stack, int no)
 
 int	get_med(t_lst **stack, t_med **three)
 {
+	(void)three;
 	// int	min;
 	// int	max;
 	int	size;

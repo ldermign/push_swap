@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:10:24 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/02 10:58:25 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/12 12:17:05 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,49 @@ void	by_order_3(t_utils *uts)
 	uts->pos1 = tmp1;
 	uts->pos2 = tmp2;
 	uts->pos3 = tmp3;
+}
+void	bubble(int *tab, int size)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 0;
+	while (i < (int)(size - 1))
+	{
+		j = 0;
+		while (j + 1 && j < (int)(size - i - 1))
+		{
+			if (tab[j] > tab[j + 1])
+			{
+				tmp = tab[j];
+				tab[j] = tab[j + 1];
+				tab[j + 1] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	by_order_5(t_utils *uts)
+{
+	int	*tab;
+
+	tab = malloc(sizeof(int) * 5);
+	if (tab == NULL)
+		return ;
+	tab[0] = uts->pos1;
+	tab[1] = uts->pos2;
+	tab[2] = uts->pos3;
+	tab[3] = uts->pos4;
+	tab[4] = uts->pos5;
+	bubble(tab, 5);
+	uts->pos1 = tab[0];
+	uts->pos2 = tab[1];
+	uts->pos3 = tab[2];
+	uts->pos4 = tab[3];
+	uts->pos5 = tab[4];
 }
 
 void	by_order_2(t_utils *uts)

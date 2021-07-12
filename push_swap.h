@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/02 11:46:55 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/12 12:05:22 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef struct s_utils
 	int		pos1;
 	int		pos2;
 	int		pos3;
-	char	c;
+	int		pos4;
+	int		pos5;
 	int		here;
 	int		size_to_stack;
 }	t_utils;
@@ -97,6 +98,7 @@ void	sort_three_with_more(t_lst **stack, t_lst **first);
 int	how_many_not_good(t_lst *stack);
 int	pos_not_good(t_lst *stack);
 
+void	by_order_5(t_utils *uts);
 void	by_order_3(t_utils *uts);
 void	by_order_2(t_utils *uts);
 int		get_nbr_pos(t_lst **stack, int pos);
