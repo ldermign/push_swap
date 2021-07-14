@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/14 16:01:41 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/14 23:02:08 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	push_max(t_lst **one, t_lst **two, t_first **first, t_utils *uts)
 	}
 }
 
-void	push_only_max(t_lst **one, t_lst **two, t_first **first, t_utils *uts)
+void	push_only_max(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 {
 	int		i;
 
@@ -46,20 +46,40 @@ void	push_only_max(t_lst **one, t_lst **two, t_first **first, t_utils *uts)
 	{
 		while (i < uts->here)
 		{
-			rotate(one, &((*first)->fst_a), 'a');
+			rotate(s_a, &((*first)->fst_a), 'a');
 			i++;
 		}
-		push(one, two, &((*first)->fst_b), 'b');
+		push(s_a, s_b, &((*first)->fst_b), 'b');
 	}
 	else
 	{
 		while (i < uts->here)
 		{
-			rotate(one, &((*first)->fst_b), 'b');
+			rotate(s_a, &((*first)->fst_b), 'b');
 			i++;
 		}
-		push(one, two, &((*first)->fst_a), 'a');
+		push(s_a, s_b, &((*first)->fst_a), 'a');
 	}
+}
+
+void	pos_five_max(t_lst **stack, t_utils *uts)
+{
+	int	max;
+	int	size;
+
+	size = size_stack(*stack);
+	uts->pos1 = max_val(*stack);
+	max = get_nbr_pos(stack, uts->pos1);
+	uts->pos2 = max_with_max(*stack, max);
+	max = get_nbr_pos(stack, uts->pos2);
+	uts->pos3 = max_with_max(*stack, max);
+	max = get_nbr_pos(stack, uts->pos3);
+	uts->pos4 = max_with_max(*stack, max);
+	max = get_nbr_pos(stack, uts->pos4);
+	uts->pos5 = max_with_max(*stack, max);
+	max = get_nbr_pos(stack, uts->pos5);
+	by_order_5(uts);
+	printf("1 = %d, 2 = %d, 3 = %d, 4 = %d, 5 = %d\n", uts->pos1, uts->pos2, uts->pos3, uts->pos4, uts->pos5);
 }
 
 void	pos_three_max(t_lst **one, t_lst **two, t_first **first, t_utils *uts)
@@ -99,22 +119,6 @@ void	pos_three_max(t_lst **one, t_lst **two, t_first **first, t_utils *uts)
 // 	(void)uts;
 // }
 
-// void	nightmare_size(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
-// {
-// 	get_info(uts);
-// 	pos_three_max(s_a, s_b, first, uts);
-// 	sort_three_values(s_a, &((*first)->fst_a));
-// 	sort_median(s_b, &((*first)->fst_b), uts);
-	
-	
-// }
-
-// void	push_sort_auto(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
-// {
-// 	pos_three_max(s_b, s_a, first, uts);
-	
-// }
-
 void	sort_100_values(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 {
 	int	i;
@@ -146,39 +150,59 @@ void	sort_100_values(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 	}
 }
 
-void	sort_five(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
+void	sort_three_with_more(t_lst **stack, t_lst **first)
 {
-	int	i;
+	int	one;
+	int	two;
+	int	three;
 
-	i = 0;
-	uts->size = size_stack(*s_a) - 5;
-	while (i <= uts->size)
+	if (stack == NULL || size_stack(*stack) <= 2)
+		return ;
+	one = (*stack)->nbr;
+	two = (*stack)->next->nbr;
+	three = (*stack)->next->next->nbr;
+	if (!check_if_sort(*stack))
 	{
-		push(s_a, s_b, &((*first)->fst_b), 'b');
-		i++;
+		if ((one > two && two < three)
+			|| (one > two && two > three && one > three))
+			swap(stack, first, 'a');
+		if (!(one > two && two < three && one < three))
+		{
+			reverse_rotate(stack, first, 'a');
+			swap(stack, first, 'a');
+			rotate(stack, first, 'a');
+		}
+		if (two > three && one > three)
+			swap(stack, first, 'a');
 	}
-	afficher_deux_stack(s_a, s_b);
-	sort_five_values(s_a, s_b, first, uts);
 }
 
 void	sort_five_with_more(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 {
-	int	i;
+	int	min;
+	int	med;
 
-	i = 0;
-	uts->size = size_stack(*s_a) - 5;
-	while (i <= uts->size)
-	{
-		push(s_a, s_b, &((*first)->fst_b), 'b');
-		i++;
-	}
-	afficher_deux_stack(s_a, s_b);
-	sort_five_values(s_a, s_b, first, uts);
+	uts->min1 = min_val(*s_a, size_stack(*s_a) - 5);
+	min = get_nbr_pos(s_a, uts->min1);
+	uts->min2 = min_with_min(*s_a, size_stack(*s_a) - 5, min);
+	med = get_nbr_pos(s_a, uts->min2);
+	eject_two_mini(s_a, s_b, first, uts);
+	while (max_val(*s_a) != size_stack(*s_a))
+		rotate(s_a, &((*first)->fst_a), 'a');
+	afficher_une_stack(s_a);
+	sort_three_with_more(s_a, &((*first)->fst_a));
+	if ((*s_b)->nbr < (*s_b)->next->nbr)
+		swap(s_b, &((*first)->fst_b), 'b');
+	push(s_b, s_a, &((*first)->fst_a), 'a');
+	push(s_b, s_a, &((*first)->fst_a), 'a');
 }
 
 void	push_all_except_five_to(t_lst **one, t_lst **two,
 			t_first **first, t_utils *uts)
 {
+	int	i;
+
+	i = 0;
 	uts->here = uts->pos1;
 	push_max(one, two, first, uts);
 	uts->here = uts->pos2 - uts->pos1 - 1;
@@ -189,6 +213,14 @@ void	push_all_except_five_to(t_lst **one, t_lst **two,
 	push_max(one, two, first, uts);
 	uts->here = uts->pos5 - uts->pos4 - 1;
 	push_max(one, two, first, uts);
+	uts->size = size_stack(*one) - 5;
+	while (i <= uts->size)
+	{
+		push(one, two, &((*first)->fst_b), 'b');
+		i++;
+	}
+	afficher_deux_stack(one, two);
+	sort_five_values(one, two, first, uts);
 }
 
 void	push_all_five_to(t_lst **one, t_lst **two, t_first **first,
@@ -206,26 +238,6 @@ void	push_all_five_to(t_lst **one, t_lst **two, t_first **first,
 	push_only_max(one, two, first, uts);
 }
 
-void	pos_five_max(t_lst **stack, t_utils *uts)
-{
-	int	max;
-	int	size;
-
-	size = size_stack(*stack);
-	uts->pos1 = max_val(*stack);
-	max = get_nbr_pos(stack, uts->pos1);
-	uts->pos2 = max_with_max(*stack, max);
-	max = get_nbr_pos(stack, uts->pos2);
-	uts->pos3 = max_with_max(*stack, max);
-	max = get_nbr_pos(stack, uts->pos3);
-	uts->pos4 = max_with_max(*stack, max);
-	max = get_nbr_pos(stack, uts->pos4);
-	uts->pos5 = max_with_max(*stack, max);
-	max = get_nbr_pos(stack, uts->pos5);
-	by_order_5(uts);
-	printf("1 = %d, 2 = %d, 3 = %d, 4 = %d, 5 = %d\n", uts->pos1, uts->pos2, uts->pos3, uts->pos4, uts->pos5);
-}
-
 void	sort_50_values(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 {
 	int	i;
@@ -236,22 +248,20 @@ void	sort_50_values(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 	pos_five_max(s_a, uts);
 	uts->stack = 'a';
 	push_all_except_five_to(s_a, s_b, first, uts);
-	sort_five(s_a, s_b, first, uts);
 	// while (size_stack(*s_b) >= 5)
 	// {
 		uts->stack = 'b';
 		pos_five_max(s_b, uts);
 		push_all_five_to(s_b, s_a, first, uts);
-		// sort_five_with_more(s_a, s_b, first, uts);
+		uts->size = size_stack(*s_b);
+		sort_five_with_more(s_a, s_b, first, uts);
 	// }
+			pos_five_max(s_b, uts);
+			afficher_deux_stack(s_a, s_b);
+		// push_all_five_to(s_b, s_a, first, uts);
+		// uts->size = size_stack(*s_b);
+		// sort_five_with_more(s_a, s_b, first, uts);
 }
-// void	sort_under_50(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
-// {
-// 	t_lst **five;
-
-// 	five = NULL;
-// 	five = malloc(sizeof)
-// }
 
 int	nightmare_size(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 {

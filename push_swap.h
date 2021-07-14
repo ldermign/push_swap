@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/14 14:38:51 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/14 22:48:36 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,9 @@ int		check_if_sort(t_lst *stack);
 int		check_if_sort_inv(t_lst *stack);
 int		max_val(t_lst *stack);
 int		max_with_max(t_lst *stack, int no);
-int		min_val(t_lst *stack);
-int		min_with_min(t_lst *stack, int no);
+int		min_val(t_lst *stack, int size);
+int		min_with_min(t_lst *stack, int size, int no);
+void	eject_two_mini(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
 
 /*
 **	UTILS

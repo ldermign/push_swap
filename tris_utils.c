@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/14 14:25:53 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/14 22:10:42 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	get_nbr_pos(t_lst **stack, int pos)
 	return (pos);
 }
 
-int	min_val(t_lst *stack)
+int	min_val(t_lst *stack, int size)
 {
 	int		i;
 	int		tmp;
@@ -39,7 +39,7 @@ int	min_val(t_lst *stack)
 	i = 0;
 	nbr = get_nbr_pos(&stack, max_val(stack));
 	min = 0;
-	while (stack != NULL)
+	while (stack != NULL && i < size)
 	{
 		tmp = stack->nbr;
 		stack = stack->next;
@@ -53,7 +53,7 @@ int	min_val(t_lst *stack)
 	return (min);
 }
 
-int	min_with_min(t_lst *stack, int no)
+int	min_with_min(t_lst *stack, int size, int no)
 {
 	int		i;
 	int		tmp;
@@ -63,9 +63,10 @@ int	min_with_min(t_lst *stack, int no)
 	i = 0;
 	nbr = get_nbr_pos(&stack, max_val(stack));
 	min = 0;
-	while (stack != NULL)
+	while (stack != NULL && i < size)
 	{
 		tmp = stack->nbr;
+		printf("%d < %d && %d > %d\n", tmp, nbr, tmp, no);
 		stack = stack->next;
 		if (tmp < nbr && tmp > no)
 		{

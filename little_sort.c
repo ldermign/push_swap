@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/14 14:35:40 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/14 22:19:06 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	minimum(t_lst **stack, t_utils *uts)
 	i = 0;
 	min = 0;
 	med = 0;
-	uts->min1 = min_val(*stack);
+	uts->min1 = min_val(*stack, size_stack(*stack));
 	min = get_nbr_pos(stack, uts->min1);
-	uts->min2 = min_with_min(*stack, min);
+	uts->min2 = min_with_min(*stack, size_stack(*stack), min);
 	med = get_nbr_pos(stack, uts->min2);
 	by_order_2(uts);
 	uts->size = size_stack(*stack);
