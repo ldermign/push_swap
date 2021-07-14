@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/12 11:07:27 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/14 14:25:53 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	min_with_min(t_lst *stack, int no)
 	int		min;
 
 	i = 0;
-	nbr = get_nbr_pos(&stack, no);
+	nbr = get_nbr_pos(&stack, max_val(stack));
 	min = 0;
 	while (stack != NULL)
 	{

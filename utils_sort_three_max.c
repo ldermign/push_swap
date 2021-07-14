@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:10:24 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/12 12:17:05 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/14 15:57:53 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	by_order_5(t_utils *uts)
 	uts->pos3 = tab[2];
 	uts->pos4 = tab[3];
 	uts->pos5 = tab[4];
+	free(tab);
 }
 
 void	by_order_2(t_utils *uts)

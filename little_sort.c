@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/02 11:23:02 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/14 14:35:40 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	eject_two_mini(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 		rotate(s_a, (&((*first)->fst_a)), 'a');
 		i++;
 	}
+	afficher_deux_stack(s_a, s_b);
 	push(s_a, s_b, &((*first)->fst_b), 'b');
 	i = 0;
 	while (i < uts->min2 - uts->min1 - 1)
@@ -67,6 +68,7 @@ int	sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts)
 {
 	minimum(s_a, uts);
 	eject_two_mini(s_a, s_b, first, uts);
+	afficher_deux_stack(s_a, s_b);
 	sort_three_values(s_a, &((*first)->fst_a), 'a');
 	if ((*s_b)->nbr < (*s_b)->next->nbr)
 		swap(s_b, &((*first)->fst_b), 'b');

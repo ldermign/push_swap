@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/12 12:05:22 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/14 14:38:51 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_utils
 	int		size;
 	int		middle;
 	int		max;
+	char	stack;
 	int		min1;
 	int		min2;
 	int		pos1;
