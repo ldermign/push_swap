@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/14 22:48:36 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/15 13:40:56 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ typedef struct s_lst
 	int				nbr;
 	struct s_lst	*next;
 }	t_lst;
-
-typedef struct s_first
-{
-	t_lst	*fst_a;
-	t_lst	*fst_b;
-}	t_first;
 
 typedef struct s_med
 {
@@ -70,27 +64,31 @@ int		ft_doublon(char **tab);
 **	OPERATIONS
 */
 
-void	swap(t_lst **stack, t_lst **first, char s);
-void	rotate(t_lst **stack, t_lst **first, char s);
-void	reverse_rotate(t_lst **stack, t_lst **first, char s);
-void	push(t_lst **s_give, t_lst **s_get, t_lst **f_get, char s);
-void	swap_ss(t_lst **s_a, t_lst **s_b, t_first **first);
-void	rotate_rr(t_lst **s_a, t_lst **s_b, t_first **first);
-void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b, t_first **first);
+void	swap_a(t_lst **s_a);
+void	push_a(t_lst **s_b, t_lst **s_a);
+void	rotate_a(t_lst **s_a);
+void	reverse_rotate_a(t_lst **s_a);
+void	swap_b(t_lst **s_b);
+void	push_b(t_lst **s_a, t_lst **s_b);
+void	rotate_b(t_lst **s_b);
+void	reverse_rotate_b(t_lst **s_b);
+void	swap_ss(t_lst **s_a, t_lst **s_b);
+void	rotate_rr(t_lst **s_a, t_lst **s_b);
+void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b);
 
 /*
 **	SORT
 */
 
-int		begin_sort(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
-int		sort_five_values(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
-int		sort_three_values(t_lst **stack, t_lst **first, char c);
+int		begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts);
+int		sort_five_values(t_lst **s_a, t_lst **s_b, t_utils *uts);
+int		sort_three_values(t_lst **s_a);
 
 /*
 **	DEEP SORT
 */
 
-void	sort_three_with_more(t_lst **stack, t_lst **first);
+void	sort_three_with_more(t_lst **stack);
 
 /*
 **	SORT UTILS
@@ -110,7 +108,7 @@ int		max_val(t_lst *stack);
 int		max_with_max(t_lst *stack, int no);
 int		min_val(t_lst *stack, int size);
 int		min_with_min(t_lst *stack, int size, int no);
-void	eject_two_mini(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
+void	eject_two_mini(t_lst **s_a, t_lst **s_b, t_utils *uts);
 
 /*
 **	UTILS
@@ -119,8 +117,8 @@ void	eject_two_mini(t_lst **s_a, t_lst **s_b, t_first **first, t_utils *uts);
 int		get_info(t_utils *uts);
 int		size_stack(t_lst *stack);
 t_lst	*new_nbr(int nbr);
-void	add_nbr_back(t_lst **stack, t_lst **first, int nbr);
-void	add_nbr_front(t_lst **begin, t_lst **first, int nbr);
+void	add_nbr_back(t_lst **stack, int nbr);
+void	add_nbr_front(t_lst **begin, int nbr);
 
 /*
 **	SUPPRIMER

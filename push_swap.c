@@ -6,28 +6,28 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 10:39:45 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/15 13:41:20 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 int ope = 0; ///////////////////////////////////////////////////////////////////
 
-void	init_liste_a(t_lst **begin, t_lst **first, char **tab, t_utils *uts)
+void	init_liste_a(t_lst **begin, char **tab)
 {
 	int	i;
 	int	nbr;
+	t_lst	*ret;
 
 	i = 0;
 	nbr = 0;
+	ret = *begin;
 	while (tab[i])
 	{
 		nbr = ft_atoi(tab[i]);
-		add_nbr_back(begin, first, nbr);
+		add_nbr_back(begin, nbr);
 		i++;
 	}
-	uts->size = i;
-	*begin = *first;
 }
 
 int	get_stack_char(t_lst **stack, t_utils *uts)
@@ -55,29 +55,26 @@ int	ft_push_swap(int ac, char **av)
 {
 	t_lst	*s_a;
 	t_lst	*s_b;
-	t_first	*f;
 	t_utils	*uts;
 
 	s_a = NULL;
 	s_b = NULL;
-	f = NULL;
 	uts = NULL;
 	if (!check_arg(ac, &av[1]) || !ft_doublon(&av[1]))
 	{
 		ft_printf("Error\n");
 		return (ERROR);
 	}
-	f = malloc(sizeof(t_first));
 	uts = malloc(sizeof(t_utils));
 	ft_bzero(uts, 0);
-	init_liste_a(&s_a, &(f->fst_a), &av[1], uts);
-	if (f == NULL || uts == NULL || !get_stack_char(&s_a, uts))
+	init_liste_a(&s_a, &av[1]);
+	if (uts == NULL || !get_stack_char(&s_a, uts))
 	{
 		ft_printf("Error\n");
 		return (ERROR);
 	}
 	afficher_deux_stack(&s_a, &s_b);
-	begin_sort(&s_a, &s_b, &f, uts);
+	begin_sort(&s_a, &s_b, uts);
 	afficher_deux_stack(&s_a, &s_b);
 	afficher_infos(ac - 1);
 	return (SUCCESS);

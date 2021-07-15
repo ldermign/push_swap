@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/14 22:10:42 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/15 14:44:21 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	min_val(t_lst *stack, int size)
 	i = 0;
 	nbr = get_nbr_pos(&stack, max_val(stack));
 	min = 0;
-	while (stack != NULL && i < size)
+	while (stack != NULL && i <= size)
 	{
 		tmp = stack->nbr;
 		stack = stack->next;
@@ -63,10 +63,10 @@ int	min_with_min(t_lst *stack, int size, int no)
 	i = 0;
 	nbr = get_nbr_pos(&stack, max_val(stack));
 	min = 0;
-	while (stack != NULL && i < size)
+	while (stack != NULL && i <= size)
 	{
 		tmp = stack->nbr;
-		printf("%d < %d && %d > %d\n", tmp, nbr, tmp, no);
+		// printf("%d < %d && %d > %d\n", tmp, nbr, tmp, no);
 		stack = stack->next;
 		if (tmp < nbr && tmp > no)
 		{

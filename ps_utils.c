@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:03 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/01 10:43:20 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/15 11:21:31 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,29 +73,32 @@ t_lst	*new_nbr(int nbr)
 	return (elem);
 }
 
-void	add_nbr_back(t_lst **stack, t_lst **first, int nbr)
+void	add_nbr_back(t_lst **stack, int nbr)
 {
+	t_lst	*ret;
+
 	if (!(*stack))
 	{
 		*stack = new_nbr(nbr);
-		*first = *stack;
+		ret = *stack;
 	}
 	else
 	{
-		*first = *stack;
+		ret = *stack;
 		while ((*stack)->next)
 			*stack = (*stack)->next;
 		(*stack)->next = new_nbr(nbr);
 	}
-	*stack = *first;
+	*stack = ret;
 }
 
-void	add_nbr_front(t_lst **stack, t_lst **first, int nbr)
+void	add_nbr_front(t_lst **stack, int nbr)
 {
+	t_lst	*ret;
 	t_lst	*adrs_tmp;
 
 	adrs_tmp = new_nbr(nbr);
 	adrs_tmp->next = (*stack);
-	*first = adrs_tmp;
-	*stack = *first;
+	ret = adrs_tmp;
+	*stack = ret;
 }
