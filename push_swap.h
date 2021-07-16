@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/15 13:40:56 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/16 14:08:20 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	reverse_rotate_rrr(t_lst **s_a, t_lst **s_b);
 int		begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts);
 int		sort_five_values(t_lst **s_a, t_lst **s_b, t_utils *uts);
 int		sort_three_values(t_lst **s_a);
+int		sort_three_values_inv(t_lst **s_a);
 
 /*
 **	DEEP SORT
@@ -106,6 +107,7 @@ int		check_if_sort(t_lst *stack);
 int		check_if_sort_inv(t_lst *stack);
 int		max_val(t_lst *stack);
 int		max_with_max(t_lst *stack, int no);
+// int		min_val(t_lst *stack);
 int		min_val(t_lst *stack, int size);
 int		min_with_min(t_lst *stack, int size, int no);
 void	eject_two_mini(t_lst **s_a, t_lst **s_b, t_utils *uts);

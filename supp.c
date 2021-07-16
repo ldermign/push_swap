@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 17:15:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/15 11:03:49 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/16 13:47:55 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,18 @@ void	afficher_infos(int ac)
 
 void	afficher_une_stack(t_lst **s)
 {
+	int		i;
 	t_lst	*first;
 
+	i = 0;
 	first = *s;
 	if (*s == NULL)
 		exit (0);
 	while (*s != NULL)
 	{
-		printf("\t\t--> %d\n", (*s)->nbr);
+		printf("\t[%d]\t--> %d\n", i, (*s)->nbr);
 		*s = (*s)->next;
+		i++;
 	}
 	*s = first;
 }
@@ -48,20 +51,20 @@ void	afficher_deux_stack(t_lst **one, t_lst **two)
 	int i = 0;
 	ft_printf("First [a]\n");
 	if (*one == NULL)
-		ft_printf("\t\t///\n");
+		ft_printf("\t///\n");
 	while (*one != NULL)
 	{
-		printf("[%d]\t\t--> %d\n", i, (*one)->nbr);
+		printf("[%d]\t--> %d\n", i, (*one)->nbr);
 		*one = (*one)->next;
 		i++;
 	}
 	i = 0;
 	ft_printf("Second [b]\n");
 	if (*two == NULL)
-		ft_printf("\t\t///\n");
+		ft_printf("\t///\n");
 	while (*two != NULL)
 	{
-		printf("[%d]\t\t--> %d\n", i, (*two)->nbr);
+		printf("[%d]\t--> %d\n", i, (*two)->nbr);
 		*two = (*two)->next;
 		i++;
 	}

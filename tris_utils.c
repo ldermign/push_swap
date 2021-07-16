@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/15 14:44:21 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/16 13:39:03 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	min_val(t_lst *stack, int size)
 	int		min;
 
 	i = 0;
-	nbr = get_nbr_pos(&stack, max_val(stack));
+	nbr = 2147483647;
 	min = 0;
 	while (stack != NULL && i <= size)
 	{
@@ -53,6 +53,30 @@ int	min_val(t_lst *stack, int size)
 	return (min);
 }
 
+// int	min_val(t_lst *stack)
+// {
+// 	int		i;
+// 	int		tmp;
+// 	int		nbr;
+// 	int		min;
+
+// 	i = 0;
+// 	nbr = 2147483647;
+// 	min = 0;
+// 	while (stack != NULL)
+// 	{
+// 		tmp = stack->nbr;
+// 		stack = stack->next;
+// 		if (tmp < nbr)
+// 		{
+// 			nbr = tmp;
+// 			min = i;
+// 		}
+// 		i++;
+// 	}
+// 	return (min);
+// }
+
 int	min_with_min(t_lst *stack, int size, int no)
 {
 	int		i;
@@ -61,7 +85,7 @@ int	min_with_min(t_lst *stack, int size, int no)
 	int		min;
 
 	i = 0;
-	nbr = get_nbr_pos(&stack, max_val(stack));
+	nbr = 2147483647;
 	min = 0;
 	while (stack != NULL && i <= size)
 	{
@@ -87,7 +111,7 @@ int	max_val(t_lst *stack)
 
 	i = 0;
 	tmp = 0;
-	nbr = 0;
+	nbr = -2147483648;
 	max = 0;
 	while (stack != NULL)
 	{
@@ -112,7 +136,7 @@ int	max_with_max(t_lst *stack, int no)
 
 	i = 0;
 	tmp = 0;
-	nbr = 0;
+	nbr = -2147483648;
 	max = 0;
 	while (stack != NULL)
 	{
