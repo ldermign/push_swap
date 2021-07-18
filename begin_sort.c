@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/16 14:30:15 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/18 19:06:34 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,14 @@ void	pos_five_max(t_lst **stack, t_utils *uts)
 	size = size_stack(*stack);
 	uts->pos1 = max_val(*stack);
 	max = get_nbr_pos(stack, uts->pos1);
-	// printf("\nmax = %d\n", max);
 	uts->pos2 = max_with_max(*stack, max);
 	max = get_nbr_pos(stack, uts->pos2);
-	// printf("\nmax = %d\n", max);
 	uts->pos3 = max_with_max(*stack, max);
 	max = get_nbr_pos(stack, uts->pos3);
-	// printf("\nmax = %d\n", max);
 	uts->pos4 = max_with_max(*stack, max);
 	max = get_nbr_pos(stack, uts->pos4);
-	// printf("\nmax = %d\n", max);
 	uts->pos5 = max_with_max(*stack, max);
 	max = get_nbr_pos(stack, uts->pos5);
-	// printf("\nmax = %d\n", max);
 	by_order_5(uts);
 	// printf("1 = %d, 2 = %d, 3 = %d, 4 = %d, 5 = %d\n", uts->pos1, uts->pos2, uts->pos3, uts->pos4, uts->pos5);
 	afficher_une_stack(stack);
@@ -95,15 +90,15 @@ void	pos_three_max(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	int	med;
 	int	lit;
 
-	i = 0;
+	i = -1;
 	uts->pos1 = max_val(*s_a);
 	max = get_nbr_pos(s_a, uts->pos1);
 	uts->pos2 = max_with_max(*s_a, max);
 	med = get_nbr_pos(s_a, uts->pos2);
 	uts->pos3 = max_with_max(*s_a, med);
 	lit = get_nbr_pos(s_a, uts->pos3);
+	uts->tmp = lit;
 	by_order_3(uts);
-	uts->size = size_stack(*s_a);
 	uts->here = uts->pos1;
 	push_max(s_a, s_b, uts);
 	uts->here = uts->pos2 - uts->pos1 - 1;
@@ -111,11 +106,8 @@ void	pos_three_max(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	uts->here = uts->pos3 - uts->pos2 - 1;
 	push_max(s_a, s_b, uts);
 	uts->size = size_stack(*s_a) - 3;
-	while (i <= uts->size)
-	{
+	while (++i <= uts->size)
 		push_b(s_a, s_b);
-		i++;
-	}
 }
 
 // void	sort_median(t_lst **stack, t_lst **t_utils *uts)
@@ -256,12 +248,18 @@ void	sort_50_values(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	uts->stack = 'a';
 	push_all_except_five_to(s_a, s_b, uts);
 	sort_five_values(s_a, s_b, uts);
-	while (size_stack(*s_b) >= 5)
+	while (size_stack(*s_b) >= 4)
 	{
 		uts->stack = 'b';
 		pos_five_max(s_b, uts);
 		push_all_five_to(s_a, s_b, uts);
 		sort_five_with_more(s_a, s_b, uts);
+	}
+	if (size_stack(*s_b) == 3)
+	{
+		uts->stack = 'b';
+		uts->here = max_val(*s_b);
+		push_only_max(s_a, s_b, uts);
 	}
 	if (size_stack(*s_b) == 2)
 		sort_three_values_inv(s_b);
@@ -271,21 +269,109 @@ void	sort_50_values(t_lst **s_a, t_lst **s_b, t_utils *uts)
 		push_a(s_b, s_a);
 }
 
-int	nightmare_size(t_lst **s_a, t_lst **s_b, t_utils *uts)
+void	push_med_sup(t_lst **s_a, t_lst **s_b, t_utils *uts)
 {
-	t_med **three;
+	int		i;
+	int		ret;
+	int		size;
 
-	three = NULL;
- 	three = malloc(sizeof(t_med));
-	if (three == NULL)
+	i = 0;
+	ret = 0;
+	size = size_stack(*s_b);
+	while (i <= size)
 	{
-		ft_printf("Error\n");
-		return (ERROR);
+		if ((*s_b)->nbr >= uts->med)
+			push_a(s_b, s_a);
+		else
+		{
+			rotate_b(s_b);
+			ret++;
+		}
+		i++;
 	}
+}
+
+void	push_med_inf(t_lst **s_a, t_lst **s_b, t_utils *uts)
+{
+	int		i;
+	int		size;
+
+	i = 0;
+	size = size_stack(*s_a);
+	while (i <= size)
+	{
+		if ((*s_a)->nbr <= uts->med)
+			push_b(s_a, s_b);
+		else
+			rotate_a(s_a);
+		i++;
+	}
+}
+
+void	cleaning(t_lst **s_a, t_lst **s_b)
+{
+	printf("max_val = %d, size = %d\n", max_val(*s_b), size_stack(*s_b) / 2);
+	if (max_val(*s_a) > (size_stack(*s_a) / 2))
+	{
+		while (max_val(*s_a) != size_stack(*s_a))
+			rotate_b(s_a);
+	}
+	else
+	{
+		while (max_val(*s_a) != size_stack(*s_a))
+			reverse_rotate_b(s_a);
+	}
+}
+
+void	sort_by_sort(t_lst **s_a)
+{
+	int	size;
+
+	size = size_stack(*s_a) - 3;
+	if (check_if_sort(*s_a))
+		return ;
+	if (size == 2)
+		sort_three_values(s_a);
+	// printf("size = %d\n", size);
+	if (size == 1 && ((*s_a)->nbr > (*s_a)->next->nbr))
+		swap_a(s_a);
+}
+
+void	start(t_lst **s_a, t_lst **s_b, t_lst **med, t_utils *uts)
+{
+	uts->stack = 'a';
 	pos_three_max(s_a, s_b, uts);
 	sort_three_values(s_a);
-	get_med(s_b, three); ///////////// commencer vrai algo
-	
+	uts->med = get_med(s_b, INT32_MAX, uts);
+	add_nbr_back(med, uts->med);
+	push_med_sup(s_a, s_b, uts);
+	cleaning(s_a, s_b);
+	while (size_stack(*s_a) >= 5)
+	{
+		printf("size_stack = %d\n", size_stack(*s_a));
+		uts->med = get_med(s_a, uts->tmp, uts);
+		add_nbr_back(med, uts->med);
+		push_med_inf(s_a, s_b, uts);
+		cleaning(s_a, s_b);
+		afficher_une_stack(s_a);
+	}
+	// cleaning(s_a, s_b);
+	if (check_if_sort(*s_a))
+		return ;
+	if (size_stack(*s_a) - 3 == 2)
+		sort_three_values(s_a);
+	else if (size_stack(*s_a) - 3 == 1
+		&& ((*s_a)->nbr > (*s_a)->next->nbr))
+		swap_a(s_a);
+}
+
+int	nightmare_size(t_lst **s_a, t_lst **s_b, t_utils *uts)
+{
+	t_lst	*med;
+
+	med = NULL;
+	start(s_a, s_b, &med, uts);
+	afficher_stack_med(&med);
 	return (SUCCESS);
 }
 
@@ -308,7 +394,7 @@ int	begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	// 	sort_under_100(s_a, s_b, uts);
 	// else if (uts->size <= 500)
 	// 	big_size(&s_a, &s_b, uts);
-	// else
-	// 	nightmare_size(s_a, s_b, uts);
+	else
+		nightmare_size(s_a, s_b, uts);
 	return (SUCCESS);
 }

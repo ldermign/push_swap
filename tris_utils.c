@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/16 13:39:03 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/18 18:10:11 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 int	get_nbr_pos(t_lst **stack, int pos)
 {
 	int		i;
+	int		nbr;
 	t_lst	*first;
 
 	i = 0;
+	nbr = 0;
 	first = *stack;
 	while ((*stack)->nbr && i < pos)
 	{
 		*stack = (*stack)->next;
 		i++;
 	}
-	pos = (*stack)->nbr;
+	nbr = (*stack)->nbr;
 	*stack = first;
-	return (pos);
+	return (nbr);
 }
 
 int	min_val(t_lst *stack, int size)
@@ -152,21 +154,30 @@ int	max_with_max(t_lst *stack, int no)
 	return (max);
 }
 
-int	get_med(t_lst **stack, t_med **three)
+int	get_med(t_lst **stack, int max, t_utils *uts)
 {
-	(void)three;
-	// int	min;
-	// int	max;
-	int	size;
-	int	med;
+	int	pos_inf;
+	int	pos_sup;
+	int	i;
 
-	size = size_stack(*stack);
-	med = 0;
-	while ((*stack)->next)
+	i = 0;
+	pos_inf = min_val(*stack, size_stack(*stack));
+	uts->inf = get_nbr_pos(stack, pos_inf);
+	pos_sup = max_with_max(*stack, max);
+	uts->sup = get_nbr_pos(stack, pos_sup);
+	while (uts->inf < uts->sup)
 	{
-		
+		printf("pos_inf = [%d], uts->inf = [%d], pos_sup = [%d], uts->sup = [%d]\n", pos_inf, uts->inf, pos_sup, uts->sup);
+		pos_inf = min_with_min(*stack, size_stack(*stack), uts->inf);
+		uts->inf = get_nbr_pos(stack, pos_inf);
+		if (uts->inf >= uts->sup)
+			break ;
+		pos_sup = max_with_max(*stack, uts->sup);
+		uts->sup = get_nbr_pos(stack, pos_sup);
+		i++;
 	}
-	return (med);
+	printf("med = [%d]\n", uts->inf);
+	return (uts->inf);
 }
 
 void	bubble_sort(int *tab, int size)

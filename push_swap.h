@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/16 14:08:20 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/18 18:51:05 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,6 @@ typedef struct s_lst
 	struct s_lst	*next;
 }	t_lst;
 
-typedef struct s_med
-{
-	int				nbr;
-	struct s_med	*next;
-	struct s_med	*first;
-}	t_med;
-
 typedef struct s_utils
 {
 	int		*s_int;
@@ -50,7 +43,9 @@ typedef struct s_utils
 	int		pos4;
 	int		pos5;
 	int		here;
-	int		size_to_stack;
+	int		inf;
+	int		sup;
+	int		tmp;
 }	t_utils;
 
 /*
@@ -102,7 +97,7 @@ void	by_order_5(t_utils *uts);
 void	by_order_3(t_utils *uts);
 void	by_order_2(t_utils *uts);
 int		get_nbr_pos(t_lst **stack, int pos);
-int		get_med(t_lst **stack, t_med **three);
+int		get_med(t_lst **stack, int max, t_utils *uts);
 int		check_if_sort(t_lst *stack);
 int		check_if_sort_inv(t_lst *stack);
 int		max_val(t_lst *stack);
@@ -139,5 +134,6 @@ void	add_nbr_front(t_lst **begin, int nbr);
 void	afficher_infos(int ac);
 void	afficher_une_stack(t_lst **s);
 void	afficher_deux_stack(t_lst **one, t_lst **two);
+void	afficher_stack_med(t_lst **s);
 
 #endif
