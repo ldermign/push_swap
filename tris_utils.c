@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/18 18:10:11 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/19 14:23:12 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ int	get_med(t_lst **stack, int max, t_utils *uts)
 	uts->sup = get_nbr_pos(stack, pos_sup);
 	while (uts->inf < uts->sup)
 	{
-		printf("pos_inf = [%d], uts->inf = [%d], pos_sup = [%d], uts->sup = [%d]\n", pos_inf, uts->inf, pos_sup, uts->sup);
+		// printf("pos_inf = [%d], uts->inf = [%d], pos_sup = [%d], uts->sup = [%d]\n", pos_inf, uts->inf, pos_sup, uts->sup);
 		pos_inf = min_with_min(*stack, size_stack(*stack), uts->inf);
 		uts->inf = get_nbr_pos(stack, pos_inf);
 		if (uts->inf >= uts->sup)
@@ -176,7 +176,7 @@ int	get_med(t_lst **stack, int max, t_utils *uts)
 		uts->sup = get_nbr_pos(stack, pos_sup);
 		i++;
 	}
-	printf("med = [%d]\n", uts->inf);
+	// printf("med = [%d]\n", uts->inf);
 	return (uts->inf);
 }
 
@@ -216,6 +216,19 @@ int	get_info(t_utils *uts)
 	return (SUCCESS);
 }
 
+int	less_in_med(t_lst *hmn)
+{
+	int		nbr;
+
+	nbr = 0;
+	if (hmn == NULL)
+		return (0);
+	while (hmn->next)
+		hmn = hmn->next;
+	nbr = hmn->nbr;
+	return (nbr);
+}
+
 // int	pos_not_good(t_lst *stack)
 // {
 // 	int	nbr;
@@ -250,3 +263,4 @@ int	get_info(t_utils *uts)
 // 	}
 // 	return (nbr);
 // }
+

@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/18 18:51:05 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/19 15:51:22 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int		max_with_max(t_lst *stack, int no);
 int		min_val(t_lst *stack, int size);
 int		min_with_min(t_lst *stack, int size, int no);
 void	eject_two_mini(t_lst **s_a, t_lst **s_b, t_utils *uts);
+int		less_in_med(t_lst *hmn);
 
 /*
 **	UTILS
@@ -116,6 +117,7 @@ int		size_stack(t_lst *stack);
 t_lst	*new_nbr(int nbr);
 void	add_nbr_back(t_lst **stack, int nbr);
 void	add_nbr_front(t_lst **begin, int nbr);
+void	supp_elemt(t_lst **stack);
 
 /*
 **	SUPPRIMER
@@ -134,6 +136,6 @@ void	add_nbr_front(t_lst **begin, int nbr);
 void	afficher_infos(int ac);
 void	afficher_une_stack(t_lst **s);
 void	afficher_deux_stack(t_lst **one, t_lst **two);
-void	afficher_stack_med(t_lst **s);
+void	afficher_stack_med(t_lst **med, t_lst **hmn);
 
 #endif

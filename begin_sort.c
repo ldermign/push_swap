@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/18 19:06:34 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/19 18:02:07 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,44 +109,6 @@ void	pos_three_max(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	while (++i <= uts->size)
 		push_b(s_a, s_b);
 }
-
-// void	sort_median(t_lst **stack, t_lst **t_utils *uts)
-// {
-// 	(void)stack;
-// 	(void)first;
-// 	(void)uts;
-// }
-
-// void	sort_100_values(t_lst **s_a, t_lst **s_b, t_utils *uts)
-// {
-// 	int	i;
-// 	int	ret;
-
-// 	i = 0;
-// 	ret = size_stack(*s_a);
-// 	pos_three_max(s_a, s_b, uts);
-// 	sort_three_values(s_a);
-// 	while (ret >= 3)
-// 	{
-// 		printf("ret = %d\n", ret);
-// 		pos_three_max(s_b, s_a, uts);
-// 		sort_three_values(s_b, &((*first)->fst_b), 'b');
-// 		uts->size = size_stack(*s_a);
-// 		while (i <= uts->size - 3)
-// 		{
-// 			push(s_a, s_b, &((*first)->fst_b), 'b');
-// 			i++;
-// 		}
-// 		i = 0;
-// 		while (i < 3)
-// 		{
-// 			reverse_rotate(s_b, &((*first)->fst_b), 'b');
-// 			push(s_b, s_a);
-// 			i++;
-// 		}
-// 		ret -= 3;
-// 	}
-// }
 
 void	sort_three_with_more(t_lst **s_a)
 {
@@ -269,7 +231,7 @@ void	sort_50_values(t_lst **s_a, t_lst **s_b, t_utils *uts)
 		push_a(s_b, s_a);
 }
 
-void	push_med_sup(t_lst **s_a, t_lst **s_b, t_utils *uts)
+int	push_med_sup(t_lst **s_a, t_lst **s_b, t_utils *uts)
 {
 	int		i;
 	int		ret;
@@ -281,36 +243,50 @@ void	push_med_sup(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	while (i <= size)
 	{
 		if ((*s_b)->nbr >= uts->med)
-			push_a(s_b, s_a);
-		else
 		{
-			rotate_b(s_b);
-			ret++;
+			push_a(s_b, s_a);
+			// ret++;
 		}
+		else
+			rotate_b(s_b);
 		i++;
+		ret++;
 	}
+	return (ret);
 }
 
-void	push_med_inf(t_lst **s_a, t_lst **s_b, t_utils *uts)
+int	push_med_inf(t_lst **s_a, t_lst **s_b, int size, t_utils *uts)
 {
+	(void)size;
 	int		i;
-	int		size;
+	int		ret;
+	// int		sizet;
 
 	i = 0;
-	size = size_stack(*s_a);
+	ret = 0;
+	// sizet = size_stack(*s_a);
+	// printf("regarder la \n");
+	// afficher_une_stack(s_a);
+	printf("size = %d, s_a = %d\n", size, size_stack(*s_a));
 	while (i <= size)
 	{
 		if ((*s_a)->nbr <= uts->med)
+		{
 			push_b(s_a, s_b);
+			// ret++;
+		}
 		else
 			rotate_a(s_a);
+		ret++;
 		i++;
 	}
+	printf("dans med = %d\n", ret);
+	return (ret);
 }
 
-void	cleaning(t_lst **s_a, t_lst **s_b)
+void	cleaning(t_lst **s_a)
 {
-	printf("max_val = %d, size = %d\n", max_val(*s_b), size_stack(*s_b) / 2);
+	// printf("max_val = %d, size = %d\n", max_val(*s_b), size_stack(*s_b) / 2);
 	if (max_val(*s_a) > (size_stack(*s_a) / 2))
 	{
 		while (max_val(*s_a) != size_stack(*s_a))
@@ -337,41 +313,70 @@ void	sort_by_sort(t_lst **s_a)
 		swap_a(s_a);
 }
 
-void	start(t_lst **s_a, t_lst **s_b, t_lst **med, t_utils *uts)
+void	start(t_lst **s_a, t_lst **s_b, t_lst **med, t_lst **hmn, t_utils *uts)
 {
+	int	ret;
+	int	nique;
+	int	sort;
+
+	ret = size_stack(*s_a) - 3;
+	sort = 3;
 	uts->stack = 'a';
 	pos_three_max(s_a, s_b, uts);
 	sort_three_values(s_a);
 	uts->med = get_med(s_b, INT32_MAX, uts);
 	add_nbr_back(med, uts->med);
-	push_med_sup(s_a, s_b, uts);
-	cleaning(s_a, s_b);
-	while (size_stack(*s_a) >= 5)
+	nique = push_med_sup(s_a, s_b, uts);
+	add_nbr_back(hmn, nique);
+	cleaning(s_a);
+	nique = 0;
+	while (!check_if_sort(*s_a))
 	{
-		printf("size_stack = %d\n", size_stack(*s_a));
+		ret = size_stack(*s_a) - sort;
 		uts->med = get_med(s_a, uts->tmp, uts);
 		add_nbr_back(med, uts->med);
-		push_med_inf(s_a, s_b, uts);
-		cleaning(s_a, s_b);
-		afficher_une_stack(s_a);
+		nique = push_med_inf(s_a, s_b, ret, uts);
+		add_nbr_back(hmn, nique);
+		cleaning(s_a);
+		// if (check_if_sort(*s_a))
+		// 	sort = size_stack(*s_a);
+		// printf("less ??? %d\n", less_in_med(*s_a));
+		// if (less_in_med(*hmn) <= 6)
+		// {
+		// 	if (!check_if_sort(*s_a))
+		// 	{
+		// 		if (size_stack(*s_a) - 3 == 2)
+		// 			sort_three_values(s_a);
+		// 		else if (size_stack(*s_a) - 3 == 1
+		// 			&& ((*s_a)->nbr > (*s_a)->next->nbr))
+		// 			swap_a(s_a);
+		// 	}
+		// 	if (check_if_sort(*s_a))
+		// 	{
+		// 		sort = size_stack(*s_a);
+		// 		supp_elemt(hmn);
+		// 		supp_elemt(med);
+		// 	}
+		// }
 	}
-	// cleaning(s_a, s_b);
-	if (check_if_sort(*s_a))
-		return ;
-	if (size_stack(*s_a) - 3 == 2)
-		sort_three_values(s_a);
-	else if (size_stack(*s_a) - 3 == 1
-		&& ((*s_a)->nbr > (*s_a)->next->nbr))
-		swap_a(s_a);
+	// if (check_if_sort(*s_a))
+	// 	return ;
+	// if (size_stack(*s_a) - 3 == 2)
+	// 	sort_three_values(s_a);
+	// else if (size_stack(*s_a) - 3 == 1
+	// 	&& ((*s_a)->nbr > (*s_a)->next->nbr))
+	// 	swap_a(s_a);
 }
 
 int	nightmare_size(t_lst **s_a, t_lst **s_b, t_utils *uts)
 {
 	t_lst	*med;
+	t_lst	*hmn;
 
 	med = NULL;
-	start(s_a, s_b, &med, uts);
-	afficher_stack_med(&med);
+	hmn = NULL;
+	start(s_a, s_b, &med, &hmn, uts);
+	afficher_stack_med(&med, &hmn);
 	return (SUCCESS);
 }
 

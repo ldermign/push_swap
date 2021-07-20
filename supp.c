@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 17:15:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/18 18:29:53 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/19 13:34:12 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,30 @@ void	afficher_infos(int ac)
 	printf(KGRN"!_______________________________________!\n");
 }
 
-void	afficher_stack_med(t_lst **s)
+void	afficher_stack_med(t_lst **med, t_lst **hmn)
 {
 	int		i;
-	t_lst	*first;
+	t_lst	*first_med;
+	t_lst	*first_hmn;
 
 	i = 0;
-	first = *s;
-	if (*s == NULL)
+	first_med = *med;
+	first_hmn = *hmn;
+	if (*med == NULL || *hmn == NULL)
 		exit (0);
-	printf(KCYN"._______________________________.\n");
-	printf(KCYN"|\t\t\t\t|\n");
-	printf(KCYN"|\t\tMEDIANES\t|\n");
-	while (*s != NULL)
+	printf(KCYN"._______________________________________________.\n");
+	printf(KCYN"|\t\t\t\t\t\t|\n");
+	printf(KCYN"|\t\t\tMEDIANES\t\t|\n");
+	while (*med != NULL && *hmn != NULL)
 	{
-		printf(KCYN"|\t[%d]\t--> %d\t\t|\n", i, (*s)->nbr);
-		*s = (*s)->next;
+		printf(KCYN"|\t[%d] --> %d avec [%d] elements\t\t|\n", i, (*med)->nbr, (*hmn)->nbr);
+		*med = (*med)->next;
+		*hmn = (*hmn)->next;
 		i++;
 	}
-	*s = first;
-	printf(KCYN"!_______________________________!\n");
+	*med = first_med;
+	*hmn = first_hmn;
+	printf(KCYN"!_______________________________________________!\n");
 }
 
 void	afficher_une_stack(t_lst **s)
