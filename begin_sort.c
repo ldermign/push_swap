@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/21 14:54:29 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/21 21:16:25 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	pos_five_max(t_lst **stack, t_utils *uts)
 	max = get_nbr_pos(stack, uts->pos5);
 	by_order_5(uts);
 	// printf("1 = %d, 2 = %d, 3 = %d, 4 = %d, 5 = %d\n", uts->pos1, uts->pos2, uts->pos3, uts->pos4, uts->pos5);
-	afficher_une_stack(stack);
+	// afficher_une_stack(stack);
 }
 
 void	pos_three_max(t_lst **s_a, t_lst **s_b, t_utils *uts)
@@ -157,9 +157,9 @@ void	sort_five_with_more(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	// afficher_deux_stack(s_a, s_b);
 	while (max_val(*s_a) != size_stack(*s_a))
 		rotate_a(s_a);
-	afficher_une_stack(s_a);
+	// afficher_une_stack(s_a);
 	sort_three_with_more(s_a);
-	afficher_une_stack(s_a);
+	// afficher_une_stack(s_a);
 	if ((*s_b)->nbr < (*s_b)->next->nbr)
 		swap_b(s_b);
 	push_a(s_b, s_a);
@@ -303,29 +303,22 @@ void	cleaning(t_lst **s_a)
 	}
 }
 
-void	sort_by_sort(t_lst **s_a)
+void	sort_by_sort(t_lst **s_a, int size)
 {
-	int	size;
-
-	size = size_stack(*s_a) - 3;
-	if (check_if_sort(*s_a))
+	if (check_if_sort(*s_a) || size == 0)
 		return ;
 	if (size == 2)
-		sort_three_values(s_a);
+		sort_three_with_more(s_a);
 	// printf("size = %d\n", size);
 	if (size == 1 && ((*s_a)->nbr > (*s_a)->next->nbr))
 		swap_a(s_a);
 }
 
-int	med_reduc(t_lst **s_a, t_lst **s_b, t_lst **med, t_lst **hmn, t_utils *uts, int sort, int ret, int nique)
+int	med_reduc(t_lst **s_a, t_lst **s_b, t_lst **med, t_lst **hmn, t_utils *uts, int ret)
 {
-	int	size;
-
-	size = size_stack(*s_a) - sort;
 	uts->med = get_med(s_a, uts->tmp, uts);
 	add_nbr_back(med, uts->med);
-	nique = push_med_inf(s_a, s_b, ret, uts);
-	add_nbr_back(hmn, nique);
+	add_nbr_back(hmn, push_med_inf(s_a, s_b, ret, uts));
 	cleaning(s_a);
 	return (0);
 }
@@ -347,12 +340,20 @@ void	start(t_lst **s_a, t_lst **s_b, t_lst **med, t_lst **hmn, t_utils *uts)
 	add_nbr_back(hmn, nique);
 	cleaning(s_a);
 	nique = 0;
-		afficher_deux_stack(s_a, s_b);
-	while (!check_if_sort(*s_a) && *med != NULL)
+		// afficher_deux_stack(s_a, s_b);
+	while (!check_if_sort(*s_a) && *s_b != NULL)
 	{
-		while (less_in_med(hmn) >= 5)
-			med_reduc(s_a, s_b, med, hmn, uts, sort, ret, nique);
+		while (ret >= 3)
+		{
+			med_reduc(s_a, s_b, med, hmn, uts, ret);
+			ret = size_stack(*s_a) - sort;
+		}
+		sort_by_sort(s_a, ret);
+		sort = size_stack(*s_a);
+		
+		break ;
 	}
+		// afficher_stack_med(med, hmn);
 	// ret = size_stack(*s_a) - sort;
 	// uts->med = get_med(s_a, uts->tmp, uts);
 	// add_nbr_back(med, uts->med);
@@ -382,7 +383,7 @@ void	start(t_lst **s_a, t_lst **s_b, t_lst **med, t_lst **hmn, t_utils *uts)
 		// 		supp_elemt(med);
 		// 	}
 		// }
-	}
+	// }
 	// if (check_if_sort(*s_a))
 	// 	return ;
 	// if (size_stack(*s_a) - 3 == 2)
