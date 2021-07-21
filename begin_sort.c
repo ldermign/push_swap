@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/19 18:02:07 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/21 14:54:29 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,23 +264,27 @@ int	push_med_inf(t_lst **s_a, t_lst **s_b, int size, t_utils *uts)
 
 	i = 0;
 	ret = 0;
+	int rot = 0, pus = 0;
 	// sizet = size_stack(*s_a);
 	// printf("regarder la \n");
 	// afficher_une_stack(s_a);
-	printf("size = %d, s_a = %d\n", size, size_stack(*s_a));
+	printf("size = %d, s_a = %d, mediane = %f\n", size, size_stack(*s_a), uts->med);
 	while (i <= size)
 	{
-		if ((*s_a)->nbr <= uts->med)
+		if ((*s_a)->nbr < uts->med)
 		{
 			push_b(s_a, s_b);
-			// ret++;
+			pus++;
 		}
 		else
+		{
 			rotate_a(s_a);
+			rot++;
+		}
 		ret++;
 		i++;
 	}
-	printf("dans med = %d\n", ret);
+	printf("dans med = %d, pus = %d, rot = %d, size = %d\n", ret, pus, rot, size);
 	return (ret);
 }
 
@@ -313,6 +317,19 @@ void	sort_by_sort(t_lst **s_a)
 		swap_a(s_a);
 }
 
+int	med_reduc(t_lst **s_a, t_lst **s_b, t_lst **med, t_lst **hmn, t_utils *uts, int sort, int ret, int nique)
+{
+	int	size;
+
+	size = size_stack(*s_a) - sort;
+	uts->med = get_med(s_a, uts->tmp, uts);
+	add_nbr_back(med, uts->med);
+	nique = push_med_inf(s_a, s_b, ret, uts);
+	add_nbr_back(hmn, nique);
+	cleaning(s_a);
+	return (0);
+}
+
 void	start(t_lst **s_a, t_lst **s_b, t_lst **med, t_lst **hmn, t_utils *uts)
 {
 	int	ret;
@@ -330,14 +347,21 @@ void	start(t_lst **s_a, t_lst **s_b, t_lst **med, t_lst **hmn, t_utils *uts)
 	add_nbr_back(hmn, nique);
 	cleaning(s_a);
 	nique = 0;
-	while (!check_if_sort(*s_a))
+		afficher_deux_stack(s_a, s_b);
+	while (!check_if_sort(*s_a) && *med != NULL)
 	{
-		ret = size_stack(*s_a) - sort;
-		uts->med = get_med(s_a, uts->tmp, uts);
-		add_nbr_back(med, uts->med);
-		nique = push_med_inf(s_a, s_b, ret, uts);
-		add_nbr_back(hmn, nique);
-		cleaning(s_a);
+		while (less_in_med(hmn) >= 5)
+			med_reduc(s_a, s_b, med, hmn, uts, sort, ret, nique);
+	}
+	// ret = size_stack(*s_a) - sort;
+	// uts->med = get_med(s_a, uts->tmp, uts);
+	// add_nbr_back(med, uts->med);
+	// nique = push_med_inf(s_a, s_b, ret, uts);
+	// add_nbr_back(hmn, nique);
+	// cleaning(s_a);
+	// afficher_deux_stack(s_a, s_b);
+	// afficher_stack_med(med, hmn);
+	// afficher_deux_stack(s_a, s_b);
 		// if (check_if_sort(*s_a))
 		// 	sort = size_stack(*s_a);
 		// printf("less ??? %d\n", less_in_med(*s_a));
