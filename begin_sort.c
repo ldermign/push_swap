@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/21 21:16:25 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/22 16:59:10 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ void	pos_five_max(t_lst **stack, t_utils *uts)
 	uts->pos5 = max_with_max(*stack, max);
 	max = get_nbr_pos(stack, uts->pos5);
 	by_order_5(uts);
-	// printf("1 = %d, 2 = %d, 3 = %d, 4 = %d, 5 = %d\n", uts->pos1, uts->pos2, uts->pos3, uts->pos4, uts->pos5);
-	// afficher_une_stack(stack);
 }
 
 void	pos_three_max(t_lst **s_a, t_lst **s_b, t_utils *uts)
@@ -121,7 +119,6 @@ void	sort_three_with_more(t_lst **s_a)
 	one = (*s_a)->nbr;
 	two = (*s_a)->next->nbr;
 	three = (*s_a)->next->next->nbr;
-	// afficher_une_stack(s_a);
 	if (!check_if_sort(*s_a))
 	{
 		if ((one > two && two < three && one < three)
@@ -149,17 +146,11 @@ void	sort_five_with_more(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	min = get_nbr_pos(s_a, uts->min1);
 	uts->min2 = min_with_min(*s_a, size_stack(*s_a) - 5, min);
 	med = get_nbr_pos(s_a, uts->min2);
-	// afficher_une_stack(s_a);
-	// printf("min = %d, uts->min1 = %d, med = %d, uts->min2 = %d\n", min, uts->min1, med, uts->min2);
 	by_order_2(uts);
-	// afficher_une_stack(s_a);
 	eject_two_mini(s_a, s_b, uts);
-	// afficher_deux_stack(s_a, s_b);
 	while (max_val(*s_a) != size_stack(*s_a))
 		rotate_a(s_a);
-	// afficher_une_stack(s_a);
 	sort_three_with_more(s_a);
-	// afficher_une_stack(s_a);
 	if ((*s_b)->nbr < (*s_b)->next->nbr)
 		swap_b(s_b);
 	push_a(s_b, s_a);
@@ -256,41 +247,38 @@ int	push_med_sup(t_lst **s_a, t_lst **s_b, t_utils *uts)
 }
 
 int	push_med_inf(t_lst **s_a, t_lst **s_b, int size, t_utils *uts)
-{
+{	// ATTENTION SIZE ET SIZET --> quand fin algo, verifier lequel plus efficace
 	(void)size;
 	int		i;
-	int		ret;
 	// int		sizet;
 
 	i = 0;
-	ret = 0;
-	int rot = 0, pus = 0;
+	uts->last_push = 0;
+	int ret = 0;
 	// sizet = size_stack(*s_a);
 	// printf("regarder la \n");
 	// afficher_une_stack(s_a);
-	printf("size = %d, s_a = %d, mediane = %f\n", size, size_stack(*s_a), uts->med);
+	// printf("size = %d, s_a = %d, size = %d, mediane = %f\n", size, size_stack(*s_a), size, uts->med);
 	while (i <= size)
 	{
 		if ((*s_a)->nbr < uts->med)
 		{
 			push_b(s_a, s_b);
-			pus++;
+			uts->last_push++;
+			// printf("\tuts->push = %d\n", uts->push);
 		}
 		else
-		{
 			rotate_a(s_a);
-			rot++;
-		}
-		ret++;
 		i++;
+		ret++;
 	}
-	printf("dans med = %d, pus = %d, rot = %d, size = %d\n", ret, pus, rot, size);
+	uts->last_push = ret;
+	// printf("\tuts->push = %d\n", uts->push);
 	return (ret);
 }
 
 void	cleaning(t_lst **s_a)
 {
-	// printf("max_val = %d, size = %d\n", max_val(*s_b), size_stack(*s_b) / 2);
 	if (max_val(*s_a) > (size_stack(*s_a) / 2))
 	{
 		while (max_val(*s_a) != size_stack(*s_a))
@@ -305,55 +293,57 @@ void	cleaning(t_lst **s_a)
 
 void	sort_by_sort(t_lst **s_a, int size)
 {
-	if (check_if_sort(*s_a) || size == 0)
-		return ;
-	if (size == 2)
-		sort_three_with_more(s_a);
 	// printf("size = %d\n", size);
-	if (size == 1 && ((*s_a)->nbr > (*s_a)->next->nbr))
+	if (check_if_sort(*s_a) || size == 0 || size == 1)
+		return ;
+	if (size == 2 && ((*s_a)->nbr > (*s_a)->next->nbr))
 		swap_a(s_a);
+	if (size == 3)
+		sort_three_with_more(s_a);
 }
 
-int	med_reduc(t_lst **s_a, t_lst **s_b, t_lst **med, t_lst **hmn, t_utils *uts, int ret)
+int	med_reduc(t_lst **s_a, t_lst **s_b, t_lst **med, t_utils *uts)
 {
 	uts->med = get_med(s_a, uts->tmp, uts);
 	add_nbr_back(med, uts->med);
-	add_nbr_back(hmn, push_med_inf(s_a, s_b, ret, uts));
+	push_med_inf(s_a, s_b, uts->ret, uts);
 	cleaning(s_a);
 	return (0);
 }
 
-void	start(t_lst **s_a, t_lst **s_b, t_lst **med, t_lst **hmn, t_utils *uts)
+void	start(t_lst **s_a, t_lst **s_b, t_lst **med, t_utils *uts)
 {
-	int	ret;
-	int	nique;
 	int	sort;
 
-	ret = size_stack(*s_a) - 3;
-	sort = 3;
 	uts->stack = 'a';
 	pos_three_max(s_a, s_b, uts);
 	sort_three_values(s_a);
+	sort = size_stack(*s_a);
 	uts->med = get_med(s_b, INT32_MAX, uts);
 	add_nbr_back(med, uts->med);
-	nique = push_med_sup(s_a, s_b, uts);
-	add_nbr_back(hmn, nique);
+	push_med_sup(s_a, s_b, uts);
 	cleaning(s_a);
-	nique = 0;
-		// afficher_deux_stack(s_a, s_b);
+	uts->first = (*s_b)->nbr;
+	uts->ret = size_stack(*s_a) - sort; 
 	while (!check_if_sort(*s_a) && *s_b != NULL)
 	{
-		while (ret >= 3)
+		if (*s_b != NULL)
+			uts->ret = size_stack(*s_a);
+		while (uts->ret >= 3)
 		{
-			med_reduc(s_a, s_b, med, hmn, uts, ret);
-			ret = size_stack(*s_a) - sort;
+			uts->ret = size_stack(*s_a) - sort;
+			med_reduc(s_a, s_b, med, uts);
+			if (uts->last_push <= 6)
+				break ;
 		}
-		sort_by_sort(s_a, ret);
+		uts->ret = size_stack(*s_a) - sort;
+		sort_by_sort(s_a, uts->ret);
 		sort = size_stack(*s_a);
-		
+		// if (last_push <= 2)
+		// printf("sort = %d, ret = %d, last_push = %d\n", sort, ret, uts->last_push);
 		break ;
 	}
-		// afficher_stack_med(med, hmn);
+	// afficher_stack_med(med, hmn);
 	// ret = size_stack(*s_a) - sort;
 	// uts->med = get_med(s_a, uts->tmp, uts);
 	// add_nbr_back(med, uts->med);
@@ -396,12 +386,10 @@ void	start(t_lst **s_a, t_lst **s_b, t_lst **med, t_lst **hmn, t_utils *uts)
 int	nightmare_size(t_lst **s_a, t_lst **s_b, t_utils *uts)
 {
 	t_lst	*med;
-	t_lst	*hmn;
 
 	med = NULL;
-	hmn = NULL;
-	start(s_a, s_b, &med, &hmn, uts);
-	afficher_stack_med(&med, &hmn);
+	start(s_a, s_b, &med, uts);
+	afficher_stack_med(&med);
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/19 15:51:22 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/22 17:04:53 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ typedef struct s_utils
 	int		inf;
 	int		sup;
 	int		tmp;
+	int		first;
+	int		last_push;
+	int		ret;
 }	t_utils;
 
 /*
@@ -101,7 +104,7 @@ int		get_med(t_lst **stack, int max, t_utils *uts);
 int		check_if_sort(t_lst *stack);
 int		check_if_sort_inv(t_lst *stack);
 int		max_val(t_lst *stack);
-int		max_with_max(t_lst *stack, int no);
+int		max_with_max(t_lst *stack, int size, int no);
 // int		min_val(t_lst *stack);
 int		min_val(t_lst *stack, int size);
 int		min_with_min(t_lst *stack, int size, int no);
@@ -136,6 +139,6 @@ void	supp_elemt(t_lst **stack);
 void	afficher_infos(int ac);
 void	afficher_une_stack(t_lst **s);
 void	afficher_deux_stack(t_lst **one, t_lst **two);
-void	afficher_stack_med(t_lst **med, t_lst **hmn);
+void	afficher_stack_med(t_lst **med);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/19 14:23:12 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/22 17:05:40 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int	max_val(t_lst *stack)
 	return (max);
 }
 
-int	max_with_max(t_lst *stack, int no)
+int	max_with_max(t_lst *stack, int size, int no)
 {
 	int		i;
 	int		tmp;
@@ -140,7 +140,7 @@ int	max_with_max(t_lst *stack, int no)
 	tmp = 0;
 	nbr = -2147483648;
 	max = 0;
-	while (stack != NULL)
+	while (stack != NULL && i <= size)
 	{
 		tmp = stack->nbr;
 		stack = stack->next;
@@ -163,16 +163,16 @@ int	get_med(t_lst **stack, int max, t_utils *uts)
 	i = 0;
 	pos_inf = min_val(*stack, size_stack(*stack));
 	uts->inf = get_nbr_pos(stack, pos_inf);
-	pos_sup = max_with_max(*stack, max);
+	pos_sup = max_with_max(*stack, size_stack(*stack), max);
 	uts->sup = get_nbr_pos(stack, pos_sup);
 	while (uts->inf < uts->sup)
 	{
-		// printf("pos_inf = [%d], uts->inf = [%d], pos_sup = [%d], uts->sup = [%d]\n", pos_inf, uts->inf, pos_sup, uts->sup);
+		// printf("pos_inf =  [%d], uts->inf = [%d], pos_sup = [%d], uts->sup = [%d]\n", pos_inf, uts->inf, pos_sup, uts->sup);
 		pos_inf = min_with_min(*stack, size_stack(*stack), uts->inf);
 		uts->inf = get_nbr_pos(stack, pos_inf);
 		if (uts->inf >= uts->sup)
 			break ;
-		pos_sup = max_with_max(*stack, uts->sup);
+		pos_sup = max_with_max(*stack, size_stack(*stack), uts->sup);
 		uts->sup = get_nbr_pos(stack, pos_sup);
 		i++;
 	}
