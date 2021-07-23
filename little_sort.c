@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/16 14:08:27 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/23 12:48:27 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	eject_two_mini(t_lst **s_a, t_lst **s_b, t_utils *uts)
 		// afficher_une_stack(s_a);
 	// afficher_deux_stack(s_a, s_b);
 	push_b(s_a, s_b);
+	if (uts->min2 == -1)
+		return ;
 	printf("%d - %d - 1 = %d\n", uts->min2, uts->min1, uts->min2 - uts->min1 - 1);
 	i = 0;
 	while (i < uts->min2 - uts->min1 - 1)

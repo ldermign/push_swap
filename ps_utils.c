@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:03 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/19 15:51:11 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/23 15:11:25 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,24 @@ void	supp_elemt(t_lst **stack)
 	tmp_add_supp = *stack;
 	*stack = (*stack)->next;
 	free(tmp_add_supp);
+}
+
+void	supp_last_elemt(t_lst **stack)
+{
+	t_lst	*first;
+	t_lst	*last;
+	t_lst	*tmp_add_supp;
+
+	if (*stack == NULL)
+		return ;
+	first = *stack;
+	while ((*stack)->next)
+	{
+		last = *stack;
+		*stack = (*stack)->next;
+	}
+	tmp_add_supp = *stack;
+	last->next = NULL;
+	free(tmp_add_supp);
+	*stack = first;
 }
