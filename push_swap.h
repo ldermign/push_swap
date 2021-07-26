@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/23 13:13:31 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/26 16:29:21 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,16 @@ typedef struct s_utils
 	int		sup;
 	int		tmp;
 	int		first;
+	int		pos_first;
 	int		last_push;
 	int		ret;
 }	t_utils;
+
+typedef struct t_chunks
+{
+	int	size;
+	int	*chk;
+}	t_chk;
 
 /*
 **	CHECK
@@ -82,6 +89,7 @@ int		begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts);
 int		sort_five_values(t_lst **s_a, t_lst **s_b, t_utils *uts);
 int		sort_three_values(t_lst **s_a);
 int		sort_three_values_inv(t_lst **s_a);
+void	sort_50_values(t_lst **s_a, t_lst **s_b, t_utils *uts);
 
 /*
 **	DEEP SORT
@@ -122,6 +130,7 @@ void	add_nbr_back(t_lst **stack, int nbr);
 void	add_nbr_front(t_lst **begin, int nbr);
 void	supp_elemt(t_lst **stack);
 void	supp_last_elemt(t_lst **stack);
+int	somme(int *all, int size);
 
 /*
 **	SUPPRIMER

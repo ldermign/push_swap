@@ -6,11 +6,30 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/22 17:05:40 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/26 16:29:23 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	get_pos_nbr(t_lst **stack, int pos)
+{
+	int		i;
+	int		nbr;
+	t_lst	*first;
+
+	i = 0;
+	nbr = 0;
+	first = *stack;
+	while ((*stack)->nbr && i < pos)
+	{
+		*stack = (*stack)->next;
+		i++;
+	}
+	nbr = (*stack)->nbr;
+	*stack = first;
+	return (nbr);
+}
 
 int	get_nbr_pos(t_lst **stack, int pos)
 {
@@ -154,6 +173,32 @@ int	max_with_max(t_lst *stack, int size, int no)
 	return (max);
 }
 
+int	get_med2(t_lst **stack, int max, t_utils *uts)
+{
+	int	pos_inf;
+	int	pos_sup;
+	int	i;
+
+	i = 0;
+	pos_inf = min_val(*stack, size_stack(*stack));
+	uts->inf = get_nbr_pos(stack, pos_inf);
+	pos_sup = max_with_max(*stack, size_stack(*stack), max);
+	uts->sup = get_nbr_pos(stack, pos_sup);
+	while (uts->inf < uts->sup)
+	{
+		// printf("pos_inf =  [%d], uts->inf = [%d], pos_sup = [%d], uts->sup = [%d]\n", pos_inf, uts->inf, pos_sup, uts->sup);
+		pos_inf = min_with_min(*stack, size_stack(*stack), uts->inf);
+		uts->inf = get_nbr_pos(stack, pos_inf);
+		if (uts->inf >= uts->sup)
+			break ;
+		pos_sup = max_with_max(*stack, size_stack(*stack), uts->sup);
+		uts->sup = get_nbr_pos(stack, pos_sup);
+		i++;
+	}
+	// printf("med = [%d]\n", uts->inf);
+	return (uts->inf);
+}
+
 int	get_med(t_lst **stack, int max, t_utils *uts)
 {
 	int	pos_inf;
@@ -264,3 +309,17 @@ int	less_in_med(t_lst *hmn)
 // 	return (nbr);
 // }
 
+int	somme(int *all, int size)
+{
+	int	i;
+	int	somme;
+
+	i = 0;
+	somme = 0;
+	while (i < size)
+	{
+		somme += all[i];
+		i++;
+	}
+	return (somme);
+}

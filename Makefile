@@ -6,7 +6,7 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 11:10:10 by ldermign          #+#    #+#              #
-#    Updated: 2021/06/30 13:16:06 by ldermign         ###   ########.fr        #
+#    Updated: 2021/07/26 10:52:46 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS	=	push_swap.c \
 			begin_sort.c \
 			little_sort.c \
 			utils_sort_three_max.c \
+			sort_nul.c \
 			supp.c 
 
 INCS	=	-I ./push_swap.h -I ./libft/includes/
