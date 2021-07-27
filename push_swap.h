@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/26 16:29:21 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/27 12:27:09 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct t_chunks
 {
 	int	size;
 	int	*chk;
+	int	*last_nbr;
 }	t_chk;
 
 /*
