@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:51:05 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/27 15:15:54 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/28 12:06:20 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ int	min_val(t_lst *stack, int size)
 {
 	int		i;
 	int		tmp;
-	int		nbr;
+	long	nbr;
 	int		min;
 
 	i = 0;
-	nbr = 2147483647;
+	nbr = 2147483648;
 	min = 0;
 	while (stack != NULL && i <= size)
 	{
@@ -102,19 +102,20 @@ int	min_with_min(t_lst *stack, int size, int no)
 {
 	int		i;
 	int		tmp;
-	int		nbr;
+	long	nbr;
 	int		min;
 
 	i = 0;
-	nbr = 2147483647;
+	nbr = 2147483648;
 	min = 0;
 	while (stack != NULL && i <= size)
 	{
 		tmp = stack->nbr;
 		// printf("%d < %d && %d > %d\n", tmp, nbr, tmp, no);
 		stack = stack->next;
-		if (tmp < nbr && tmp >= no)
+		if (tmp < nbr && tmp > no)
 		{
+			// printf("%d < %d && %d > %d\n", tmp, nbr, tmp, no);
 			nbr = tmp;
 			min = i;
 		}
@@ -127,12 +128,12 @@ int	max_val(t_lst *stack)
 {
 	int		i;
 	int		tmp;
-	int		nbr;
+	long	nbr;
 	int		max;
 
 	i = 0;
 	tmp = 0;
-	nbr = -2147483648;
+	nbr = -2147483649;
 	max = 0;
 	while (stack != NULL)
 	{
@@ -152,18 +153,18 @@ int	max_with_max(t_lst *stack, int size, int no)
 {
 	int		i;
 	int		tmp;
-	int		nbr;
+	long	nbr;
 	int		max;
 
 	i = 0;
 	tmp = 0;
-	nbr = -2147483648;
+	nbr = -2147483649;
 	max = 0;
 	while (stack != NULL && i <= size)
 	{
 		tmp = stack->nbr;
 		stack = stack->next;
-		if (tmp > nbr && tmp <= no)
+		if (tmp > nbr && tmp < no)
 		{
 			nbr = tmp;
 			max = i;
