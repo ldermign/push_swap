@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/28 15:14:51 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/29 18:56:32 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ void	fill_chunk_know_last(t_lst **s_a, t_chk *chk)
 		}
 		i++;
 	}
-	// for (int j = 0 ; j < 5 ; j++)
-	// 	printf("chk->last_nbr[%d] = %d\n", j, chk->last_nbr[j]);
+	for (int j = 0 ; j < 5 ; j++)
+		printf("chk->last_nbr[%d] = %d\n", j, chk->last_nbr[j]);
 }
 
-void	get_first_and_second(t_lst **s_a, t_chk *chk)
+void	get_first_and_second(t_lst **s_a, t_chk *chk, int j)
 {
 	int		i;
 	t_lst	*first;
@@ -79,7 +79,7 @@ void	get_first_and_second(t_lst **s_a, t_chk *chk)
 	first = *s_a;
 	while (*s_a != NULL)
 	{
-		if ((*s_a)->nbr <= chk->last_nbr[0])
+		if ((*s_a)->nbr <= chk->last_nbr[j])
 		{
 			chk->hold_first = i;
 			break ;
@@ -89,41 +89,77 @@ void	get_first_and_second(t_lst **s_a, t_chk *chk)
 	}
 	while (*s_a != NULL)
 	{
-		if ((*s_a)->nbr <= chk->last_nbr[0])
+		if ((*s_a)->nbr <= chk->last_nbr[j])
 			chk->hold_second = i;
 		*s_a = (*s_a)->next;
 		i++;
 	}
 	*s_a = first;
+	printf("hold_first = %d, hold_second = %d\n", chk->hold_first, chk->hold_second);
 }
 
-void	check_order_before_push(t_lst **s_b, int nbr_push)
+void	check_order_before_push(t_lst **s_b, t_chk *chk, int nbr_push)
 {
 	int	before;
 	int	after;
 
-	before = 0;
-	after = 0;
 	if (*s_b == NULL || size_stack(*s_b) == 0)
 		return ;
-	printf("nbr_push = %d\n", nbr_push);
-	// afficher_une_stack(s_b);
-	// if (size_stack(*s_b) == 1)
-	// {
-	// 	if ((*s_b)->nbr > (*s_b)->next->nbr)
-	// 		swap_b(s_b);
-	// 	return ;
-	// }
-	while (!check_if_sort_inv(*s_b))
+	chk->ret = 0;
+	before = (*s_b)->nbr;
+	after = (*s_b)->next->nbr;
+	if (size_stack(*s_b) == 1 && (*s_b)->nbr < (*s_b)->next->nbr)
 	{
-		after = (*s_b)->nbr;
-		// reverse_rotate_b(s_b);
-		before = (*s_b)->next->nbr;
-		printf("%d < %d && %d < %d\n", before, nbr_push, nbr_push, after);
-		if (before > nbr_push && nbr_push > after)
-			break ;
-		if (before > nbr_push && after > nbr_push)
+		swap_b(s_b);
+		return ;
+	}
+	// printf("%d > %d\n", get_nbr_pos(s_b, min_val(*s_b, size_stack(*s_b))), nbr_push);
+	if (get_nbr_pos(s_b, min_val(*s_b, size_stack(*s_b))) > nbr_push)
+	{
+		// printf("\t\tMIN VAL ----------\n");
+		while (min_val(*s_b, size_stack(*s_b) != size_stack(*s_b)))
 			reverse_rotate_b(s_b);
+		return ;
+	}
+	if (get_nbr_pos(s_b, max_val(*s_b)) < nbr_push)
+	{
+		// printf("\t\tMAX VAL ----------\n");
+		while (max_val(*s_b) != 0)
+			reverse_rotate_b(s_b);
+		return ;
+	}
+	// printf("%d > %d && %d > %d\n", before, nbr_push, nbr_push, after);
+	while (!(before > nbr_push && nbr_push > after))
+	{ //////// optimiser ici !!
+		printf("\t\tBOUCLE ----------\n");
+		reverse_rotate_b(s_b);
+		before = (*s_b)->nbr;
+		after = (*s_b)->next->nbr;
+		chk->ret++;
+	}
+}
+
+void	get_in_order(t_lst **s_b, t_chk *chk)
+{
+	if (max_val(*s_b) != 0)
+	{
+		if (chk->ret < size_stack(*s_b) / 2)
+		{
+			while (chk->ret > 0)
+			{
+				rotate_b(s_b);
+				chk->ret--;
+			}
+		}
+		else
+		{
+			chk->ret = size_stack(*s_b) - chk->ret;
+			while (chk->ret > 0)
+			{
+				reverse_rotate_b(s_b);
+				chk->ret--;
+			}
+		}
 	}
 }
 
@@ -132,7 +168,8 @@ void	flip_and_push(t_lst **s_a, t_lst **s_b, t_chk *chk)
 	int	pos;
 
 	chk->size = size_stack(*s_a);
-	if (chk->hold_first < (chk->size - chk->hold_second))
+	if (chk->hold_first != 0 && chk->hold_second != 0
+		&& chk->hold_first <= (chk->size - chk->hold_second))
 	{
 		pos = chk->hold_first;
 		while (pos >= 0)
@@ -141,7 +178,8 @@ void	flip_and_push(t_lst **s_a, t_lst **s_b, t_chk *chk)
 			pos--;
 		}
 	}
-	else
+	else if (chk->hold_first != 0 && chk->hold_second != 0
+		&& chk->hold_first > (chk->size - chk->hold_second))
 	{
 		pos = chk->size - chk->hold_second;
 		while (pos >= 0)
@@ -150,12 +188,21 @@ void	flip_and_push(t_lst **s_a, t_lst **s_b, t_chk *chk)
 			pos--;
 		}
 	}
-	check_order_before_push(s_b, (*s_a)->nbr);
+	check_order_before_push(s_b, chk, (*s_a)->nbr);
+	// if (*s_b != NULL)
+	// 	afficher_une_stack(s_b);
 	push_b(s_a, s_b);
+	if (size_stack(*s_b) >= 1 && (*s_b)->nbr < (*s_b)->next->nbr)
+		swap_b(s_b);
+	// afficher_une_stack(s_b);
+		// afficher_une_stack(s_b);
+	// printf("\n");
+	get_in_order(s_b, chk);
 }
 
 int	sort_100_values(t_lst **s_a, t_lst **s_b)
 {
+	int 	i;
 	int		ret;
 	t_chk	*chk;
 
@@ -168,18 +215,24 @@ int	sort_100_values(t_lst **s_a, t_lst **s_b)
 	get_chunks(s_a, chk);
 	fill_chunk_know_last(s_a, chk);
 	// printf("hold_first = %d, hold_second = %d\n", chk->hold_first, chk->hold_second);
-	ret = chk->chk[0];
-	// while (ret != 0)
-	// {
-		get_first_and_second(s_a, chk);
-		flip_and_push(s_a, s_b, chk);
-	// 	ret--;
-	// }
-			get_first_and_second(s_a, chk);
-		flip_and_push(s_a, s_b, chk);
-		
-		get_first_and_second(s_a, chk);
-		flip_and_push(s_a, s_b, chk);
+	i = 0;
+	while (i < 5)
+	{
+		ret = chk->chk[i];
+		while (ret != 0)
+		{
+			get_first_and_second(s_a, chk, i);
+			flip_and_push(s_a, s_b, chk);
+			ret--;
+		}
+		i++;
+	}
+	chk->size = size_stack(*s_b);
+	while (chk->size >= 0)
+	{
+		push_a(s_b, s_a);
+		chk->size--;
+	}
 	return (1);
 }
 
