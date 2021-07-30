@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/30 14:49:34 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/30 16:06:06 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ typedef struct t_chunks
 	int	hold_first;
 	int hold_second;
 	int	ret;
+	int	if_move1;
+	int if_move2;
+	int	if_move3;
+	int	if_move4;
 }	t_chk;
 
 /*

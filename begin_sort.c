@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/30 14:49:15 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/30 16:20:47 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	fill_chunk_know_last(t_lst **s_a, t_chk *chk)
 		}
 		i++;
 	}
-	for (int j = 0 ; j < 5 ; j++)
-		printf("chk->last_nbr[%d] = %d\n", j, chk->last_nbr[j]);
+	// for (int j = 0 ; j < 5 ; j++)
+	// 	printf("chk->last_nbr[%d] = %d\n", j, chk->last_nbr[j]);
 }
 
 void	get_first_and_second(t_lst **s_a, t_chk *chk, int j)
@@ -95,7 +95,7 @@ void	get_first_and_second(t_lst **s_a, t_chk *chk, int j)
 		i++;
 	}
 	*s_a = first;
-	printf("hold_first = %d, hold_second = %d\n", chk->hold_first, chk->hold_second);
+	// printf("hold_first = %d, hold_second = %d\n", chk->hold_first, chk->hold_second);
 }
 
 int	where_to_change(t_lst **s_b, int nbr_push)
@@ -107,66 +107,26 @@ int	where_to_change(t_lst **s_b, int nbr_push)
 
 	pos = 0;
 	first = *s_b;
-	// printf("la\n");
 	if (size_stack(*s_b) <= 1)
 		return (0);
-	// printf("test\n");
 	while ((*s_b)->next != NULL)
 	{
 		before = (*s_b)->nbr;
 		*s_b = (*s_b)->next;
 		after = (*s_b)->nbr;
-						// printf("pos = %d\n", pos);
 		if (before > nbr_push && nbr_push > after)
 		{
-				// printf("pos = %d\n", pos);
 			*s_b = first;
 			return (pos);
 		}
 		pos++;
 	}
-	// printf("non\n");
 	*s_b = first;
 	return (pos);
 }
 
-void	check_order_before_push(t_lst **s_b, t_chk *chk, int nbr_push)
+void	change_with_here(t_lst **s_b, int here)
 {
-	int	here;
-	int	before;
-	int	after;
-
-	if (*s_b == NULL || size_stack(*s_b) == 0)
-		return ;
-	here = 0;
-	chk->ret = 0;
-	before = (*s_b)->nbr;
-	after = (*s_b)->next->nbr;
-	if (size_stack(*s_b) == 1 && (*s_b)->nbr < (*s_b)->next->nbr)
-	{
-		swap_b(s_b);
-		return ;
-	}
-	// printf("%d > %d\n", get_nbr_pos(s_b, min_val(*s_b, size_stack(*s_b))), nbr_push);
-	if (get_nbr_pos(s_b, min_val(*s_b, size_stack(*s_b))) > nbr_push)
-	{
-		// printf("\t\tMIN VAL ----------\n");
-		while (min_val(*s_b, size_stack(*s_b) != size_stack(*s_b)))
-			reverse_rotate_b(s_b);
-		return ;
-	}
-	if (get_nbr_pos(s_b, max_val(*s_b)) < nbr_push)
-	{
-		// printf("\t\tMAX VAL ----------\n");
-		while (max_val(*s_b) != 0)
-			reverse_rotate_b(s_b);
-		return ;
-	}
-	// printf("%d > %d && %d > %d\n", before, nbr_push, nbr_push, after);
-	// printf("nbr_push = %d, min_val = %d a %d, premiere = %d\n", nbr_push, min_val(*s_b, size_stack(*s_b)), get_nbr_pos(s_b, min_val(*s_b, size_stack(*s_b))), before);
-	here = where_to_change(s_b, nbr_push);
-	// printf("here = %d\n", here);
-	// chk->ret = here;
 	if (here == 0)
 		return ;
 	if (here < size_stack(*s_b) / 2)
@@ -186,26 +146,48 @@ void	check_order_before_push(t_lst **s_b, t_chk *chk, int nbr_push)
 			here--;
 		}
 	}
-	// while (!(before > nbr_push && nbr_push > after))
-	// { //////// optimiser ici !!
-	// 	// printf("\t\tBOUCLE ----------\n");
-	// 	reverse_rotate_b(s_b);
-	// 	before = (*s_b)->nbr;
-	// 	after = (*s_b)->next->nbr;
-		// chk->ret = here;
-	// }
+}
+
+void	check_order_before_push(t_lst **s_b, t_chk *chk, int nbr_push)
+{
+	int	here;
+	int	before;
+	int	after;
+
+	if (*s_b == NULL || size_stack(*s_b) == 0)
+		return ;
+	here = 0;
+	chk->ret = 0;
+	before = (*s_b)->nbr;
+	after = (*s_b)->next->nbr;
+	if (size_stack(*s_b) == 1 && (*s_b)->nbr < (*s_b)->next->nbr)
+	{
+		swap_b(s_b);
+		return ;
+	}
+	if (get_nbr_pos(s_b, min_val(*s_b, size_stack(*s_b))) > nbr_push)
+	{
+		while (min_val(*s_b, size_stack(*s_b) != size_stack(*s_b)))
+			reverse_rotate_b(s_b);
+		return ;
+	}
+	if (get_nbr_pos(s_b, max_val(*s_b)) < nbr_push)
+	{
+		while (max_val(*s_b) != 0)
+			reverse_rotate_b(s_b);
+		return ;
+	}
+	here = where_to_change(s_b, nbr_push);
+	// printf("here = %d\n", here);
+	change_with_here(s_b, here);
 }
 
 void	get_in_order(t_lst **s_b, t_chk *chk)
 {
-	// printf("wesh\n");
-	// afficher_une_stack(s_b);
 	if (max_val(*s_b) != 0)
 	{
-		
 		if (chk->ret < size_stack(*s_b) / 2)
 		{
-			printf("chk->ret = %d\n", chk->ret);
 			while (chk->ret > 0)
 			{
 				rotate_b(s_b);
@@ -250,32 +232,32 @@ void	flip_and_push(t_lst **s_a, t_lst **s_b, t_chk *chk)
 		}
 	}
 	check_order_before_push(s_b, chk, (*s_a)->nbr);
-	// if (*s_b != NULL)
-	// 	afficher_une_stack(s_b);
 	push_b(s_a, s_b);
 	if (size_stack(*s_b) >= 1 && (*s_b)->nbr < (*s_b)->next->nbr)
 		swap_b(s_b);
-	// afficher_une_stack(s_b);
-		// afficher_une_stack(s_b);
-	// printf("\n");
-	get_in_order(s_b, chk);
 }
 
-int	sort_100_values(t_lst **s_a, t_lst **s_b)
+void	check_witch_is_faster(t_lst **s_a, t_lst **s_b, t_chk *chk)
 {
-	int 	i;
-	int		ret;
-	t_chk	*chk;
+	int	next_nbr;
+	int	pos_max;
 
-	chk = malloc(sizeof(t_chk));
-	if (chk == NULL)
-	{
-		ft_printf("Error\n");
-		return (0);
-	}
-	get_chunks(s_a, chk);
-	fill_chunk_know_last(s_a, chk);
-	// printf("hold_first = %d, hold_second = %d\n", chk->hold_first, chk->hold_second);
+	if (*s_a == NULL)
+		return ;
+	next_nbr = (*s_a)->nbr;
+	pos_max = max_val(*s_b);
+	afficher_une_stack(s_b);
+	printf("next_nbr = %d, pos_max = %d, size_stack = %d\n", next_nbr, pos_max, size_stack(*s_b));
+	chk->if_move1 = where_to_change(s_b, next_nbr);
+	// chk->if_move2 = ;
+	// printf("chk->if_move1 = %d, chk->if_move2 = %d, chk->if_move3 = %d, chk->if_move4 = %d\n", chk->if_move1, chk->if_move2, chk->if_move3, chk->if_move4);
+}
+
+void	sort_stack_with_chunks(t_lst **s_a, t_lst **s_b, t_chk *chk)
+{
+	int	i;
+	int	ret;
+
 	i = 0;
 	while (i < 5)
 	{
@@ -284,11 +266,29 @@ int	sort_100_values(t_lst **s_a, t_lst **s_b)
 		{
 			get_first_and_second(s_a, chk, i);
 			flip_and_push(s_a, s_b, chk);
+			check_witch_is_faster(s_a, s_b, chk);
+			get_in_order(s_b, chk);
 			ret--;
 		}
 		i++;
 	}
-	chk->ret = max_val(*s_b) -1;
+}
+
+int	sort_100_values(t_lst **s_a, t_lst **s_b)
+{
+	t_chk	*chk;
+
+	chk = malloc(sizeof(t_chk));
+	if (chk == NULL)
+	{
+		ft_printf("Error\n");
+		return (0);
+	}
+	ft_bzero(chk, 0);
+	get_chunks(s_a, chk);
+	fill_chunk_know_last(s_a, chk);
+	sort_stack_with_chunks(s_a, s_b, chk);
+	chk->ret = max_val(*s_b) - 1;
 	get_in_order(s_b, chk);
 	chk->size = size_stack(*s_b);
 	while (chk->size >= 0)
