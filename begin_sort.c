@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/29 18:56:32 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/30 11:38:02 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,42 @@ void	get_first_and_second(t_lst **s_a, t_chk *chk, int j)
 	printf("hold_first = %d, hold_second = %d\n", chk->hold_first, chk->hold_second);
 }
 
+int	where_to_change(t_lst **s_b, int nbr_push)
+{
+	int		pos;
+	int		before;
+	int		after;
+	t_lst	*first;
+
+	pos = 0;
+	first = *s_b;
+	if (size_stack(*s_b) <= 1)
+		return (0);
+	while (*s_b != NULL)
+	{
+		before = (*s_b)->nbr;
+		*s_b = (*s_b)->next;
+		after = (*s_b)->nbr;
+		if (before > nbr_push && nbr_push > after)
+		{
+			*s_b = first;
+			return (pos);
+		}
+		pos++;
+	}
+	*s_b = first;
+	return (pos);
+}
+
 void	check_order_before_push(t_lst **s_b, t_chk *chk, int nbr_push)
 {
+	int	here;
 	int	before;
 	int	after;
 
 	if (*s_b == NULL || size_stack(*s_b) == 0)
 		return ;
+	here = 0;
 	chk->ret = 0;
 	before = (*s_b)->nbr;
 	after = (*s_b)->next->nbr;
@@ -129,14 +158,28 @@ void	check_order_before_push(t_lst **s_b, t_chk *chk, int nbr_push)
 		return ;
 	}
 	// printf("%d > %d && %d > %d\n", before, nbr_push, nbr_push, after);
-	while (!(before > nbr_push && nbr_push > after))
-	{ //////// optimiser ici !!
-		printf("\t\tBOUCLE ----------\n");
-		reverse_rotate_b(s_b);
-		before = (*s_b)->nbr;
-		after = (*s_b)->next->nbr;
-		chk->ret++;
+	// printf("nbr_push = %d, min_val = %d a %d, premiere = %d\n", nbr_push, min_val(*s_b, size_stack(*s_b)), get_nbr_pos(s_b, min_val(*s_b, size_stack(*s_b))), before);
+	here = where_to_change(s_b, nbr_push);
+	printf("here = %d\n", here);
+	if (here < size_stack(*s_b) / 2)
+	{
+		while (here >= 0)
+			rotate_b(s_b);
 	}
+	else
+	{
+		here = size_stack(*s_b) - here;
+		while (here >= 0)
+			reverse_rotate_b(s_b);
+	}
+	// while (!(before > nbr_push && nbr_push > after))
+	// { //////// optimiser ici !!
+	// 	// printf("\t\tBOUCLE ----------\n");
+	// 	reverse_rotate_b(s_b);
+	// 	before = (*s_b)->nbr;
+	// 	after = (*s_b)->next->nbr;
+	// 	chk->ret++;
+	// }
 }
 
 void	get_in_order(t_lst **s_b, t_chk *chk)
