@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/30 11:38:02 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/30 14:49:15 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,20 +107,25 @@ int	where_to_change(t_lst **s_b, int nbr_push)
 
 	pos = 0;
 	first = *s_b;
+	// printf("la\n");
 	if (size_stack(*s_b) <= 1)
 		return (0);
-	while (*s_b != NULL)
+	// printf("test\n");
+	while ((*s_b)->next != NULL)
 	{
 		before = (*s_b)->nbr;
 		*s_b = (*s_b)->next;
 		after = (*s_b)->nbr;
+						// printf("pos = %d\n", pos);
 		if (before > nbr_push && nbr_push > after)
 		{
+				// printf("pos = %d\n", pos);
 			*s_b = first;
 			return (pos);
 		}
 		pos++;
 	}
+	// printf("non\n");
 	*s_b = first;
 	return (pos);
 }
@@ -160,17 +165,26 @@ void	check_order_before_push(t_lst **s_b, t_chk *chk, int nbr_push)
 	// printf("%d > %d && %d > %d\n", before, nbr_push, nbr_push, after);
 	// printf("nbr_push = %d, min_val = %d a %d, premiere = %d\n", nbr_push, min_val(*s_b, size_stack(*s_b)), get_nbr_pos(s_b, min_val(*s_b, size_stack(*s_b))), before);
 	here = where_to_change(s_b, nbr_push);
-	printf("here = %d\n", here);
+	// printf("here = %d\n", here);
+	// chk->ret = here;
+	if (here == 0)
+		return ;
 	if (here < size_stack(*s_b) / 2)
 	{
 		while (here >= 0)
+		{
 			rotate_b(s_b);
+			here--;
+		}
 	}
 	else
 	{
 		here = size_stack(*s_b) - here;
 		while (here >= 0)
+		{
 			reverse_rotate_b(s_b);
+			here--;
+		}
 	}
 	// while (!(before > nbr_push && nbr_push > after))
 	// { //////// optimiser ici !!
@@ -178,16 +192,20 @@ void	check_order_before_push(t_lst **s_b, t_chk *chk, int nbr_push)
 	// 	reverse_rotate_b(s_b);
 	// 	before = (*s_b)->nbr;
 	// 	after = (*s_b)->next->nbr;
-	// 	chk->ret++;
+		// chk->ret = here;
 	// }
 }
 
 void	get_in_order(t_lst **s_b, t_chk *chk)
 {
+	// printf("wesh\n");
+	// afficher_une_stack(s_b);
 	if (max_val(*s_b) != 0)
 	{
+		
 		if (chk->ret < size_stack(*s_b) / 2)
 		{
+			printf("chk->ret = %d\n", chk->ret);
 			while (chk->ret > 0)
 			{
 				rotate_b(s_b);
@@ -270,6 +288,8 @@ int	sort_100_values(t_lst **s_a, t_lst **s_b)
 		}
 		i++;
 	}
+	chk->ret = max_val(*s_b) -1;
+	get_in_order(s_b, chk);
 	chk->size = size_stack(*s_b);
 	while (chk->size >= 0)
 	{

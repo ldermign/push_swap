@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/07/30 11:37:11 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/07/30 14:49:34 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_lst
 }	t_lst;
 
 // 65 = 1500
+// 65 = 439
 
 typedef struct s_utils
 {
