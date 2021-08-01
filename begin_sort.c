@@ -6,11 +6,41 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/01 14:51:20 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/01 16:12:23 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+# include <libc.h>
+ #define KRED  "\x1B[0;31m" // ROUGE
+ #define KGRN  "\x1B[0;32m" // VERT
+ #define KYEL  "\x1B[0;33m" // JAUNE
+ #define KBLU  "\x1B[0;34m" // BLEU
+ #define KMAG  "\x1B[0;35m" // MAGENTA
+ #define KCYN  "\x1B[0;36m" // CYAN
+ #define KWHT  "\x1B[0;37m" // BLANC
+ #define KGRE  "\x1b[1;30m" // VERT
+ #define CLR_COLOR "\x1b[0m" // CLEAR COLOR
+
+
+void	afficher_une_stack(t_lst **s)
+ {
+ 	int		i;
+ 	t_lst	*first;
+
+ 	i = 0;
+ 	first = *s;
+ 	if (*s == NULL)
+ 		exit (0);
+ 	while (*s != NULL)
+ 	{
+ 		printf(CLR_COLOR"\t[%d]\t--> %d\n", i, (*s)->nbr);
+ 		*s = (*s)->next;
+ 		i++;
+ 	}
+ 	*s = first;
+ }
 
 int	sort_100_values_chunks(t_lst **s_a, t_lst **s_b, int size)
 {
@@ -34,6 +64,7 @@ int	sort_100_values_chunks(t_lst **s_a, t_lst **s_b, int size)
 		push_a(s_b, s_a);
 		chk->size--;
 	}
+	afficher_une_stack(s_a);
 	return (1);
 }
 

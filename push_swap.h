@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/01 15:03:29 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/01 16:08:03 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,9 @@ int		where_to_change(t_lst **s_b, int nbr_push);
 **	SORT UTILS
 */
 
+void	by_order_2(t_utils *uts);
+void	by_order_3(t_utils *uts);
+void	by_order_5(t_utils *uts);
 int		little(int one, int two, int three);
 int		medium(int one, int two, int three);
 int		big(int one, int two, int three);
