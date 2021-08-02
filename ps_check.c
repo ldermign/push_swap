@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:59 by ldermign          #+#    #+#             */
-/*   Updated: 2021/06/22 15:30:05 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/02 21:22:49 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,43 @@ int	ft_doublon(char **tab)
 	return (SUCCESS);
 }
 
+int	check_if_tab_char(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_is_digit(str[i]) && str[i] != ' ' && str[i] != '-')
+			return (ERROR);
+		i++;
+	}
+	return (SUCCESS);
+}
+
 int	check_arg(int ac, char **av)
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i != ac && av[i])
+	i = 1;
+	if (ac == 2 && !check_if_tab_char(av[1]))
+		return (ERROR);
+	if (ac > 2 && !ft_doublon(&av[1]))
+		return (ERROR);
+	if (ac > 2)
 	{
-		j = 0;
-		while (av[i][j])
+		while (i != ac && av[i])
 		{
-			if (!ft_is_digit(av[i][j]) && av[i][j] != '-')
-				return (ERROR);
-			j++;
+			j = 0;
+			while (av[i][j])
+			{
+				if (!ft_is_digit(av[i][j]) && av[i][j] != '-')
+					return (ERROR);
+				j++;
+			}
+			i++;
 		}
-		i++;
 	}
 	return (SUCCESS);
 }
