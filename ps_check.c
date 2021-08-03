@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:59 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/02 21:22:49 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/03 17:26:20 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,35 @@ int	check_arg(int ac, char **av)
 			}
 			i++;
 		}
+	}
+	return (SUCCESS);
+}
+
+int	check_tab_arg(char **tab)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (tab[i])
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			if (tab[i][j] != '-' && !ft_is_digit(tab[i][j]))
+				return (ERROR);
+			if (tab[i][j] == '-')
+				j++;
+			if (!ft_is_digit(tab[i][j]))
+				return (ERROR);
+			while (ft_is_digit(tab[i][j]))
+			{
+				j++;
+				if (!ft_is_digit(tab[i][j]) && tab[i][j] != '\0')
+					return (ERROR);
+			}
+		}
+		i++;
 	}
 	return (SUCCESS);
 }

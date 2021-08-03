@@ -6,12 +6,14 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/01 16:08:03 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/03 19:04:36 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+#include <libc.h>
 
 # include "libft.h"
 # define ERROR 0
@@ -54,6 +56,7 @@ typedef struct t_chunks
 	int	hold_first;
 	int	hold_second;
 	int	ret;
+	int	tmp;
 }	t_chk;
 
 /*
@@ -62,6 +65,7 @@ typedef struct t_chunks
 
 int		check_arg(int ac, char **av);
 int		ft_doublon(char **tab);
+int		check_tab_arg(char **tab);
 
 /*
 **	OPERATIONS
@@ -138,4 +142,7 @@ void	add_nbr_back(t_lst **stack, int nbr);
 void	add_nbr_front(t_lst **begin, int nbr);
 int		somme(int *all, int size);
 
+
+void	afficher_deux_stack(t_lst **one, t_lst **two);
+void	afficher_une_stack(t_lst **s);
 #endif
