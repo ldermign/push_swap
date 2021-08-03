@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/03 19:28:02 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/03 19:28:45 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts)
 		sort_three_values(s_a);
 	else if (uts->size == 5)
 		sort_five_values(s_a, s_b, uts);
+	// else if (uts->size <= 50)
+	// 	sort_50_values(s_a, s_b, uts);
 	else if (uts->size <= 100)
 		sort_100_values_chunks(s_a, s_b, 5);
 	else if (uts->size <= 500)
