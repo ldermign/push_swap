@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/01 14:38:21 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/04 19:13:40 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	sort_five_values(t_lst **s_a, t_lst **s_b, t_utils *uts)
 {
 	minimum(s_a, uts);
 	eject_two_mini(s_a, s_b, uts);
+	// afficher_deux_stack(s_a, s_b);
 	sort_three_values(s_a);
 	if ((*s_b)->nbr < (*s_b)->next->nbr)
 		swap_b(s_b);
@@ -72,7 +73,7 @@ int	sort_three_values(t_lst **s_a)
 		if ((*s_a)->nbr < (*s_a)->next->nbr && (*s_a)->next->nbr > three)
 		{
 			reverse_rotate_a(s_a);
-			if ((*s_a)->nbr < three)
+			if ((*s_a)->nbr > (*s_a)->next->nbr)
 				swap_a(s_a);
 		}
 		else if ((*s_a)->nbr > (*s_a)->next->nbr
@@ -89,31 +90,31 @@ int	sort_three_values(t_lst **s_a)
 	return (SUCCESS);
 }
 
-int	sort_three_values_inv(t_lst **s_a)
+int	sort_three_values_inv(t_lst **s_b)
 {
 	int	two;
 	int	three;
 
-	if (s_a == NULL || size_stack(*s_a) != 2)
+	if (s_b == NULL || size_stack(*s_b) != 2)
 		return (ERROR);
-	two = (*s_a)->next->nbr;
-	three = (*s_a)->next->next->nbr;
-	if (!check_if_sort_inv(*s_a))
+	two = (*s_b)->next->nbr;
+	three = (*s_b)->next->next->nbr;
+	if (!check_if_sort_inv(*s_b))
 	{
-		if (((*s_a)->nbr < two && two < three && (*s_a)->nbr < three)
-			|| ((*s_a)->nbr < two && two > three && (*s_a)->nbr > three)
-			|| ((*s_a)->nbr > two && two < three && (*s_a)->nbr > three))
+		if (((*s_b)->nbr < two && two < three && (*s_b)->nbr < three)
+			|| ((*s_b)->nbr < two && two > three && (*s_b)->nbr > three)
+			|| ((*s_b)->nbr > two && two < three && (*s_b)->nbr > three))
 		{
-			swap_b(s_a);
-			if ((*s_a)->nbr < two && two < three && (*s_a)->nbr < three)
-				reverse_rotate_b(s_a);
-			else if ((*s_a)->nbr > two && two < three && (*s_a)->nbr > three)
-				rotate_b(s_a);
+			swap_b(s_b);
+			if ((*s_b)->nbr < two && two < three && (*s_b)->nbr < three)
+				reverse_rotate_b(s_b);
+			else if ((*s_b)->nbr > two && two < three && (*s_b)->nbr > three)
+				rotate_b(s_b);
 		}
-		else if ((*s_a)->nbr < two && two > three && (*s_a)->nbr < three)
-			rotate_b(s_a);
-		else if ((*s_a)->nbr > two && two < three && (*s_a)->nbr > three)
-			reverse_rotate_b(s_a);
+		else if ((*s_b)->nbr < two && two > three && (*s_b)->nbr < three)
+			rotate_b(s_b);
+		else if ((*s_b)->nbr > two && two < three && (*s_b)->nbr < three)
+			reverse_rotate_b(s_b);
 	}
 	return (SUCCESS);
 }
