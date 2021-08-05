@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 14:42:34 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/01 14:54:18 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/05 17:34:10 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	get_nbr_pos(t_lst **stack, int pos)
 	i = 0;
 	nbr = 0;
 	first = *stack;
-	while ((*stack)->nbr && i < pos)
+	while ((*stack)->next && i < pos)
 	{
 		*stack = (*stack)->next;
 		i++;

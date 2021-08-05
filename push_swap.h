@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/03 19:04:36 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/05 18:26:41 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@ typedef struct s_utils
 	char	stack;
 	int		min1;
 	int		min2;
-	int		pos1;
-	int		pos2;
-	int		pos3;
-	int		pos4;
-	int		pos5;
 	int		here;
 	int		tmp;
 }	t_utils;
@@ -105,18 +100,12 @@ void	sort_50_values(t_lst **s_a, t_lst **s_b, t_utils *uts);
 int		sort_100_values_chunks(t_lst **s_a, t_lst **s_b, int size);
 void	sort_three_with_more(t_lst **stack);
 int		where_to_change(t_lst **s_b, int nbr_push);
+void	minimum(t_lst **stack, t_utils *uts);
 
 /*
 **	SORT UTILS
 */
 
-void	by_order_2(t_utils *uts);
-void	by_order_3(t_utils *uts);
-void	by_order_5(t_utils *uts);
-int		little(int one, int two, int three);
-int		medium(int one, int two, int three);
-int		big(int one, int two, int three);
-void	bubble(int *tab, int size);
 int		get_nbr_pos(t_lst **stack, int pos);
 int		check_if_sort(t_lst *stack);
 int		check_if_sort_inv(t_lst *stack);
