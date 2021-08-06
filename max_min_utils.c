@@ -6,11 +6,29 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 14:55:17 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/01 14:56:04 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/06 13:47:17 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	how_many_down(t_lst *stack, int nb_stack)
+{
+	int	hmn;
+	int	nbr;
+
+	hmn = 0;
+	nbr = 0;
+	while (stack != NULL)
+	{
+		nbr = stack->nbr;
+		// printf("%d < %d\n", nbr, nb_stack);
+		if (nbr < nb_stack)
+			hmn++;
+		stack = stack->next;
+	}
+	return (hmn);
+}
 
 int	min_val(t_lst *stack, int size)
 {

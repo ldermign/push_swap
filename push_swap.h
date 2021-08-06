@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/05 18:26:41 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/06 12:07:00 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@
 # include "libft.h"
 # define ERROR 0
 # define SUCCESS 1
+
+# include <libc.h>
+ #define KRED  "\x1B[0;31m" // ROUGE
+ #define KGRN  "\x1B[0;32m" // VERT
+ #define KYEL  "\x1B[0;33m" // JAUNE
+ #define KBLU  "\x1B[0;34m" // BLEU
+ #define KMAG  "\x1B[0;35m" // MAGENTA
+ #define KCYN  "\x1B[0;36m" // CYAN
+ #define KWHT  "\x1B[0;37m" // BLANC
+ #define KGRE  "\x1b[1;30m" // VERT
+ #define CLR_COLOR "\x1b[0m" // CLEAR COLOR
+
 
 /*
 **	STRUCTURES
@@ -119,6 +131,7 @@ void	push_all_except_five_to(t_lst **s_a, t_lst **s_b, t_utils *uts);
 void	push_all_five_to(t_lst **s_a, t_lst **s_b, t_utils *uts);
 void	push_max(t_lst **s_a, t_lst **s_b, t_utils *uts);
 void	push_only_max(t_lst **s_a, t_lst **s_b, t_utils *uts);
+int		how_many_down(t_lst *stack, int nb_stack);
 
 /*
 **	UTILS
@@ -134,4 +147,5 @@ int		somme(int *all, int size);
 
 void	afficher_deux_stack(t_lst **one, t_lst **two);
 void	afficher_une_stack(t_lst **s);
+void	afficher_stack_et_rad(t_lst **stack, t_lst **rad);
 #endif

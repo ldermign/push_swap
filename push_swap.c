@@ -6,40 +6,51 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/03 19:27:39 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/06 13:36:56 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-# include <libc.h>
- #define KRED  "\x1B[0;31m" // ROUGE
- #define KGRN  "\x1B[0;32m" // VERT
- #define KYEL  "\x1B[0;33m" // JAUNE
- #define KBLU  "\x1B[0;34m" // BLEU
- #define KMAG  "\x1B[0;35m" // MAGENTA
- #define KCYN  "\x1B[0;36m" // CYAN
- #define KWHT  "\x1B[0;37m" // BLANC
- #define KGRE  "\x1b[1;30m" // VERT
- #define CLR_COLOR "\x1b[0m" // CLEAR COLOR
+void	afficher_stack_et_rad(t_lst **stack, t_lst **rad)
+{
+	int		i;
+	t_lst	*fstack;
+	t_lst	*frad;
+
+	i = 0;
+	fstack = *stack;
+	frad = *rad;
+	if (*stack == NULL || rad == NULL)
+		exit (0);
+	while (*stack != NULL || *rad != NULL)
+	{
+		printf(CLR_COLOR"\t[%d]\t--> %d\tavec pos --> %d\n", i, (*stack)->nbr, (*rad)->nbr);
+		*stack = (*stack)->next;
+		*rad = (*rad)->next;
+		i++;
+	}
+	*stack = fstack;
+	*rad = frad;
+}
 
 void	afficher_une_stack(t_lst **s)
- {
- 	int		i;
- 	t_lst	*first;
+{
+	int		i;
+	t_lst	*first;
 
- 	i = 0;
- 	first = *s;
- 	if (*s == NULL)
- 		exit (0);
- 	while (*s != NULL)
- 	{
- 		printf(CLR_COLOR"\t[%d]\t--> %d\n", i, (*s)->nbr);
- 		*s = (*s)->next;
- 		i++;
- 	}
- 	*s = first;
- }
+	i = 0;
+	first = *s;
+	if (*s == NULL)
+		exit (0);
+	while (*s != NULL)
+	{
+		printf(CLR_COLOR"\t[%d]\t--> %d\n", i, (*s)->nbr);
+		*s = (*s)->next;
+		i++;
+	}
+	*s = first;
+}
 
 
 void	afficher_deux_stack(t_lst **one, t_lst **two)
