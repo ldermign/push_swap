@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/06 18:19:16 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/07 17:21:40 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,12 @@ void	get_list_nbr(t_lst **s_a, t_lst **rad)
 		ret++;
 	}
 	*s_a = first;
-	// afficher_stack_et_rad(s_a, rad);
 }
 
 void	conv_radix_to_bits(t_lst **rad)
 {
 	int		i;
 	int		nbr;
-	int		char_nbr[8];
 	t_lst	*first;
 
 	i = 0;
@@ -98,67 +96,55 @@ void	conv_radix_to_bits(t_lst **rad)
 	first = *rad;
 	while (*rad != NULL)
 	{
-		i = 7;
-		//  char_nbr = ft_itoa((*rad)->nbr);
 		nbr = (*rad)->nbr;
-				printf("nbr = %d\n", nbr);
-		// printf("rad->nbr = %d\n", nbr);
-		// printf("char_nbr = %s\n", char_nbr);
-		while (nbr > 0)
-		{
-			char_nbr[i] = nbr % 2;
-			// printf("char_nbr[i] = %d\n", char_nbr[i]);
-			nbr = nbr / 2;
-			i--;
-		}
-		while (i >= 0)
-		{
-			char_nbr[i] = 0;
-			i--;
-		}
-		for (i = 0 ; i < 8 ; i++)
-			printf("char_nbr = %d\n", char_nbr[i]);
-		// (*rad)->nbr = ft_atoi(char_nbr);
-		// printf("rad->nbr = %d\n", (*rad)->nbr);
-		// printf("char_nbr = %s\n", char_nbr);
+		(*rad)->nbr = ft_binary(nbr);
 		*rad = (*rad)->next;
 	}
+	*rad = first;
 }
 
-void bits(int nbr)
-{
-	  int tab[10], i;  
+// for (int i = 0 ; i < max_bits ; ++i) // repeat for max_bits times
+// {
+//     for(int j = 0 ; j < size ; ++j)
+//     {
+//         int num = a.top(); // top number of A
+//         if ((num >> i)&1 == 1) ra(); 
+//         // if the (i + 1)-th bit is 1, leave in stack a
+//         else pb();
+//         // otherwise push to stack b
+//     }
+//     // put into boxes done
+//     while (!b.empty()) pa(); // while stack b is not empty, do pa
+    
+//     // connect numbers done
+// }
 
-  
-  for(i=0; nbr > 0; i++)  
-  {  
-    tab[i] = nbr%2;  
-    nbr = nbr/2;  
-  } 
-  
-  printf("\nLe nombre binaire est = ");
-  
-  for(i=i-1; i >= 0; i--)  
-  {  
-    printf("%d",tab[i]);  
-  } 
+int	sort_500_values(t_lst **s_a, t_lst **s_b, t_lst **rad)
+{	(void)s_b;
+	int	size_stk;
+	int	max_num;
+	int	max_bits;
 
-}
+	get_list_nbr(s_a, rad);
+	conv_radix_to_bits(rad);
+	size_stk = size_stack(*rad);
+	max_num = size_stk - 1;
+	max_bits = 0;
+	while ((max_num >> max_bits) != 0)
+		max_bits++;
+	printf("size_stack = %d, max_num = %d, max_bits = %d\n", size_stk, max_num, max_bits);
 
-int	sort_500_values(t_lst **s_a, t_lst **s_b)
-{
-	(void)s_b;
-	t_lst	*rad;
 
-	rad = NULL;
-	get_list_nbr(s_a, &rad);
-	conv_radix_to_bits(&rad);
+	// afficher_stack_et_rad(s_a, rad);
 	// printf("8>>1 = %d, 5>>2 = %d, 2>>4 = %d, 87>>3 = %d, 5&10 = %d, 12&23 = %d\n", 8>>1, 5>>2, 2>>4, 87>>3, 5&10, 12&23);
 	return (SUCCESS);
 }
 
 int	begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts)
 {
+	t_lst	*rad;
+
+	rad = NULL;
 	get_info(uts);
 	if (check_if_sort(*s_a))
 		return (SUCCESS);
@@ -175,7 +161,7 @@ int	begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	else if (uts->size <= 100)
 		sort_100_values_chunks(s_a, s_b, 10);
 	else if (uts->size <= 500)
-		sort_500_values(s_a, s_b);
+		sort_500_values(s_a, s_b, &rad);
 	//afficher_deux_stack(s_a, s_b);
 	return (SUCCESS);
 }
