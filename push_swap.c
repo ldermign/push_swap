@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/09 14:00:26 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/09 18:04:43 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,9 @@ int	init_liste_a(t_lst **begin, int ac, char **tab)
 {
 	int		i;
 	int		nbr;
-	t_lst	*ret;
 
 	i = 1;
 	nbr = 0;
-	ret = *begin;
 	if (ac == 2)
 	{
 		if (!get_char_in_int(begin, tab[1]))
