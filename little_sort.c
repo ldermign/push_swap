@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:39:55 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/05 18:26:15 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/09 15:27:49 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,35 +65,6 @@ void	eject_two_mini(t_lst **s_a, t_lst **s_b, t_utils *uts)
 		i++;
 	}
 	push_b(s_a, s_b);
-}
-
-int	sort_three_values(t_lst **s_a)
-{
-	int	three;
-
-	if (s_a == NULL || size_stack(*s_a) != 2)
-		return (ERROR);
-	three = (*s_a)->next->next->nbr;
-	if (!check_if_sort(*s_a))
-	{
-		if ((*s_a)->nbr < (*s_a)->next->nbr && (*s_a)->next->nbr > three)
-		{
-			reverse_rotate_a(s_a);
-			if ((*s_a)->nbr > (*s_a)->next->nbr)
-				swap_a(s_a);
-		}
-		else if ((*s_a)->nbr > (*s_a)->next->nbr
-			&& (((*s_a)->next->nbr < three && (*s_a)->nbr < three)
-				|| ((*s_a)->next->nbr > three && (*s_a)->nbr > three)))
-		{
-			swap_a(s_a);
-			if ((*s_a)->nbr > three)
-				reverse_rotate_a(s_a);
-		}
-		else
-			rotate_a(s_a);
-	}
-	return (SUCCESS);
 }
 
 int	sort_three_values_inv(t_lst **s_b)

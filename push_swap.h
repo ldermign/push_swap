@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/07 16:45:19 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/09 13:54:55 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,36 @@ void	check_order_before_push(t_lst **s_b, t_chk *chk, int nbr_push);
 */
 
 int		begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts);
-int		sort_five_values(t_lst **s_a, t_lst **s_b, t_utils *uts);
-int		sort_three_values(t_lst **s_a);
 int		sort_three_values_inv(t_lst **s_a);
 void	sort_50_values(t_lst **s_a, t_lst **s_b, t_utils *uts);
-int		sort_100_values_chunks(t_lst **s_a, t_lst **s_b, int size);
 void	sort_three_with_more(t_lst **stack);
 int		where_to_change(t_lst **s_b, int nbr_push);
 void	minimum(t_lst **stack, t_utils *uts);
 
 /*
-**	SORT UTILS
+**	UTILS CHUNKS
+*/
+
+void	eject_two_mini(t_lst **s_a, t_lst **s_b, t_utils *uts);
+void	pos_five_max(t_lst **stack, t_utils *uts);
+void	push_all_except_five_to(t_lst **s_a, t_lst **s_b, t_utils *uts);
+void	push_all_five_to(t_lst **s_a, t_lst **s_b, t_utils *uts);
+void	push_max(t_lst **s_a, t_lst **s_b, t_utils *uts);
+void	push_only_max(t_lst **s_a, t_lst **s_b, t_utils *uts);
+
+/*
+**	UTILS RADIX
+*/
+
+int		how_many_down(t_lst *stack, int nb_stack);
+void	simu_rotate_a(t_lst **rad_a, t_lst **rad_ope);
+void	simu_push_a(t_lst **rad_b, t_lst **rad_a, t_lst **rad_ope);
+void	simu_push_b(t_lst **rad_a, t_lst **rad_b, t_lst **rad_ope);
+void	get_list_nbr(t_lst **s_a, t_lst **rad);
+void	get_operations(t_lst **rad_a, t_lst **rad_b, t_lst **rad_ope);
+
+/*
+**	UTILS
 */
 
 int		get_nbr_pos(t_lst **stack, int pos);
@@ -125,18 +144,6 @@ int		max_val(t_lst *stack);
 int		max_with_max(t_lst *stack, int size, int no);
 int		min_val(t_lst *stack, int size);
 int		min_with_min(t_lst *stack, int size, int no);
-void	eject_two_mini(t_lst **s_a, t_lst **s_b, t_utils *uts);
-void	pos_five_max(t_lst **stack, t_utils *uts);
-void	push_all_except_five_to(t_lst **s_a, t_lst **s_b, t_utils *uts);
-void	push_all_five_to(t_lst **s_a, t_lst **s_b, t_utils *uts);
-void	push_max(t_lst **s_a, t_lst **s_b, t_utils *uts);
-void	push_only_max(t_lst **s_a, t_lst **s_b, t_utils *uts);
-int		how_many_down(t_lst *stack, int nb_stack);
-
-/*
-**	UTILS
-*/
-
 int		get_info(t_utils *uts);
 int		size_stack(t_lst *stack);
 t_lst	*new_nbr(int nbr);

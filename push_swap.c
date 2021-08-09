@@ -6,84 +6,11 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/06 13:36:56 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/09 14:00:26 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	afficher_stack_et_rad(t_lst **stack, t_lst **rad)
-{
-	int		i;
-	t_lst	*fstack;
-	t_lst	*frad;
-
-	i = 0;
-	fstack = *stack;
-	frad = *rad;
-	if (*stack == NULL || rad == NULL)
-		exit (0);
-	while (*stack != NULL || *rad != NULL)
-	{
-		printf(CLR_COLOR"\t[%d]\t--> %d\tavec pos --> %d\n", i, (*stack)->nbr, (*rad)->nbr);
-		*stack = (*stack)->next;
-		*rad = (*rad)->next;
-		i++;
-	}
-	*stack = fstack;
-	*rad = frad;
-}
-
-void	afficher_une_stack(t_lst **s)
-{
-	int		i;
-	t_lst	*first;
-
-	i = 0;
-	first = *s;
-	if (*s == NULL)
-		exit (0);
-	while (*s != NULL)
-	{
-		printf(CLR_COLOR"\t[%d]\t--> %d\n", i, (*s)->nbr);
-		*s = (*s)->next;
-		i++;
-	}
-	*s = first;
-}
-
-
-void	afficher_deux_stack(t_lst **one, t_lst **two)
-{
-	t_lst	*fone;
-	t_lst	*ftwo;
-
-	fone = *one;
-	ftwo = *two;
-	int i = 0;
-	ft_printf(CLR_COLOR"First [a]\n");
-	if (*one == NULL)
-		ft_printf("\t///\n");
-	while (*one != NULL)
-	{
-		printf("[%d]\t--> %d\n", i, (*one)->nbr);
-		*one = (*one)->next;
-		i++;
-	}
-	i = 0;
-	ft_printf("Second [b]\n");
-	if (*two == NULL)
-		ft_printf("\t///\n");
-	while (*two != NULL)
-	{
-		printf("[%d]\t--> %d\n", i, (*two)->nbr);
-		*two = (*two)->next;
-		i++;
-	}
-	ft_printf("\n");
-	*one = fone;
-	*two = ftwo;
-}
 
 int	get_char_in_int(t_lst **begin, char *str)
 {

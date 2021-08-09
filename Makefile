@@ -6,7 +6,7 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 11:10:10 by ldermign          #+#    #+#              #
-#    Updated: 2021/08/05 18:23:20 by ldermign         ###   ########.fr        #
+#    Updated: 2021/08/09 15:34:15 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRCS	=	push_swap.c \
 			tris_utils.c \
 			begin_sort.c \
 			little_sort.c \
+			sort_radix_500.c \
+			radix_simu.c \
 			sort_chunks_100.c \
 			sort_chunks_100_utils.c \
 			max_min_utils.c

@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 14:55:17 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/06 13:47:17 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/09 13:41:12 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	how_many_down(t_lst *stack, int nb_stack)
 	while (stack != NULL)
 	{
 		nbr = stack->nbr;
-		// printf("%d < %d\n", nbr, nb_stack);
 		if (nbr < nb_stack)
 			hmn++;
 		stack = stack->next;
