@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/09 16:49:05 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/09 17:51:07 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int	sort_100_values_chunks(t_lst **s_a, t_lst **s_b, int size)
 		push_a(s_b, s_a);
 		chk->size--;
 	}
+	free(chk->chk);
+	free(chk->last_nbr);
 	free(chk);
 	return (1);
 }
@@ -140,6 +142,7 @@ int	begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts)
 		sort_100_values_chunks(s_a, s_b, 10);
 	else if (uts->size <= 500)
 		sort_500_values_radix(s_a, s_b, &rad);
+	free(uts->s_int);
 	free(uts);
 	free(rad);
 	return (SUCCESS);
