@@ -6,20 +6,20 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/09 13:54:55 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/09 16:53:49 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <libc.h>
+//#include <libc.h>
 
 # include "libft.h"
 # define ERROR 0
 # define SUCCESS 1
 
-# include <libc.h>
+//# include <libc.h>
  #define KRED  "\x1B[0;31m" // ROUGE
  #define KGRN  "\x1B[0;32m" // VERT
  #define KYEL  "\x1B[0;33m" // JAUNE
