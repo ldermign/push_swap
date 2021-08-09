@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/09 15:35:08 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/09 16:49:05 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	sort_100_values_chunks(t_lst **s_a, t_lst **s_b, int size)
 		push_a(s_b, s_a);
 		chk->size--;
 	}
+	free(chk);
 	return (1);
 }
 
