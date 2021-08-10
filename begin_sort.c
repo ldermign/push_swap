@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/09 17:51:07 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/10 12:02:47 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ void	sort_500_values_radix(t_lst **s_a, t_lst **s_b, t_lst **rad)
 	}
 	free(rad_b);
 	free(rad_ope);
+	// ft_lstclear(&rad_b, free);
+	// ft_lstclear(&rad_ope, free);
 }
 
 int	begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts)
@@ -145,5 +147,6 @@ int	begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	free(uts->s_int);
 	free(uts);
 	free(rad);
+	// ft_lstclear(&rad, free);
 	return (SUCCESS);
 }

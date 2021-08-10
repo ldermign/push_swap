@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/09 16:53:49 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/10 11:57:30 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ t_lst	*new_nbr(int nbr);
 void	add_nbr_back(t_lst **stack, int nbr);
 void	add_nbr_front(t_lst **begin, int nbr);
 int		somme(int *all, int size);
-
 
 void	afficher_deux_stack(t_lst **one, t_lst **two);
 void	afficher_une_stack(t_lst **s);
