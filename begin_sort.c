@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/10 12:19:16 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/10 16:03:29 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,8 @@ void	sort_500_values_radix(t_lst **s_a, t_lst **s_b, t_lst **rad)
 			rad_ope = rad_ope->next;
 		}
 	}
-	free(rad_b);
-	free(rad_ope);
-	// ft_lstclear(&rad_b, free);
-	// ft_lstclear(&rad_ope, free);
+	free_lst(rad_b);
+	free_lst(rad_ope);
 }
 
 int	begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts)
@@ -130,7 +128,12 @@ int	begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	rad = NULL;
 	get_info(uts);
 	if (check_if_sort(*s_a))
+	{
+		free(uts->s_int);
+		free(uts);
+		free_lst(rad);
 		return (SUCCESS);
+	}
 	else if (uts->size == 2)
 	{
 		if ((*s_a)->nbr > (*s_a)->next->nbr)
@@ -146,7 +149,6 @@ int	begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts)
 		sort_500_values_radix(s_a, s_b, &rad);
 	free(uts->s_int);
 	free(uts);
-	free(rad);
-	// ft_lstclear(&rad, free);
+	free_lst(rad);
 	return (SUCCESS);
 }
