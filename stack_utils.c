@@ -6,13 +6,13 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:03 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/10 12:14:51 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/10 15:21:19 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_lst(t_lst **stack, void (*del)(void *))
+void	free_lst(t_lst **stack)
 {
 	t_lst	*tmp;
 
@@ -21,7 +21,6 @@ void	free_lst(t_lst **stack, void (*del)(void *))
 	while (*stack)
 	{
 		tmp = (*stack)->next;
-		del((*stack)->nbr);
 		free(stack);
 		*stack = tmp;
 	}
