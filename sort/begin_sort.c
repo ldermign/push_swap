@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/10 16:03:29 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/10 19:38:08 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,24 +99,7 @@ void	sort_500_values_radix(t_lst **s_a, t_lst **s_b, t_lst **rad)
 	rad_ope = NULL;
 	get_list_nbr(s_a, rad);
 	get_operations(rad, &rad_b, &rad_ope);
-	while (rad_ope != NULL)
-	{
-		if (rad_ope != NULL && rad_ope->nbr == 0)
-		{
-			rotate_a(s_a);
-			rad_ope = rad_ope->next;
-		}
-		if (rad_ope != NULL && rad_ope->nbr == 1)
-		{
-			push_b(s_a, s_b);
-			rad_ope = rad_ope->next;
-		}
-		if (rad_ope != NULL && rad_ope->nbr == 2)
-		{
-			push_a(s_b, s_a);
-			rad_ope = rad_ope->next;
-		}
-	}
+	apply_to_real_stack(s_a, s_b, rad_ope);
 	free_lst(rad_b);
 	free_lst(rad_ope);
 }
@@ -128,12 +111,7 @@ int	begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	rad = NULL;
 	get_info(uts);
 	if (check_if_sort(*s_a))
-	{
-		free(uts->s_int);
-		free(uts);
-		free_lst(rad);
-		return (SUCCESS);
-	}
+		return (free(uts->s_int), free(uts), free_lst(rad), SUCCESS);
 	else if (uts->size == 2)
 	{
 		if ((*s_a)->nbr > (*s_a)->next->nbr)
@@ -141,14 +119,11 @@ int	begin_sort(t_lst **s_a, t_lst **s_b, t_utils *uts)
 	}
 	else if (uts->size == 3)
 		sort_three_values(s_a);
-	if (uts->size <= 5)
+	else if (uts->size <= 5)
 		sort_under_five_values(s_a, s_b, uts);
 	else if (uts->size <= 100)
 		sort_100_values_chunks(s_a, s_b, 10);
 	else if (uts->size <= 500)
 		sort_500_values_radix(s_a, s_b, &rad);
-	free(uts->s_int);
-	free(uts);
-	free_lst(rad);
-	return (SUCCESS);
+	return (free(uts->s_int), free(uts), free_lst(rad), SUCCESS);
 }

@@ -6,30 +6,16 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:26:49 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/10 15:55:37 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/10 18:57:26 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-//#include <libc.h>
-
 # include "libft.h"
 # define ERROR 0
 # define SUCCESS 1
-
-//# include <libc.h>
- #define KRED  "\x1B[0;31m" // ROUGE
- #define KGRN  "\x1B[0;32m" // VERT
- #define KYEL  "\x1B[0;33m" // JAUNE
- #define KBLU  "\x1B[0;34m" // BLEU
- #define KMAG  "\x1B[0;35m" // MAGENTA
- #define KCYN  "\x1B[0;36m" // CYAN
- #define KWHT  "\x1B[0;37m" // BLANC
- #define KGRE  "\x1b[1;30m" // VERT
- #define CLR_COLOR "\x1b[0m" // CLEAR COLOR
-
 
 /*
 **	STRUCTURES
@@ -150,9 +136,7 @@ t_lst	*new_nbr(int nbr);
 void	add_nbr_back(t_lst **stack, int nbr);
 void	add_nbr_front(t_lst **begin, int nbr);
 int		somme(int *all, int size);
+void	apply_to_real_stack(t_lst **s_a, t_lst **s_b, t_lst *rad_ope);
 void	free_lst(t_lst *stack);
 
-void	afficher_deux_stack(t_lst **one, t_lst **two);
-void	afficher_une_stack(t_lst **s);
-void	afficher_stack_et_rad(t_lst **stack, t_lst **rad);
 #endif

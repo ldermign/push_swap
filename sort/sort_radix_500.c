@@ -6,17 +6,40 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 13:52:16 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/09 13:54:44 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/10 18:56:59 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	apply_to_real_stack(t_lst **s_a, t_lst **s_b, t_lst *rad_ope)
+{
+	while (rad_ope != NULL)
+	{
+		if (rad_ope != NULL && rad_ope->nbr == 0)
+		{
+			rotate_a(s_a);
+			rad_ope = rad_ope->next;
+		}
+		if (rad_ope != NULL && rad_ope->nbr == 1)
+		{
+			push_b(s_a, s_b);
+			rad_ope = rad_ope->next;
+		}
+		if (rad_ope != NULL && rad_ope->nbr == 2)
+		{
+			push_a(s_b, s_a);
+			rad_ope = rad_ope->next;
+		}
+	}
+}
+
 void	get_list_nbr(t_lst **s_a, t_lst **rad)
 {
 	int		i;
 	int		ret;
-	int		nbr;	t_lst	*first;
+	int		nbr;
+	t_lst	*first;
 
 	i = 0;
 	ret = 0;
