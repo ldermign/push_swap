@@ -6,12 +6,12 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:59 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/03 17:26:20 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/11 17:41:22 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+#include <libc.h>
 int	ft_doublon(char **tab)
 {
 	int				i;
@@ -24,13 +24,16 @@ int	ft_doublon(char **tab)
 	while (tab[i] && tab[i + 1])
 	{
 		j = i;
-		tmp = ft_atoi(tab[i]);
+		if (ft_strlen(tab[i]) > 11)
+			return (ERROR);
+		tmp = ft_atol(tab[i]);
 		while (tab[i + 1])
 		{
 			i++;
-			tmp2 = ft_atoi(tab[i]);
-			if (tmp == tmp2 || tmp > 2147483647 || tmp2 > 2147483647
-				|| tmp < -2147483648 || tmp2 < -2147483648)
+			tmp2 = ft_atol(tab[i]);
+			if (tmp == tmp2 || (ft_strlen(tab[i + 1]) > 11)
+				|| tmp > 2147483647 || tmp2 > 2147483647 || tmp < -2147483648
+				|| tmp2 < -2147483648)
 				return (ERROR);
 		}
 		i = j + 1;
