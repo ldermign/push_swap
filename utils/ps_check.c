@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:59 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/14 19:06:11 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/14 19:10:00 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,12 @@ int	ft_doublon(char **tab)
 	while (tab[i] && tab[i + 1])
 	{
 		j = i;
-		if (ft_len_int(tmp) > 11)
-			return (ERROR);
 		tmp = ft_atol(tab[i]);
 		while (tab[i + 1])
 		{
 			i++;
 			tmp2 = ft_atol(tab[i]);
-			if (ft_len_int(tmp2) > 11)
+			if (ft_len_int(tmp) > 11 || ft_len_int(tmp2) > 11)
 				return (ERROR);
 			if (tmp == tmp2 || (ft_strlen(tab[i + 1]) > 11)
 				|| tmp > 2147483647 || tmp2 > 2147483647 || tmp < -2147483648
