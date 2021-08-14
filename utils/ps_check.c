@@ -6,12 +6,12 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:59 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/11 17:41:22 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/14 19:06:11 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <libc.h>
+
 int	ft_doublon(char **tab)
 {
 	int				i;
@@ -24,13 +24,15 @@ int	ft_doublon(char **tab)
 	while (tab[i] && tab[i + 1])
 	{
 		j = i;
-		if (ft_strlen(tab[i]) > 11)
+		if (ft_len_int(tmp) > 11)
 			return (ERROR);
 		tmp = ft_atol(tab[i]);
 		while (tab[i + 1])
 		{
 			i++;
 			tmp2 = ft_atol(tab[i]);
+			if (ft_len_int(tmp2) > 11)
+				return (ERROR);
 			if (tmp == tmp2 || (ft_strlen(tab[i + 1]) > 11)
 				|| tmp > 2147483647 || tmp2 > 2147483647 || tmp < -2147483648
 				|| tmp2 < -2147483648)
@@ -44,11 +46,21 @@ int	ft_doublon(char **tab)
 int	check_if_tab_char(char *str)
 {
 	int	i;
+	int	ret;
 
 	i = 0;
 	while (str[i])
 	{
 		if (!ft_is_digit(str[i]) && str[i] != ' ' && str[i] != '-')
+			return (ERROR);
+		ret = 0;
+		while (ft_is_digit(str[i]))
+		{
+			ret++;
+			i++;
+		}
+		i -= ret;
+		if (ret > 11)
 			return (ERROR);
 		i++;
 	}
