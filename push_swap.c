@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/10 15:56:21 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/16 17:54:39 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,22 @@
 
 int	get_char_in_int(t_lst **begin, char *str)
 {
-	int	i;
 	int	nbr;
 
-	i = 0;
 	nbr = 0;
-	while (str[i])
+	while (*str)
 	{
-		while (str[i] == ' ')
-			i++;
-		nbr = ft_atoi(&str[i]);
-		add_nbr_back(begin, nbr);
-		if (str[i] == '-')
-			i++;
-		if (!ft_is_digit(str[i]))
-			return (ERROR);
-		while (ft_is_digit(str[i]))
-			i++;
-		if (str[i] != ' ' && str[i] != '\0')
-			return (ERROR);
-		while (str[i] == ' ')
-			i++;
-		if (str[i] != '-' && str[i] != '\0' && !ft_is_digit(str[i]))
-			return (ERROR);
+		if (ft_is_digit(*str) || *str == '-')
+		{
+			nbr = ft_atoi(&(*str));
+			if (*str == '-')
+				str++;
+			while (ft_is_digit(*str))
+				str++;
+			add_nbr_back(begin, nbr);
+		}
+		if (*str == ' ')
+			str++;
 	}
 	return (SUCCESS);
 }

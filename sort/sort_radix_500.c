@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 13:52:16 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/10 18:56:59 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/16 15:01:14 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,17 @@ void	get_operations(t_lst **rad_a, t_lst **rad_b, t_lst **rad_ope)
 	int	i;
 	int	j;
 	int	size_stk;
-	int	max_bits;
+	int	max_len;
 
 	size_stk = size_stack(*rad_a);
-	max_bits = 0;
-	while (((size_stk - 1) >> max_bits) != 0)
-		max_bits++;
+	max_len = ft_len_int(ft_binary(get_nbr_pos(rad_a, max_val(*rad_a))));
 	i = 0;
-	while (i < max_bits)
+	while (i < max_len)
 	{
 		j = 0;
 		while (j <= size_stk)
 		{
-			if ((((*rad_a)->nbr >> i) & 1) == 1)
+			if (((*rad_a)->nbr >> i) & 1)
 				simu_rotate_a(rad_a, rad_ope);
 			else
 				simu_push_b(rad_a, rad_b, rad_ope);
