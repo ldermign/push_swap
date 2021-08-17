@@ -6,18 +6,18 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:59 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/16 19:19:32 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/17 14:37:46 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <libc.h>
+
 int	ft_doublon(char **tab)
 {
-	int				i;
-	int				j;
-	long long int	tmp;
-	long long int	tmp2;
+	int		i;
+	int		j;
+	long	tmp;
+	long	tmp2;
 
 	i = 0;
 	j = 0;
@@ -41,10 +41,9 @@ int	ft_doublon(char **tab)
 
 int	ft_doublon_char(char *str, int i, int j)
 {
-	long long int	tmp;
-	long long int	tmp2;
+	long	tmp;
+	long	tmp2;
 
-	i = 0;
 	j = 0;
 	while (str[i])
 	{
@@ -91,8 +90,36 @@ int	check_if_tab_char(char *str)
 		if (str[i] == ' ' && str[i + 1])
 			i++;
 	}
+	i = 0;
 	if (!ft_doublon_char(str, i, ret))
 		return (ERROR);
+	return (SUCCESS);
+}
+
+int	check_tab_arg(char **tab)
+{
+	int	ret;
+	int	i;
+	int	j;
+
+	i = 1;
+	while (tab[i])
+	{
+		j = 0;
+		ret = 0;
+		while (tab[i][j])
+		{
+			if (tab[i][j] != '-' && !ft_is_digit(tab[i][j]))
+				return (ERROR);
+			if (tab[i][0] == '-')
+				j++;
+			while (ft_is_digit(tab[i][j]) && ++ret)
+				j++;
+			if (tab[i][j] != '\0' || ret > 10)
+				return (ERROR);
+		}
+		i++;
+	}
 	return (SUCCESS);
 }
 
@@ -119,35 +146,6 @@ int	check_arg(int ac, char **av)
 			}
 			i++;
 		}
-	}
-	return (SUCCESS);
-}
-
-int	check_tab_arg(char **tab)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	while (tab[i])
-	{
-		j = 0;
-		while (tab[i][j])
-		{
-			if (tab[i][j] != '-' && !ft_is_digit(tab[i][j]))
-				return (ERROR);
-			if (tab[i][j] == '-')
-				j++;
-			if (!ft_is_digit(tab[i][j]))
-				return (ERROR);
-			while (ft_is_digit(tab[i][j]))
-			{
-				j++;
-				if (!ft_is_digit(tab[i][j]) && tab[i][j] != '\0')
-					return (ERROR);
-			}
-		}
-		i++;
 	}
 	return (SUCCESS);
 }
