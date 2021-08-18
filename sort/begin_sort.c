@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:14:48 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/18 18:59:43 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/18 19:06:46 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	sort_500_values_radix(t_lst **s_a, t_lst **s_b, t_lst **rad)
 	get_list_nbr(s_a, rad);
 	get_operations(rad, &rad_b, &rad_ope);
 	apply_to_real_stack(s_a, s_b, rad_ope);
-
 	free_lst(rad_b);
 	free_lst(rad_ope);
 }
