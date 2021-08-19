@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:59 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/18 18:50:07 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/19 12:04:12 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ int	ft_doublon(char **tab)
 	long	tmp2;
 
 	i = 0;
-	j = 0;
 	while (tab[i] && tab[i + 1])
 	{
 		j = i;
 		tmp = ft_atol(tab[i]);
+		if (ft_len_int(tmp) > 10 || tmp > 2147483647 || tmp < -2147483648)
+			return (ERROR);
 		while (tab[i + 1])
 		{
 			i++;
 			tmp2 = ft_atol(tab[i]);
-			if (tmp == tmp2 || ft_len_int(tmp) > 10 || ft_len_int(tmp2) > 10
-				|| tmp > 2147483647 || tmp < -2147483648
+			if (tmp == tmp2 || ft_len_int(tmp2) > 10
 				|| tmp2 > 2147483647 || tmp2 < -2147483648)
 				return (ERROR);
 		}
@@ -44,10 +44,11 @@ int	ft_doublon_char(char *str, int i, int j)
 	long	tmp;
 	long	tmp2;
 
-	j = 0;
 	while (str[i])
 	{
 		tmp = ft_atol(&(str[i]));
+		if (tmp > 2147483647 || tmp < -2147483648)
+			return (ERROR);
 		while (str[i] && (ft_is_digit(str[i]) || str[i] == '-'))
 			i++;
 		if (str[i] == ' ')
@@ -56,8 +57,7 @@ int	ft_doublon_char(char *str, int i, int j)
 		while (str[j])
 		{
 			tmp2 = ft_atol(&str[j]);
-			if (tmp == tmp2 || tmp > 2147483647 || tmp < -2147483648
-				|| tmp2 > 2147483647 || tmp2 < -2147483648)
+			if (tmp == tmp2 || tmp2 > 2147483647 || tmp2 < -2147483648)
 				return (ERROR);
 			while (str[j] && (ft_is_digit(str[j]) || str[j] == '-'))
 				j++;
