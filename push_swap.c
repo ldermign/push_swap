@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:01:21 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/18 18:59:35 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/19 15:31:12 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	init_liste_a(t_lst **begin, int ac, char **tab)
 	nbr = 0;
 	if (ac == 2)
 	{
-		if (!get_char_in_int(begin, tab[1]))
+		if (tab[1][0] == '\0' || !get_char_in_int(begin, tab[1]))
 			return (ERROR);
 		return (SUCCESS);
 	}
