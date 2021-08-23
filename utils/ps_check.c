@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 11:59:59 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/19 12:13:11 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/23 14:25:50 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ int	check_tab_arg(char **tab)
 	{
 		j = 0;
 		ret = 0;
+		if (tab[i][0] == '\0')
+			return (ERROR);
 		while (tab[i][j])
 		{
 			if (tab[i][j] != '-' && !ft_is_digit(tab[i][j]))
